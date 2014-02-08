@@ -1,0 +1,50 @@
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/Picture.js","text/javascript");?>
+
+<div style="margin:20px;">
+	<?php echo $this->tableHeader('filterHeader', _("Filter Picture"));?>
+	<div id="containerFormFilter">
+		<?php echo $this->formFilter; ?>
+	</div>
+	<br>
+	<?php echo $this->tableHeader('pictureHeader', _("Pictures"));?>
+	<?php echo $this->tableList("tblPicture");?>
+	<div class="buttons right">
+		<?php echo $this->buttonRemove("delete-picture", $this->translate('Remove'), $this->url(array('action'=>'remove')));?>
+		<?php echo $this->buttonAdd("create-picture", $this->translate('Add'), $this->url(array('action'=>'add')));?>
+	</div>
+
+	<div id="dialog"><!-- Loads ajax dialog form --></div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	var picture = new com.em.Picture();
+
+	// network
+	picture.setUrl({
+		toTable : '<?php echo $this->url(array('action'=>'read-items'));?>',
+		toBase : '<?php echo $this->baseUrl(); ?>',
+		toUpdate : '<?php echo $this->url(array('action'=>'edit')); ?>',
+		toDownload : '<?php echo $this->url(array('action'=>'download')); ?>'
+	});
+
+	var headers = new Object();
+	headers.headerArray = new Array(
+		'<?php echo $this->translate('Title'); ?>',
+		'<?php echo $this->translate('Description'); ?>',
+		'<?php echo $this->translate('Download'); ?>',
+		'<?php echo $this->translate('Category'); ?>',
+		'<?php echo $this->translate('Created'); ?>',
+		'<?php echo $this->translate('Changed'); ?>');
+	picture.setHeaders(headers);
+	// configuration of widgets
+	picture.configureTable('#tblPicture', true);
+
+	// CRUD
+	picture.clickToAdd('#create-picture');
+	picture.clickToUpdate('#tblPicture[id^=update-picture-]');
+	picture.clickToDelete('#delete-picture');
+	// Filter
+	picture.configureAuto('input#nameFilter');
+});
+</script>

@@ -1,0 +1,82 @@
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/jquery-lightbox/js/jquery.lightbox-0.5.min.js","text/javascript");?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl() . "/js/lib/jquery-lightbox/css/jquery.lightbox-0.5.css");?>
+<div id="page-title">
+	<span class="title">Noticias JA</span>
+	<span class="subtitle">Todas las noticias de JA lo encontrara aqui.</span>
+</div>
+
+<!-- Posts -->
+<div id="posts" class="single">
+	<!-- post -->
+	<div class="post">
+		<h1><a href="#"><?php echo $this->news->getTitle();?></a></h1>
+		<!-- shadow -->
+		<div class="thumb-shadow">
+			<!-- post-thumb -->
+			<div class="post-thumbnail" id="gallery">
+				<ul>
+					<li>
+						<a href="/image/upload/news/<?php echo $this->news->getImagename();?>" title="<?php echo $this->news->getTitle();?>">
+						<img src="/image/upload/news/<?php echo $this->news->getImagename();?>" width="596" height="270"/>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!-- ENDS post-thumb -->
+			<div>
+				<p><?php echo $this->news->getSummary();?></p>
+				<?php echo $this->news->getContain();?>
+			</div>
+		</div>
+		<!-- ENDS shadow -->
+
+		<!-- meta -->
+		<ul class="meta">
+			<li><strong>Fecha de publicación</strong> <?php echo $this->news->getNewsdate()->format('d-m-Y');?> </li>
+			<li><strong>Escrito por</strong> <a href="#"><?php echo $this->news->getFount();?></a></li>
+<!-- 			<li> <strong>Posted in</strong> -->
+<!-- 				<div class="meta-tags"> -->
+<!-- 					<a href="#">Webdesign</a> -->
+<!-- 					<a href="#">Code</a> -->
+<!-- 					<a href="#">Photo</a> -->
+<!-- 					<a href="#">Blue</a> -->
+<!-- 					<a href="#">Computers</a> -->
+<!-- 					<a href="#">Sites</a> -->
+<!-- 				</div> -->
+<!-- 			</li> -->
+		</ul>
+		<!-- ENDS meta -->
+
+	</div>
+	<!-- ENDS post -->
+</div>
+<!-- ENDS Posts -->
+
+<!-- sidebar -->
+<ul id="sidebar">
+	<li>
+	<h6>Categories</h6>
+		<ul>
+			<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+			<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+			<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+			<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+		</ul>
+	</li>
+
+	<li>
+	<h6>Archives</h6>
+		<ul>
+			<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+			<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+			<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+			<li class="cat-item"><a href="#" title="View all posts">Pellentesque habitant morbi</a></li>
+		</ul>
+	</li>
+</ul>
+
+<script type="text/javascript">
+	$(function() {
+		$('#gallery a').lightBox();
+	});
+</script>

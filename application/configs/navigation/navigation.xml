@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<navigation>
+		<inicio>
+			<id>inicio</id>
+			<label>INICIO</label>
+			<action>index</action>
+			<controller>Index</controller>
+		</inicio>
+
+		<whowe>
+			<id>whowe</id>
+			<label>Who We?</label>
+			<uri>#</uri>
+			<action>index</action>
+			<controller>whowe</controller>
+			<pages>
+				<history>
+					<label>Our History</label>
+					<controller>Whowe</controller>
+					<action>history</action>
+				</history>
+				<visionMission>
+					<label>Vision  Mission</label>
+					<controller>Whowe</controller>
+					<action>visionmission</action>
+				</visionMission>
+				<logo>
+					<label>Our Logo</label>
+					<controller>Whowe</controller>
+					<action>logo</action>
+				</logo>
+				<belief>
+					<label>Our Belief</label>
+					<controller>Whowe</controller>
+					<action>belief</action>
+				</belief>
+			</pages>
+		</whowe>
+
+		<news>
+			<label>News</label>
+			<controller>News</controller>
+			<action>index</action>
+		</news>
+
+		<sabbathSchool>
+			<label>Sabbath School</label>
+			<controller>Sabbathschool</controller>
+			<action>index</action>
+		</sabbathSchool>
+
+		<reaviver>
+			<label>Reavivados por su Palabra</label>
+			<controller>Reaviver</controller>
+			<action>index</action>
+		</reaviver>
+
+		<pathfinder>
+			<label>Pathfinders</label>
+			<controller>Pathfinder</controller>
+			<action>index</action>
+			<pages>
+				<orion>
+					<label>Orion</label>
+					<controller>Pathfinder</controller>
+					<action>orion</action>
+				</orion>
+				<alasOrion>
+					<label>Alas de Orion</label>
+					<controller>Pathfinder</controller>
+					<action>alasorion</action>
+				</alasOrion>
+				<nuevoOriente>
+					<label>Nuevo Oriente</label>
+					<controller>Pathfinder</controller>
+					<action>nuevooriente</action>
+				</nuevoOriente>
+			</pages>
+		</pathfinder>
+
+		<aventureros>
+			<label>Aventureros</label>
+			<controller>Pathfinder</controller>
+			<action>index</action>
+		</aventureros>
+
+		<ja>
+			<label>JA</label>
+			<controller>Young</controller>
+			<action>index</action>
+		</ja>
+	</navigation>
+</config>

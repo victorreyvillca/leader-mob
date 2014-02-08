@@ -1,0 +1,89 @@
+<?php //$this->headScript()->appendFile($this->baseUrl() . "/js/Newsja.js","text/javascript");?>
+<div id="page-title">
+	<span class="title">Noticias JA</span>
+	<span class="subtitle">Los jovenes de Iglesia se preparan para el campamento.</span>
+</div>
+
+<!-- TABS -->
+<!-- the tabs -->
+<ul class="tabs">
+	<li><a href="#"><span>Noticias recientes</span></a></li>
+<!-- 	<li><a href="#"><span>Recent posts</span></a></li> -->
+</ul>
+<!-- tab "panes" -->
+<div class="panes">
+	<!-- Posts -->
+	<div>
+		<ul class="blocks-thumbs thumbs-rollover">
+			<?php foreach ($this->news as $new) {?>
+				<li>
+				<a href="<?php echo $this->url(array('action'=>'single', 'id' => $new->getId()));?>" class="thumb" title="<?php echo $new->getTitle();?>">
+					<img src="/image/upload/news/<?php $imagename = $new->getImagename() == NULL ? 'newsdefault.gif' : $new->getImagename();  echo $imagename;?>" alt="Post" width="282" height="150"/></a>
+				<div class="excerpt">
+					<a href="<?php echo $this->url(array('action'=>'single', 'id' => $new->getId()));?>" class="header"><?php echo $new->getTitle();?></a>
+					<?php echo $new->getSummary();?>
+				</div>
+				<a href="<?php echo $this->url(array('action'=>'single', 'id' => $new->getId()));?>" class="link-button"><span>Leer mas &#8594;</span></a>
+				</li>
+			<?php }?>
+		</ul>
+	</div>
+	<!-- ENDS posts -->
+
+	<!-- Posts -->
+<!-- 	<div> -->
+<!-- 		<ul class="blocks-thumbs thumbs-rollover"> -->
+<!-- 			<li> -->
+<!-- 				<a href="single.html" class="thumb" title="An image"><img src="/layoutguest/nova/HTML/img/dummies/282x150.gif" alt="Post" /></a> -->
+<!-- 				<div class="excerpt"> -->
+<!-- 					<a href="single.html" class="header">Lorem ipsum dolor</a> -->
+<!-- 					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. -->
+<!-- 				</div> -->
+<!-- 					<a href="single.html" class="link-button"><span>Read more &#8594;</span></a> -->
+<!-- 			</li> -->
+<!-- 			<li> -->
+<!-- 				<a href="single.html" class="thumb" title="An image"><img src="/layoutguest/nova/HTML/img/dummies/282x150.gif" alt="Post" /></a> -->
+<!-- 				<div class="excerpt"> -->
+<!-- 					<a href="single.html" class="header">Lorem ipsum dolor</a> -->
+<!-- 					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. -->
+<!-- 				</div> -->
+<!-- 				<a href="single.html" class="link-button"><span>Read more &#8594;</span></a> -->
+<!-- 			</li> -->
+<!-- 			<li> -->
+<!-- 				<a href="single.html" class="thumb" title="An image"><img src="/layoutguest/nova/HTML/img/dummies/282x150.gif" alt="Post" /></a> -->
+<!-- 				<div class="excerpt"> -->
+<!-- 					<a href="single.html" class="header">Lorem ipsum dolor</a> -->
+<!-- 					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. -->
+<!-- 				</div> -->
+<!-- 				<a href="single.html" class="link-button"><span>Read more &#8594;</span></a> -->
+<!-- 			</li> -->
+<!-- 			<li> -->
+<!-- 				<a href="single.html" class="thumb" title="An image"><img src="/layoutguest/nova/HTML/img/dummies/282x150.gif" alt="Post" /></a> -->
+<!-- 				<div class="excerpt"> -->
+<!-- 					<a href="single.html" class="header">Lorem ipsum dolor</a> -->
+<!-- 					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. -->
+<!-- 				</div> -->
+<!-- 				<a href="single.html" class="link-button"><span>Read more &#8594;</span></a> -->
+<!-- 			</li> -->
+<!-- 		</ul> -->
+<!-- 	</div> -->
+	<!-- ENDS posts -->
+</div>
+<!-- ENDS TABS -->
+
+<script type="text/javascript">
+$("ul.tabs").tabs("div.panes > div", {effect: 'fade'});
+
+//Thumbs rollover --------------------------------------------- //
+$('.thumbs-rollover li a img').hover(function(){
+	// on rollover
+	$(this).stop().animate({
+		opacity: "0.5"
+	}, "fast");
+} , function() {
+	// on out
+	$(this).stop().animate({
+		opacity: "1"
+	}, "fast");
+});
+</script>

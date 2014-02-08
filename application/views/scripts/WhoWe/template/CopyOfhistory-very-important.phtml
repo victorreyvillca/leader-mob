@@ -1,0 +1,47 @@
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/jquery-lightbox/js/jquery.lightbox-0.5.min.js","text/javascript");?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl() . "/js/lib/jquery-lightbox/css/jquery.lightbox-0.5.css");?>
+
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/jcarousel/jquery.jcarousel.min.js","text/javascript");?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl() . "/js/lib/jcarousel/skins/tango/skin.css");?>
+
+<div id="page-title">
+	<span class="title">Nuestras historia</span>
+	<span class="subtitle">La Iglesia adventista del septimo dia y su historia</span>
+</div>
+
+<div id="gallery">
+    <ul id="mycarousel" class="jcarousel-skin-tango">
+        <li>
+            <a href="/image/photos/image1.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery').lightBox();">
+                <img src="/image/photos/thumb_image1.jpg" width="72" height="72" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="/image/photos/image2.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery a').lightBox();">
+                <img src="/image/photos/thumb_image2.jpg" width="72" height="72" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="/image/photos/image3.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery a').lightBox();">
+                <img src="/image/photos/thumb_image3.jpg" width="72" height="72" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="/image/photos/image4.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery a').lightBox();">
+                <img src="/image/photos/thumb_image4.jpg" width="72" height="72" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="/image/photos/image5.jpg" title="Utilize a flexibilidade dos seletores da jQuery e crie um grupo de imagens como desejar. $('#gallery a').lightBox();">
+                <img src="/image/photos/thumb_image5.jpg" width="72" height="72" alt="pep" />
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+    	$('#gallery a').lightBox();
+    	$('#mycarousel').jcarousel();
+	});
+</script>
