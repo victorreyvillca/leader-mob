@@ -1,18 +1,15 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
-{
+class IndexController extends Dis_Controller_Action {
 
-    public function init()
-    {
+    public function init() {
         /* Initialize action controller here */
     }
 
-    public function indexAction()
-    {
-        // action body
+    public function indexAction() {
+        $pictureRepo = $this->_entityManager->getRepository('Model\Picture');
+        $pictures = $pictureRepo->findAll();
+
+        $this->view->pictures = $pictures;
     }
-
-
 }
-

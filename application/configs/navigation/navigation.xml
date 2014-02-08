@@ -38,11 +38,34 @@
 			</pages>
 		</whowe>
 
-		<news>
-			<label>News</label>
-			<controller>News</controller>
+		<config>
+			<id>configuration</id>
+			<label>Configuracion</label>
 			<action>index</action>
-		</news>
+			<controller>Mission</controller>
+			<pages>
+				<mission>
+					<label>Mision</label>
+					<action>index</action>
+					<controller>Mission</controller>
+				</mission>
+				<region>
+					<label>Region</label>
+					<action>index</action>
+					<controller>Region</controller>
+				</region>
+				<district>
+					<label>Distrito</label>
+					<action>index</action>
+					<controller>District</controller>
+				</district>
+				<church>
+					<label>Iglesia</label>
+					<action>index</action>
+					<controller>Church</controller>
+				</church>
+			</pages>
+		</config>
 
 		<sabbathSchool>
 			<label>Sabbath School</label>
