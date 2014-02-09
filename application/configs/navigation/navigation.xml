@@ -38,6 +38,12 @@
 			</pages>
 		</whowe>
 
+		<registration>
+			<label>Registracion</label>
+			<controller>Registration</controller>
+			<action>index</action>
+		</registration>
+
 		<config>
 			<id>configuration</id>
 			<label>Configuracion</label>
@@ -66,12 +72,6 @@
 				</church>
 			</pages>
 		</config>
-
-		<sabbathSchool>
-			<label>Sabbath School</label>
-			<controller>Sabbathschool</controller>
-			<action>index</action>
-		</sabbathSchool>
 
 		<reaviver>
 			<label>Reavivados por su Palabra</label>

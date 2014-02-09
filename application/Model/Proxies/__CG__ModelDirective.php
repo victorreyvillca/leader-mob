@@ -64,10 +64,10 @@ class Directive extends \Model\Directive implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'dateChristening', 'address', 'note', 'isActivo', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+            return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
         }
 
-        return array('__isInitialized__', 'dateChristening', 'address', 'note', 'isActivo', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+        return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
     }
 
     /**
@@ -237,6 +237,50 @@ class Directive extends \Model\Directive implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNote', array($note));
 
         return parent::setNote($note);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEmail()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmail', array());
+
+        return parent::getEmail();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEmail($email)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEmail', array($email));
+
+        return parent::setEmail($email);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getYearService()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getYearService', array());
+
+        return parent::getYearService();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setYearService($yearService)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setYearService', array($yearService));
+
+        return parent::setYearService($yearService);
     }
 
     /**

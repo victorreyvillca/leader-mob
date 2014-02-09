@@ -207,6 +207,13 @@ class Person extends DomainObject {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getName() {
+        return $this->firstName . " " . $this->lastName;
+    }
+
+	/**
 	 * @return int
 	 */
 	public function getProfilePictureId() {

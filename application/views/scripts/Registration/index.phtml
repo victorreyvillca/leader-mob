@@ -1,0 +1,52 @@
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/Directive.js","text/javascript");?>
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/blueimp-Load-Image/load-image.min.js","text/javascript"); ?>
+
+<div style="margin:20px;">
+	<?php echo $this->tableHeader('filterHeader', _("Filter Directive"));?>
+	<div id="containerFormFilter">
+		<?php echo $this->formFilter;?>
+	</div>
+	<br>
+	<?php echo $this->tableHeader('directiveHeader', _("Directives"));?>
+	<?php echo $this->tableList("tblDirective");?>
+	<div class="buttons right">
+		<?php echo $this->buttonRemove("delete-directive", $this->translate('Remove'), $this->url(array('action'=>'delete')));?>
+		<?php echo $this->buttonAdd("create-directive", $this->translate('Add'), $this->url(array('action'=>'create')));?>
+	</div>
+
+	<div id="dialog"><!-- Loads ajax dialog form --></div>
+</div>
+<?php //echo $this->imagelogo;?>
+<script type="text/javascript">
+	$(document).ready(function() {
+	var directive = new com.em.Directive();
+
+	// network
+	directive.setUrl({
+		toTable : '<?php echo $this->url(array('action'=>'read-items'));?>',
+		toBase : '<?php echo $this->baseUrl(); ?>',
+		toUpdate : '<?php echo $this->url(array('action'=>'update')); ?>',
+		toAutocomplete : '<?php echo $this->url(array('action'=>'autocomplete'));?>'
+	});
+
+	var headers = new Object();
+	headers.headerArray = new Array(
+		'<?php echo $this->translate('Name'); ?>',
+		'<?php echo $this->translate('Position'); ?>',
+		'<?php echo $this->translate('Mobil'); ?>',
+		'<?php echo $this->translate('Phone'); ?>',
+		'<?php echo $this->translate('Email'); ?>',
+		'<?php echo $this->translate('Club Pathfinder'); ?>',
+		'<?php echo $this->translate('Changed'); ?>',
+		'<?php echo $this->translate('Changed'); ?>');
+	directive.setHeaders(headers);
+	// configuration of widgets
+	directive.configureTable('#tblDirective', true);
+
+	// CRUD
+	directive.clickToAdd('#create-directive');
+	directive.clickToUpdate('#tblDirective a[id^=update-directive-]');
+	directive.clickToDelete('#delete-directive');
+	directive.configureAuto('input#nameFilter');
+});
+</script>

@@ -14,17 +14,7 @@
 <div id="posts">
     <!-- post -->
     <div class="post">
-		<!-- shadow -->
-		<div class="thumb-shadow">
-			<!-- post-thumb -->
-			<ul id="myGallery2">
-            <?php foreach ($this->pictures as $picture) {?>
-			<li><img data-frame="<?php echo $picture->getSrcCrop() . $picture->getFilenameCrop();?>" src="<?php echo $picture->getSrc() . $picture->getFilename();?>" title="<?php echo $picture->getTitle();?>" data-description="<?php echo $picture->getDescription();?>"/></li>
-            <?php }?>
-            </ul>
-			<!-- ENDS post-thumb -->
-		</div>
-		<!-- ENDS shadow -->
+
 
 		<br>
 		<h3 dir="ltr" align="center"><span style="color: #000000;">Bienvenidos al Bog de Noticias del Distrito</span></h3>
@@ -62,41 +52,3 @@
 		</ul>
 	</li>
 </ul>
-
-<script type="text/javascript">
-	$(function() {
-		$('#myGallery2').galleryView({
-			transition_speed: 1000,
-			transition_interval: 2000,
-			easing: 'swing',
-			show_panels: true,
-			show_panel_nav: true,
-			enable_overlays: true,
-
-			panel_width: 590,
-			panel_height: 295,
-			panel_animation: 'slide',
-			panel_scale: 'crop',
-			overlay_position: 'bottom',
-			pan_images: true,
-			pan_style: 'drag',
-			pan_smoothness: 15,
-			start_frame: 1,
-			show_filmstrip: true,
-			show_filmstrip_nav: true,
-			enable_slideshow: true,
-			autoplay: true,
-			show_captions: true,
-			filmstrip_size: 3,
-			filmstrip_style: 'scroll',
-			filmstrip_position: 'bottom',
-			frame_width: 164,
-			frame_height: 80,
-			frame_opacity: 0.5,
-			frame_scale: 'crop',
-			frame_gap: 5,
-			show_infobar: true,
-			infobar_opacity: 1
-		});
-	});
-</script>

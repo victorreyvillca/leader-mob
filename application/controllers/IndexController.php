@@ -7,9 +7,9 @@ class IndexController extends Dis_Controller_Action {
     }
 
     public function indexAction() {
-        $pictureRepo = $this->_entityManager->getRepository('Model\Picture');
-        $pictures = $pictureRepo->findAll();
+//         $pictureRepo = $this->_entityManager->getRepository('Model\Picture');
+//         $pictures = $pictureRepo->findAll();
 
-        $this->view->pictures = $pictures;
+//         $this->view->pictures = $pictures;
     }
 }

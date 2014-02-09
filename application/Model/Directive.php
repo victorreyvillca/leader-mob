@@ -27,6 +27,18 @@ class Directive extends Person {
     private $note;
 
     /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @Column(type="integer")
+     * @var int
+     */
+    protected $yearService;
+
+    /**
      * @Column(type="integer")
      * @var int
      */
@@ -215,6 +227,38 @@ class Directive extends Person {
 	 */
 	public function setNote($note) {
 		$this->note = $note;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEmail() {
+		return $this->email;
+	}
+
+	/**
+	 * @param string $email
+	 * @return Directive
+	 */
+	public function setEmail($email) {
+		$this->email = $email;
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getYearService() {
+		return $this->yearService;
+	}
+
+	/**
+	 * @param int $yearService
+	 * @return Directive
+	 */
+	public function setYearService($yearService) {
+		$this->yearService = $yearService;
 		return $this;
 	}
 

@@ -260,6 +260,8 @@ CREATE  TABLE IF NOT EXISTS `tblDirective` (
 	`dateChristening`	DATETIME		DEFAULT NULL,
 	`address`			TEXT 			NULL,
 	`note`				TEXT 			NULL,
+	`email`				VARCHAR(65)		DEFAULT NULL,
+	`yearService`		INT				DEFAULT NULL,
 	`isActivo`			BOOL 			NOT NULL,
 
 	`positions`			VARCHAR(125) 	NULL,
