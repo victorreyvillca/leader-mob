@@ -12,10 +12,10 @@
 namespace Model;
 
 /**
- * @Entity(repositoryClass="Model\Repositories\ChurchRepository")
- * @Table(name="Church")
+ * @Entity(repositoryClass="Model\Repositories\PositionRepository")
+ * @Table(name="Position")
  */
-class Church extends DomainObject {
+class Position extends DomainObject {
 
 	/**
 	 * @Column(type="string")
@@ -30,21 +30,6 @@ class Church extends DomainObject {
 	private $description;
 
 	/**
-	 * Id of the District this model is associated with.
-	 * @Column(type="integer")
-	 * @var int
-	 */
-	private $districtId;
-
-	/**
-	 * District this model is associated with.
-	 * @ManyToOne(targetEntity="District")
-	 * @JoinColumn(name="districtId", referencedColumnName="id")
-	 * @var District
-	 */
-	private $district;
-
-	/**
 	 * @return string
 	 */
 	public function getName() {
@@ -53,7 +38,7 @@ class Church extends DomainObject {
 
 	/**
 	 * @param string $name
-	 * @return Church
+	 * @return Position
 	 */
 	public function setName($name) {
 		$this->name = $name;
@@ -70,27 +55,11 @@ class Church extends DomainObject {
 
 	/**
 	 * @param string $description
-	 * @return Church
+	 * @return Position
 	 */
 	public function setDescription($description) {
 		$this->description = $description;
 
-		return $this;
-	}
-
-	/**
-	 * @return District
-	 */
-	public function getDistrict() {
-		return $this->district;
-	}
-
-	/**
-	 * @param District $district
-	 * @return Church
-	 */
-	public function setDistrict($district) {
-		$this->district = $district;
 		return $this;
 	}
 }

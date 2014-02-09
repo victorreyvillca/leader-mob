@@ -16,7 +16,7 @@ namespace Model;
  * @Table(name="Person")
  * @InheritanceType("JOINED")
  * @DiscriminatorColumn(name="type", type="string")
- * @DiscriminatorMap({"person"="Person", "administrator"="Administrator"})
+ * @DiscriminatorMap({"person"="Person", "administrator"="Administrator", "directive"="Directive"})
  */
 class Person extends DomainObject {
 

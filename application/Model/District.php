@@ -12,10 +12,10 @@
 namespace Model;
 
 /**
- * @Entity(repositoryClass="Model\Repositories\ChurchRepository")
- * @Table(name="Church")
+ * @Entity(repositoryClass="Model\Repositories\DistrictRepository")
+ * @Table(name="District")
  */
-class Church extends DomainObject {
+class District extends DomainObject {
 
 	/**
 	 * @Column(type="string")
@@ -30,19 +30,19 @@ class Church extends DomainObject {
 	private $description;
 
 	/**
-	 * Id of the District this model is associated with.
+	 * Id of the Region this model is associated with.
 	 * @Column(type="integer")
 	 * @var int
 	 */
-	private $districtId;
+	private $regionId;
 
 	/**
-	 * District this model is associated with.
-	 * @ManyToOne(targetEntity="District")
-	 * @JoinColumn(name="districtId", referencedColumnName="id")
-	 * @var District
+	 * Region this model is associated with.
+	 * @ManyToOne(targetEntity="Region")
+	 * @JoinColumn(name="regionId", referencedColumnName="id")
+	 * @var Region
 	 */
-	private $district;
+	private $region;
 
 	/**
 	 * @return string
@@ -53,7 +53,7 @@ class Church extends DomainObject {
 
 	/**
 	 * @param string $name
-	 * @return Church
+	 * @return Region
 	 */
 	public function setName($name) {
 		$this->name = $name;
@@ -70,7 +70,7 @@ class Church extends DomainObject {
 
 	/**
 	 * @param string $description
-	 * @return Church
+	 * @return District
 	 */
 	public function setDescription($description) {
 		$this->description = $description;
@@ -79,18 +79,18 @@ class Church extends DomainObject {
 	}
 
 	/**
-	 * @return District
+	 * @return Region
 	 */
-	public function getDistrict() {
-		return $this->district;
+	public function getRegion() {
+		return $this->region;
 	}
 
 	/**
-	 * @param District $district
-	 * @return Church
+	 * @param Region $region
+	 * @return District
 	 */
-	public function setDistrict($district) {
-		$this->district = $district;
+	public function setRegion($region) {
+		$this->region = $region;
 		return $this;
 	}
 }
