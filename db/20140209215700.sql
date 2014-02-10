@@ -192,6 +192,22 @@ CREATE  TABLE IF NOT EXISTS `tblDepartment` (
 	INDEX `i_tblDepartment_state_id` (`state`, `id`)
 ) ENGINE = INNODB;
 
+CREATE  TABLE IF NOT EXISTS `tblArea` (
+	`id`			INT				NOT NULL AUTO_INCREMENT,
+	`name`			VARCHAR(50) 	NOT NULL,
+	`description`	TEXT			NULL,
+	`created`		DATETIME		NOT NULL,
+	`changed`		DATETIME		DEFAULT NULL,
+	`createdBy`		INT(11)			DEFAULT NULL,
+	`changedBy`		INT(11)			DEFAULT NULL,
+	`state`			TINYINT(1)		NOT NULL DEFAULT '1',
+	CONSTRAINT `pk_tblArea`
+		PRIMARY KEY (`id`),
+
+	KEY `i_tblArea_id` (`id`),
+	INDEX `i_tblArea_state_id` (`state`, `id`)
+) ENGINE = INNODB;
+
 CREATE  TABLE IF NOT EXISTS `tblPosition` (
 	`id`			INT				NOT NULL AUTO_INCREMENT,
 	`name`			VARCHAR(50) 	NOT NULL,
@@ -229,7 +245,7 @@ CREATE  TABLE IF NOT EXISTS `tblClub` (
 	`name`			VARCHAR(50) 	NOT NULL,
 	`description`	TEXT			NULL,
 	`churchId`		INT(11)			DEFAULT NULL,
-	`departmentId`	INT(11)			DEFAULT NULL,
+	`areaId`	INT(11)			DEFAULT NULL,
 	`created`		DATETIME		NOT NULL,
 	`changed`		DATETIME		DEFAULT NULL,
 	`createdBy`		INT(11)			DEFAULT NULL,
@@ -241,16 +257,16 @@ CREATE  TABLE IF NOT EXISTS `tblClub` (
 	KEY `i_tblClub_id` (`id`),
 	INDEX `i_tblClub_state_id` (`state`, `id`),
 	INDEX `i_tblClub_churchId` (`churchId`),
-	INDEX `i_tblClub_departmentId` (`departmentId`),
+	INDEX `i_tblClub_areaId` (`areaId`),
 
 	CONSTRAINT `fk_tblClub_churchId`
 	FOREIGN KEY (`churchId`)
 	REFERENCES `tblChurch` (`id`)
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
-	CONSTRAINT `fk_tblClub_departmentId`
-	FOREIGN KEY (`departmentId`)
-	REFERENCES `tblDepartment` (`id`)
+	CONSTRAINT `fk_tblClub_areaId`
+	FOREIGN KEY (`areaId`)
+	REFERENCES `tblArea` (`id`)
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE
 ) ENGINE = INNODB;
@@ -262,7 +278,18 @@ CREATE  TABLE IF NOT EXISTS `tblDirective` (
 	`note`				TEXT 			NULL,
 	`email`				VARCHAR(65)		DEFAULT NULL,
 	`yearService`		INT				DEFAULT NULL,
-	`isActivo`			BOOL 			NOT NULL,
+	`isActivo`			BOOL 			DEFAULT NULL,
+
+	`birthplace`		VARCHAR(125)	NULL,
+	`city`				VARCHAR(65) 	NULL,
+	`nameMother`		VARCHAR(65)		NULL,
+	`nameFather`		VARCHAR(65)		NULL,
+	`gradeSchool`		VARCHAR(65)		NULL,
+	`year`				INT				DEFAULT NULL,
+	`bloodGroup`		VARCHAR(65)		NULL,
+	`allergies`			VARCHAR(65)		NULL,
+	`disease`			VARCHAR(65)		NULL,
+	`treatment`			VARCHAR(65)		NULL,
 
 	`positions`			VARCHAR(125) 	NULL,
 	`positionId` 		INT(11)			DEFAULT NULL,
@@ -270,6 +297,8 @@ CREATE  TABLE IF NOT EXISTS `tblDirective` (
 	`rankId`			INT(11)			DEFAULT NULL,
 	`departments`		VARCHAR(125) 	NULL,
 	`departmentId`		INT(11)			DEFAULT NULL,
+	`areas`				VARCHAR(125) 	NULL,
+	`areaId`			INT(11)			DEFAULT NULL,
 	`clubs`				VARCHAR(125) 	NULL,
 	`clubId`			INT(11)			DEFAULT NULL,
 	`churchs`			VARCHAR(125) 	NULL,
@@ -287,6 +316,7 @@ CREATE  TABLE IF NOT EXISTS `tblDirective` (
 	INDEX `i_tblDirectivo_positionId` (`positionId`),
 	INDEX `i_tblDirectivo_rankId` (`rankId`),
 	INDEX `i_tblDirectivo_departmentId` (`departmentId`),
+	INDEX `i_tblDirectivo_areaId` (`areaId`),
 	INDEX `i_tblDirectivo_clubId` (`clubId`),
 	INDEX `i_tblDirectivo_churchId` (`churchId`),
 	INDEX `i_tblDirectivo_districtId` (`districtId`),
@@ -305,6 +335,11 @@ CREATE  TABLE IF NOT EXISTS `tblDirective` (
 	CONSTRAINT `fk_tblDirectivo_departmentId`
 	FOREIGN KEY (`departmentId`)
 	REFERENCES `tblDepartment` (`id`)
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE,
+	CONSTRAINT `fk_tblDirectivo_areaId`
+	FOREIGN KEY (`areaId`)
+	REFERENCES `tblArea` (`id`)
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
 	CONSTRAINT `fk_tblDirectivo_clubId`
@@ -343,6 +378,43 @@ CREATE  TABLE IF NOT EXISTS `tblDirective_Rank` (
 	CONSTRAINT `fk_tblDirective_Rank_rankId`
 	FOREIGN KEY (`rankId` )
 	REFERENCES `tblRank` (`id` )
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE
+	)
+ENGINE = InnoDB;
+
+
+CREATE  TABLE IF NOT EXISTS `tblClassConqueror` (
+	`id`			INT				NOT NULL AUTO_INCREMENT,
+	`name`			VARCHAR(50) 	NOT NULL,
+	`description`	TEXT			NULL,
+	`classType`		INT				NOT NULL,
+	`created`		DATETIME		NOT NULL,
+	`changed`		DATETIME		DEFAULT NULL,
+	`createdBy`		INT(11)			DEFAULT NULL,
+	`changedBy`		INT(11)			DEFAULT NULL,
+	`state`			TINYINT(1)		NOT NULL DEFAULT '1',
+	CONSTRAINT `pk_tblClassConqueror`
+		PRIMARY KEY (`id`),
+
+	KEY `i_tblClassConqueror_id` (`id`),
+	INDEX `i_tblClassConqueror_state_id` (`state`, `id`)
+) ENGINE = INNODB;
+
+CREATE  TABLE IF NOT EXISTS `tblDirective_ClassConqueror` (
+	`directiveId` 		INT NOT NULL,
+	`classConquerorId`	INT NOT NULL,
+	PRIMARY KEY (`directiveId`, `classConquerorId`),
+	INDEX `fk_tblDirective_ClassConqueror_directiveId` (`directiveId`),
+	INDEX `fk_tblDirective_ClassConqueror_classConquerorId` (`classConquerorId`),
+	CONSTRAINT `fk_tblDirective_ClassConqueror_directiveId`
+	FOREIGN KEY (`directiveId` )
+	REFERENCES `tblDirective` (`id` )
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE,
+	CONSTRAINT `fk_tblDirective_ClassConqueror_classConquerorId`
+	FOREIGN KEY (`classConquerorId` )
+	REFERENCES `tblClassConqueror` (`id` )
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE
 	)

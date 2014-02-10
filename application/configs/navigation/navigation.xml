@@ -70,48 +70,12 @@
 					<action>index</action>
 					<controller>Church</controller>
 				</church>
+				<position>
+					<label>Cargo Liderazgo</label>
+					<action>index</action>
+					<controller>Position</controller>
+				</position>
 			</pages>
 		</config>
-
-		<reaviver>
-			<label>Reavivados por su Palabra</label>
-			<controller>Reaviver</controller>
-			<action>index</action>
-		</reaviver>
-
-		<pathfinder>
-			<label>Pathfinders</label>
-			<controller>Pathfinder</controller>
-			<action>index</action>
-			<pages>
-				<orion>
-					<label>Orion</label>
-					<controller>Pathfinder</controller>
-					<action>orion</action>
-				</orion>
-				<alasOrion>
-					<label>Alas de Orion</label>
-					<controller>Pathfinder</controller>
-					<action>alasorion</action>
-				</alasOrion>
-				<nuevoOriente>
-					<label>Nuevo Oriente</label>
-					<controller>Pathfinder</controller>
-					<action>nuevooriente</action>
-				</nuevoOriente>
-			</pages>
-		</pathfinder>
-
-		<aventureros>
-			<label>Aventureros</label>
-			<controller>Pathfinder</controller>
-			<action>index</action>
-		</aventureros>
-
-		<ja>
-			<label>JA</label>
-			<controller>Young</controller>
-			<action>index</action>
-		</ja>
 	</navigation>
 </config>

@@ -48,6 +48,66 @@ class Directive extends Person {
      * @Column(type="string")
      * @var string
      */
+    private $birthplace;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $city;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $nameMother;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $nameFather;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $gradeSchool;
+
+    /**
+     * @Column(type="integer")
+     * @var int
+     */
+    private $year;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $bloodGroup;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $allergies;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $disease;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $treatment;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     private $positions;
 
     /**
@@ -275,6 +335,166 @@ class Directive extends Person {
 	 */
 	public function setIsActivo($isActivo) {
 		$this->isActivo = $isActivo;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getBirthplace() {
+		return $this->birthplace;
+	}
+
+	/**
+	 * @param string $birthplace
+	 * @return Directive
+	 */
+	public function setBirthplace($birthplace) {
+		$this->birthplace = $birthplace;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCity() {
+		return $this->city;
+	}
+
+	/**
+	 * @param string $city
+	 * @return Directive
+	 */
+	public function setCity($city) {
+		$this->city = $city;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getNameMother() {
+		return $this->nameMother;
+	}
+
+	/**
+	 * @param string $nameMother
+	 * @return Directive
+	 */
+	public function setNameMother($nameMother) {
+		$this->nameMother = $nameMother;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getNameFather() {
+		return $this->nameFather;
+	}
+
+	/**
+	 * @param string $nameFather
+	 * @return Directive
+	 */
+	public function setNameFather($nameFather) {
+		$this->nameFather = $nameFather;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getGradeSchool() {
+		return $this->gradeSchool;
+	}
+
+	/**
+	 * @param string $gradeSchool
+	 * @return Directive
+	 */
+	public function setGradeSchool($gradeSchool) {
+		$this->gradeSchool = $gradeSchool;
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getYear() {
+		return $this->year;
+	}
+
+	/**
+	 * @param int $year
+	 * @return Directive
+	 */
+	public function setYear($year) {
+		$this->year = $year;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getBloodGroup() {
+		return $this->bloodGroup;
+	}
+
+	/**
+	 * @param string $bloodGroup
+	 * @return Directive
+	 */
+	public function setBloodGroup($bloodGroup) {
+		$this->bloodGroup = $bloodGroup;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAllergies() {
+		return $this->allergies;
+	}
+
+	/**
+	 * @param string $allergies
+	 * @return Directive
+	 */
+	public function setAllergies($allergies) {
+		$this->allergies = $allergies;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDisease() {
+		return $this->disease;
+	}
+
+	/**
+	 * @param string $disease
+	 * @return Directive
+	 */
+	public function setDisease($disease) {
+		$this->disease = $disease;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTreatment() {
+		return $this->treatment;
+	}
+
+	/**
+	 * @param string $treatment
+	 * @return Directive
+	 */
+	public function setTreatment($treatment) {
+		$this->treatment = $treatment;
 		return $this;
 	}
 

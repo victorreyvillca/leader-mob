@@ -64,10 +64,10 @@ class Directive extends \Model\Directive implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+            return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
         }
 
-        return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+        return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
     }
 
     /**
@@ -303,6 +303,226 @@ class Directive extends \Model\Directive implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsActivo', array($isActivo));
 
         return parent::setIsActivo($isActivo);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBirthplace()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBirthplace', array());
+
+        return parent::getBirthplace();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBirthplace($birthplace)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBirthplace', array($birthplace));
+
+        return parent::setBirthplace($birthplace);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCity()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCity', array());
+
+        return parent::getCity();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCity($city)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCity', array($city));
+
+        return parent::setCity($city);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNameMother()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNameMother', array());
+
+        return parent::getNameMother();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNameMother($nameMother)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNameMother', array($nameMother));
+
+        return parent::setNameMother($nameMother);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNameFather()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNameFather', array());
+
+        return parent::getNameFather();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNameFather($nameFather)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNameFather', array($nameFather));
+
+        return parent::setNameFather($nameFather);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getGradeSchool()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getGradeSchool', array());
+
+        return parent::getGradeSchool();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setGradeSchool($gradeSchool)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setGradeSchool', array($gradeSchool));
+
+        return parent::setGradeSchool($gradeSchool);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getYear()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getYear', array());
+
+        return parent::getYear();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setYear($year)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setYear', array($year));
+
+        return parent::setYear($year);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBloodGroup()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBloodGroup', array());
+
+        return parent::getBloodGroup();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBloodGroup($bloodGroup)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBloodGroup', array($bloodGroup));
+
+        return parent::setBloodGroup($bloodGroup);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAllergies()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAllergies', array());
+
+        return parent::getAllergies();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAllergies($allergies)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAllergies', array($allergies));
+
+        return parent::setAllergies($allergies);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDisease()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDisease', array());
+
+        return parent::getDisease();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDisease($disease)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDisease', array($disease));
+
+        return parent::setDisease($disease);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTreatment()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTreatment', array());
+
+        return parent::getTreatment();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTreatment($treatment)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTreatment', array($treatment));
+
+        return parent::setTreatment($treatment);
     }
 
     /**
@@ -787,6 +1007,17 @@ class Directive extends \Model\Directive implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSex', array($sex));
 
         return parent::setSex($sex);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getName()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', array());
+
+        return parent::getName();
     }
 
     /**

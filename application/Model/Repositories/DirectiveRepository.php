@@ -70,9 +70,9 @@ class DirectiveRepository extends EntityRepository {
 
             case 7:
                 $sort = 'created';
-    			break;
+                break;
 
-    		case 8:
+            case 8:
                 $sort = 'changed';
                 break;
 

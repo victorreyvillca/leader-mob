@@ -9,9 +9,11 @@
 	<br>
 	<?php echo $this->tableHeader('directiveHeader', _("Directives"));?>
 	<?php echo $this->tableList("tblDirective");?>
+	<br>
+	<br>
 	<div class="buttons right">
-		<?php echo $this->buttonRemove("delete-directive", $this->translate('Remove'), $this->url(array('action'=>'delete')));?>
-		<?php echo $this->buttonAdd("create-directive", $this->translate('Add'), $this->url(array('action'=>'create')));?>
+		<?php echo $this->buttonRemove("delete-directive", $this->translate('Eliminar'), $this->url(array('action'=>'delete')));?>
+		<?php echo $this->buttonAdd('add', $this->translate('Registrar'), $this->url(array('action'=>'add')));?>
 	</div>
 
 	<div id="dialog"><!-- Loads ajax dialog form --></div>
@@ -25,7 +27,7 @@
 	directive.setUrl({
 		toTable : '<?php echo $this->url(array('action'=>'read-items'));?>',
 		toBase : '<?php echo $this->baseUrl(); ?>',
-		toUpdate : '<?php echo $this->url(array('action'=>'update')); ?>',
+		toUpdate : '<?php echo $this->url(array('action'=>'edit')); ?>',
 		toAutocomplete : '<?php echo $this->url(array('action'=>'autocomplete'));?>'
 	});
 

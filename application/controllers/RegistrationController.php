@@ -1,4 +1,5 @@
 <?php
+use Model\Directive;
 /**
  * Controller for DIST 2.
  *
@@ -40,24 +41,53 @@ class RegistrationController extends Dis_Controller_Action {
 // 	}
 
 	/**
-	 *
-	 * This action shows a form in create mode
+	 * This action shows a form to save the directive
 	 * @access public
 	 */
-// 	public function createAction() {
-// 		$this->_helper->layout()->disableLayout();
+	public function addAction() {
+		$form = new Admin_Form_Directive();
+		if ($this->_request->isPost()) {
+            $formData = $this->_request->getPost();
+            if ($form->isValid($formData)) {
+                $directive = new Directive();
+                $directive
+                    ->setTreatment('super mal')
+                    ->setRanks('Guia mayor')
+                    ->setPositions('Director')
+                    ->setYear($formData['year'])
+                    ->setIsActivo(TRUE)
+                    ->setState(TRUE)
+                    ->setCreated(new DateTime('now'))
+                    ->setSex(1)
+                    ->setPhonemobil($formData['phonemobil'])
+                    ->setPhonework('45646')
+                    ->setPhone($formData['phone'])
+                    ->setDateOfBirth(new DateTime('now'))
+                    ->setIdentityCard($formData['ci'])
+                    ->setLastName($formData['lastName'])
+                    ->setFirstName($formData['firstName'])
+                ;
 
-// 		$form = new Admin_Form_Directive();
+                $this->_entityManager->persist($directive);
+                $this->_entityManager->flush();
+
+                $this->_helper->flashMessenger(array('success' => _('Directivo Guardado')));
+                $this->_helper->redirector('index', 'Registration', array('type'=>'information'));
+            }
+        } else {
+
+        }
+
 // 		$form->getElement('sex')->setMultiOptions($this->getGenders());
 // 		$form->getElement('club')->setMultiOptions($this->getClubPathfinders());
 // 		$form->getElement('position')->setMultiOptions($this->getPositions());
 // 		$form->setAction($this->_helper->url('save'));
 
-// 		$src = '/image/profile/female_or_male_default.jpg';
-// 		$form->setSource($src);
+		$src = '/image/profile/female_or_male_default.jpg';
+		$form->setSource($src);
 
-// 		$this->view->form = $form;
-// 	}
+		$this->view->form = $form;
+	}
 
 	/**
 	 *
@@ -125,49 +155,51 @@ class RegistrationController extends Dis_Controller_Action {
 	 * This action shows the form in update mode for Directive.
 	 * @access public
 	 */
-// 	public function updateAction() {
-// 		$this->_helper->layout()->disableLayout();
+	public function editAction() {
+        $form = new Admin_Form_Directive();
 
-// 		$form = new Admin_Form_Directive();
-// 		$form->getElement('sex')->setMultiOptions($this->getGenders());
-// 		$form->getElement('club')->setMultiOptions($this->getClubPathfinders());
-// 		$form->getElement('position')->setMultiOptions($this->getPositions());
-// 		$form->setAction($this->_helper->url('edit'));
+// 	    $categoryRepo = $this->_entityManager->getRepository('Model\Category');
+// 	    $form->getElement('categoryId')->setMultiOptions($categoryRepo->findAllArray());
+	    $form->getElement('saveButton')->setLabel(_('Editar'));
 
-// 		$id = $this->_getParam('id', 0);
-// 		$directive = $this->_entityManager->find('Model\Directive', $id);
-// 		if ($directive != NULL) {
-// 			$form->getElement('id')->setValue($directive->getId());
-// 			$form->getElement('firstName')->setValue($directive->getFirstName());
-// 			$form->getElement('lastName')->setValue($directive->getLastName());
-// 			$form->getElement('sex')->setValue($directive->getSex());
-// 			$form->getElement('email')->setValue($directive->getEmail());
-// 			$form->getElement('phonemobil')->setValue($directive->getPhonemobil());
-// 			$form->getElement('phone')->setValue($directive->getPhone());
-// 			$form->getElement('club')->setValue($directive->getClub()->getId());
-// 			$form->getElement('position')->setValue($directive->getPosition()->getId());
+	    if ($this->_request->isPost()) {
+	    	$formData = $this->_request->getPost();
+	    	if ($form->isValid($formData)) {
+	    		$id = $this->_getParam('id', 0);
+	    		$directivo = $this->_entityManager->find('Model\Directivo', $id);
+	    		if ($directivo != NULL) {//security
+	    			// 					if (!$newsMapper->verifyExistTitle($formData['title']) || $newsMapper->verifyExistIdAndTitle($id, $formData['title'])) {
 
-// 			$dataVaultMapper = new Model_DataVaultMapper();
-// 			$dataVault = $dataVaultMapper->find($directive->getProfilePictureId());
 
-// 			if ($dataVault != NULL && $dataVault->getBinary()) {
-// 				$src = $this->_helper->url('profile-picture', NULL, NULL, array('id' => $dataVault->getId(), 'timestamp' => time()));
-// 			} else {
-// 				if ($directive->getSex() == Model\Person::SEX_MALE) {
-// 					$src = '/image/profile/male_default.jpg';
-// 				} elseif ($directive->getSex() == Model\Person::SEX_FEMALE) {
-// 					$src = '/image/profile/female_default.jpg';
-// 				}
-// 			}
-// 			$form->setSource($src);
-// 		} else {
-// 			$this->stdResponse->success = FALSE;
-// 			$this->stdResponse->message = _("The requested record was not found.");
-// 			$this->_helper->json($this->stdResponse);
-// 		}
 
-// 		$this->view->form = $form;
-// 	}
+
+	    			$this->_helper->flashMessenger(array('success' => _("News updated")));
+	    			$this->_helper->redirector('index', 'news', 'admin', array('type'=>'information'));
+	    			// 					} else {
+	    			// 						$this->_helper->flashMessenger(array('error' => _("The News already exists")));
+	    			// 					}
+	    			} else {
+	    				$this->_helper->flashMessenger(array('error' => _("The News does not exists")));
+	    			}
+	    		} else {
+	    			$this->_helper->flashMessenger(array('error' => _("The form contains error and is not updated")));
+	    		}
+        } else {
+            $id = $this->_getParam('id', 0);
+            $directivo = $this->_entityManager->find('Model\Directive', $id);
+
+            if ($directivo != NULL) {//security
+                $form->getElement('id')->setValue($id);
+                $form->getElement('firstName')->setValue($directivo->getFirstName());
+                $form->getElement('lastName')->setValue($directivo->getLastName());
+                $form->getElement('ci')->setValue($directivo->getIdentityCard());
+                $form->getElement('year')->setValue($directivo->getYear());
+                $form->getElement('address')->setValue($directivo->getAddress());
+            }
+        }
+
+        $this->view->form = $form;
+	}
 
 // 	/**
 // 	 * Updates a Directive of the club pathfinders
