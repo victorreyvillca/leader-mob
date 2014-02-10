@@ -9,7 +9,7 @@
 		},
 		'<?php echo $this->translate('Update'); ?>': function() {
 			$.ajax({
-				url: '<?php echo $this->url(array('module'=>'admin', 'controller'=>'category', 'action'=>'edit-save')); ?>',
+				url: '<?php echo $this->url(array('controller'=>'Position', 'action'=>'edit-save')); ?>',
 				type: "POST",
 				dataType: 'json',
 				data: $('#formId').serialize(),

@@ -15,7 +15,7 @@ class Admin_Form_Category extends Zend_Form {
 			->setAttrib('id', 'formId')
 
 			->addElement('Text', 'name', array(
-				'label' => _('Name'),
+				'label' => _('Nombre del Cargo'),
 				'required'   => TRUE,
 				'filters' => array(
 					array('StringTrim')

@@ -64,7 +64,7 @@ class PositionController extends Dis_Controller_Action {
 
                 $this->stdResponse = new stdClass();
 				$this->stdResponse->success = TRUE;
-				$this->stdResponse->message = _("Category saved");
+				$this->stdResponse->message = _('Cargo de Liderazgo guardado');
 // 			} else {
 // 				$this->stdResponse->success = FALSE;
 // 				$this->stdResponse->name_duplicate = TRUE;
