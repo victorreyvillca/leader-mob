@@ -30,22 +30,19 @@ class RegistrationController extends Dis_Controller_Action {
 	    $this->view->formFilter = $formFilter;
 	}
 
-// 	/**
-// 	 *
-// 	 * This action shows a paginated list of directives
-// 	 */
-// 	public function readAction() {
-// 		$formFilter = new Admin_Form_SearchFilter();
-// 		$formFilter->getElement('nameFilter')->setLabel(_("Firstname Directive"));
-// 		$this->view->formFilter = $formFilter;
-// 	}
-
 	/**
 	 * This action shows a form to save the directive
 	 * @access public
 	 */
 	public function addAction() {
 		$form = new Admin_Form_Directive();
+
+		$positionRepo = $this->_entityManager->getRepository('Model\Position');
+		$form->getElement('position')->setMultiOptions($positionRepo->findAllArray());
+        $clubRepo = $this->_entityManager->getRepository('Model\Mission');
+		$form->getElement('club')->setMultiOptions($clubRepo->findAllArray());
+
+
 		if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
             if ($form->isValid($formData)) {
@@ -77,11 +74,6 @@ class RegistrationController extends Dis_Controller_Action {
         } else {
 
         }
-
-// 		$form->getElement('sex')->setMultiOptions($this->getGenders());
-// 		$form->getElement('club')->setMultiOptions($this->getClubPathfinders());
-// 		$form->getElement('position')->setMultiOptions($this->getPositions());
-// 		$form->setAction($this->_helper->url('save'));
 
 		$src = '/image/profile/female_or_male_default.jpg';
 		$form->setSource($src);

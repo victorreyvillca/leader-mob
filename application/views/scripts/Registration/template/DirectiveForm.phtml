@@ -1,85 +1,111 @@
-<form id="<?php echo $this->element->getAttrib('id')?>" action="<?php echo $this->element->getAction()?>" method="post" enctype="multipart/form-data">
+<form class="form-line" id="<?php echo $this->element->getAttrib('id')?>" action="<?php echo $this->element->getAction()?>" method="post" enctype="multipart/form-data">
 <?php echo $this->element->getElement('id')->render();?>
-	<div class="row">
-		<div class="span7">
-			<label>Picture profile</label>
-			<div class="well" id="result" style="width: 127px; height: 127px;">
-				<img src="<?php echo $this->element->getSource();?>" id="profile_img" style="width: 127px; height: 127px;"/>
-			</div>
-		</div>
-	</div>
-	<table>
-		<tbody>
-			<tr class="odd">
-				<td><label><?php echo _('Image picture') ?></label></td>
-				<td>
-					<input id="MAX_FILE_SIZE" type="hidden" value="8388608" name="MAX_FILE_SIZE">
-					<input type="file" id="file-input" name="file" class="valid">
-				</td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('firstName')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('firstName')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('lastName')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('lastName')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('position')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('position')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('ci')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('ci')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('year')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('year')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('sex')->renderLabel()?></td>
-				<td><?php echo $this->element->getElement('sex')->renderViewHelper()?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('dateOfBirth')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('dateOfBirth')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('birthplace')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('birthplace')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('address')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('address')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('city')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('city')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('department')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('department')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('phone')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('phone')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('phonemobil')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('phonemobil')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('email')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('email')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('club')->renderLabel() ?></td>
-				<td><?php echo $this->element->getElement('club')->renderViewHelper() ?></td>
-			</tr>
-			<tr class="even">
-				<td><?php echo $this->element->getElement('saveButton')->renderViewHelper() ?></td>
-			</tr>
-		</tbody>
-	</table>
+    <fieldset>
+        <div>
+    		<?php echo $this->element->getElement('firstName')->renderLabel()?>
+    		<?php echo $this->element->getElement('firstName')->renderViewHelper()?>
+        </div>
+        <div>
+    		<?php echo $this->element->getElement('lastName')->renderLabel()?>
+    		<?php echo $this->element->getElement('lastName')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('position')->renderLabel()?>
+            <?php echo $this->element->getElement('position')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('ci')->renderLabel()?>
+    		<?php echo $this->element->getElement('ci')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('year')->renderLabel()?>
+            <?php echo $this->element->getElement('year')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('sex')->renderLabel()?>
+            <?php echo $this->element->getElement('sex')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('dateOfBirth')->renderLabel()?>
+            <?php echo $this->element->getElement('dateOfBirth')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('birthplace')->renderLabel()?>
+            <?php echo $this->element->getElement('birthplace')->renderViewHelper()?>
+        </div>
+        <br>
+        <h3><?php echo _('Datos Secundarios')?></h3>
+        <div>
+            <?php echo $this->element->getElement('address')->renderLabel()?>
+            <?php echo $this->element->getElement('address')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('city')->renderLabel()?>
+            <?php echo $this->element->getElement('city')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('department')->renderLabel()?>
+            <?php echo $this->element->getElement('department')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('phone')->renderLabel()?>
+            <?php echo $this->element->getElement('phone')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('phonemobil')->renderLabel()?>
+            <?php echo $this->element->getElement('phonemobil')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('email')->renderLabel()?>
+            <?php echo $this->element->getElement('email')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('club')->renderLabel()?>
+            <?php echo $this->element->getElement('club')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('yearService')->renderLabel()?>
+            <?php echo $this->element->getElement('yearService')->renderViewHelper()?>
+        </div>
+        <!-- Data on the Region -->
+        <div>
+            <?php echo $this->element->getElement('mission')->renderLabel()?>
+            <?php echo $this->element->getElement('mission')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('region')->renderLabel()?>
+            <?php echo $this->element->getElement('region')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('district')->renderLabel()?>
+            <?php echo $this->element->getElement('district')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('church')->renderLabel()?>
+            <?php echo $this->element->getElement('church')->renderViewHelper()?>
+        </div>
+        <br>
+        <h3><?php echo _('Datos Opcionales')?></h3>
+        <div>
+            <?php echo $this->element->getElement('gradeSchool')->renderLabel()?>
+            <?php echo $this->element->getElement('gradeSchool')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('bloodGroup')->renderLabel()?>
+            <?php echo $this->element->getElement('bloodGroup')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('allergies')->renderLabel()?>
+            <?php echo $this->element->getElement('allergies')->renderViewHelper()?>
+        </div>
+         <div>
+            <?php echo $this->element->getElement('disease')->renderLabel()?>
+            <?php echo $this->element->getElement('disease')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('treatment')->renderLabel()?>
+            <?php echo $this->element->getElement('treatment')->renderViewHelper()?>
+        </div>
+        <?php echo $this->element->getElement('saveButton')->renderViewHelper()?>
+    </fieldset>
 </form>

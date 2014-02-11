@@ -98,7 +98,7 @@ class PositionRepository extends EntityRepository {
     }
 
     /**
-     * Returns all club pathfinders
+     * Returns all Positions models
      * @return array
      */
     public function findAllArray() {

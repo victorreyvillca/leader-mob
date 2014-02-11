@@ -30,19 +30,19 @@ class Club extends DomainObject {
 	private $description;
 
 	/**
-	 * Id of the Department this model is associated with.
+	 * Id of the Area this model is associated with.
 	 * @Column(type="integer")
 	 * @var int
 	 */
-	private $departmentId;
+	private $areaId;
 
 	/**
-	 * Department this model is associated with.
-	 * @ManyToOne(targetEntity="Department")
-	 * @JoinColumn(name="departmentId", referencedColumnName="id")
-	 * @var Department
+	 * Area this model is associated with.
+	 * @ManyToOne(targetEntity="Area")
+	 * @JoinColumn(name="areaId", referencedColumnName="id")
+	 * @var Area
 	 */
-	private $department;
+	private $area;
 
 	/**
 	 * Id of the Church this model is associated with.
@@ -92,18 +92,18 @@ class Club extends DomainObject {
 	}
 
 	/**
-	 * @return Department
+	 * @return Area
 	 */
-	public function getDepartment() {
-		return $this->department;
+	public function getArea() {
+		return $this->area;
 	}
 
 	/**
-	 * @param Department $department
+	 * @param Area $area
 	 * @return Club
 	 */
-	public function setDepartment($department) {
-		$this->department = $department;
+	public function setArea($area) {
+		$this->area = $area;
 		return $this;
 	}
 

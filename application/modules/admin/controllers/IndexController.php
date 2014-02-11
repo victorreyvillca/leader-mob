@@ -5,6 +5,8 @@ use Model\Region;
 use Model\District;
 use Model\Church;
 use Model\Directive;
+use Model\Area;
+use Model\Club;
 /**
  * Controller for DIST 2.
  *
@@ -59,10 +61,24 @@ class Admin_IndexController extends Dis_Controller_Action {
         $this->_entityManager->persist($church);
         $this->_entityManager->flush();
 
+        $area = new Area();
+        $area->setName('Conquistador')->setDescription('fd')->setCreated(new DateTime('now'))->setState(TRUE);
+
+        $this->_entityManager->persist($area);
+        $this->_entityManager->flush();
+
+        $club = new Club();
+        $club->setArea($area)->setChurch($church)->setName('Orion Santa Cruz')->setState(TRUE)->setCreated(new DateTime('now'));
+
+        $this->_entityManager->persist($club);
+        $this->_entityManager->flush();
+
         $directive = new Directive();
         $directive->setTreatment('super mal')->setRanks('Guia mayor')->setPositions('Director')->setYear(22)->setIsActivo(TRUE)->setState(TRUE)->setCreated(new DateTime('now'))->setSex(1)->setPhonemobil(465456)->setPhonework('45646') ->setPhone('45645') ->setDateOfBirth(new DateTime('now')) ->setIdentityCard(59387823)->setLastName('Villca')->setFirstName('Joel');
 
         $this->_entityManager->persist($directive);
         $this->_entityManager->flush();
+
+
 	}
 }
