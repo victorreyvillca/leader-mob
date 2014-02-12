@@ -10,10 +10,6 @@
     		<?php echo $this->element->getElement('lastName')->renderViewHelper()?>
         </div>
         <div>
-            <?php echo $this->element->getElement('position')->renderLabel()?>
-            <?php echo $this->element->getElement('position')->renderViewHelper()?>
-        </div>
-        <div>
             <?php echo $this->element->getElement('ci')->renderLabel()?>
     		<?php echo $this->element->getElement('ci')->renderViewHelper()?>
         </div>
@@ -24,6 +20,18 @@
         <div>
             <?php echo $this->element->getElement('sex')->renderLabel()?>
             <?php echo $this->element->getElement('sex')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('position')->renderLabel()?>
+            <?php echo $this->element->getElement('position')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('rank')->renderLabel()?>
+            <?php echo $this->element->getElement('rank')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('area')->renderLabel()?>
+            <?php echo $this->element->getElement('area')->renderViewHelper()?>
         </div>
         <div>
             <?php echo $this->element->getElement('dateOfBirth')->renderLabel()?>
@@ -105,6 +113,10 @@
         <div>
             <?php echo $this->element->getElement('treatment')->renderLabel()?>
             <?php echo $this->element->getElement('treatment')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('classConqueror')->renderLabel()?>
+            <?php echo $this->element->getElement('classConqueror')->renderViewHelper()?>
         </div>
         <?php echo $this->element->getElement('saveButton')->renderViewHelper()?>
     </fieldset>

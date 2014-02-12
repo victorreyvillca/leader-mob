@@ -64,10 +64,10 @@ class Directive extends \Model\Directive implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+            return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'churchId', 'church', 'areaId', 'area', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
         }
 
-        return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+        return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'churchId', 'church', 'areaId', 'area', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
     }
 
     /**
@@ -792,6 +792,28 @@ class Directive extends \Model\Directive implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getChurch()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getChurch', array());
+
+        return parent::getChurch();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setChurch($church)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setChurch', array($church));
+
+        return parent::setChurch($church);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getDistrict()
     {
 
@@ -831,6 +853,28 @@ class Directive extends \Model\Directive implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRegion', array($region));
 
         return parent::setRegion($region);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArea()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArea', array());
+
+        return parent::getArea();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setArea($area)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setArea', array($area));
+
+        return parent::setArea($area);
     }
 
     /**

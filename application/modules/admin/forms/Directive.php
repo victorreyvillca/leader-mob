@@ -116,7 +116,7 @@ class Admin_Form_Directive extends Zend_Form {
 				'validators' => array(
                     array('Digits', false)
 				),
-                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese su nro de Celular'), 'autofocus' => ''),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese su nro de Celular'), 'required' => '', 'autofocus' => ''),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
@@ -133,7 +133,7 @@ class Admin_Form_Directive extends Zend_Form {
 			))
 
 			->addElement('Select', 'rank', array(
-				'label' => _('Grado de Lirerazgo'),
+				'label' => _('Lirerazgo'),
 				'attribs' => array('class' => 'form-poshytip', 'title' => _('Seleccione su Grado de Liderazgo'), 'autofocus' => ''),
 				'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
@@ -226,6 +226,12 @@ class Admin_Form_Directive extends Zend_Form {
 				),
 				'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese algun Tratamiento'), 'autofocus' => ''),
 				'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
+			))
+
+			->addElement('Select', 'classConqueror', array(
+                'label' => _('Investiduras'),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Seleccione Investiduras'), 'autofocus' => ''),
+                'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
 			->addElement('Submit', 'saveButton', array(

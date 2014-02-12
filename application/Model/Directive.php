@@ -243,6 +243,36 @@ class Directive extends Person {
 	private $region;
 
 	/**
+	 * Id of the Church this model is associated with.
+	 * @Column(type="integer")
+	 * @var int
+	 */
+	private $churchId;
+
+	/**
+	 * Church this model is associated with.
+	 * @ManyToOne(targetEntity="Church")
+	 * @JoinColumn(name="churchId", referencedColumnName="id")
+	 * @var Church
+	 */
+	private $church;
+
+	/**
+	 * Id of the Area this model is associated with.
+	 * @Column(type="integer")
+	 * @var int
+	 */
+	private $areaId;
+
+	/**
+	 * Area this model is associated with.
+	 * @ManyToOne(targetEntity="Area")
+	 * @JoinColumn(name="areaId", referencedColumnName="id")
+	 * @var Area
+	 */
+	private $area;
+
+	/**
 	 * @return datetime
 	 */
 	public function getDateChristening() {
@@ -691,6 +721,22 @@ class Directive extends Person {
 	}
 
 	/**
+	 * @return Church
+	 */
+	public function getChurch() {
+		return $this->church;
+	}
+
+	/**
+	 * @param Church $church
+	 * @return Directive
+	 */
+	public function setChurch($church) {
+		$this->church = $church;
+		return $this;
+	}
+
+	/**
 	 * @return District
 	 */
 	public function getDistrict() {
@@ -719,6 +765,22 @@ class Directive extends Person {
 	 */
 	public function setRegion($region) {
 		$this->region = $region;
+		return $this;
+	}
+
+	/**
+	 * @return Area
+	 */
+	public function getArea() {
+		return $this->area;
+	}
+
+	/**
+	 * @param Area $area
+	 * @return Directive
+	 */
+	public function setArea($area) {
+		$this->area = $area;
 		return $this;
 	}
 }

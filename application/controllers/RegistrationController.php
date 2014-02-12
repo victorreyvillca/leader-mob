@@ -38,26 +38,60 @@ class RegistrationController extends Dis_Controller_Action {
 		$form = new Admin_Form_Directive();
 
 		$positionRepo = $this->_entityManager->getRepository('Model\Position');
-		$form->getElement('position')->setMultiOptions($positionRepo->findAllArray());
-        $clubRepo = $this->_entityManager->getRepository('Model\Mission');
-		$form->getElement('club')->setMultiOptions($clubRepo->findAllArray());
+		$missionRepo = $this->_entityManager->getRepository('Model\Mission');
+		$regionRepo = $this->_entityManager->getRepository('Model\Region');
+		$districtRepo = $this->_entityManager->getRepository('Model\District');
+		$districtRepo = $this->_entityManager->getRepository('Model\District');
+		$churchRepo = $this->_entityManager->getRepository('Model\Church');
+		$clubRepo = $this->_entityManager->getRepository('Model\Club');
+		$classConquerorRepo = $this->_entityManager->getRepository('Model\ClassConqueror');
+		$areaRepo = $this->_entityManager->getRepository('Model\Area');
+		$rankRepo = $this->_entityManager->getRepository('Model\Rank');
 
+		$form->getElement('position')->setMultiOptions($positionRepo->findAllArray());
+		$form->getElement('mission')->setMultiOptions($missionRepo->findAllArray());
+		$form->getElement('region')->setMultiOptions($regionRepo->findAllArray());
+		$form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
+		$form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
+		$form->getElement('church')->setMultiOptions($churchRepo->findAllArray());
+		$form->getElement('club')->setMultiOptions($clubRepo->findAllArray());
+		$form->getElement('classConqueror')->setMultiOptions($classConquerorRepo->findAllArray());
+		$form->getElement('area')->setMultiOptions($areaRepo->findAllArray());
+		$form->getElement('rank')->setMultiOptions($rankRepo->findAllArray());
 
 		if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
             if ($form->isValid($formData)) {
+                $mission = $this->_entityManager->find('Model\Mission', (int)$formData['mission']);
+                $region = $this->_entityManager->find('Model\Region', (int)$formData['region']);
+                $district = $this->_entityManager->find('Model\District', (int)$formData['district']);
+                $church = $this->_entityManager->find('Model\Church', (int)$formData['church']);
+                $club = $this->_entityManager->find('Model\Club', (int)$formData['club']);
+                $position = $this->_entityManager->find('Model\Position', (int)$formData['position']);
+                $area = $this->_entityManager->find('Model\Area', (int)$formData['area']);
+                $rank = $this->_entityManager->find('Model\Rank', (int)$formData['rank']);
+
                 $directive = new Directive();
                 $directive
-                    ->setTreatment('super mal')
-                    ->setRanks('Guia mayor')
-                    ->setPositions('Director')
+                    ->setRegion($region)
+                    ->setDistrict($district)
+                    ->setChurch($church)
+                    ->setClub($club)
+                    ->setPosition($position)
+                    ->setArea($area)
+                    ->setRank($rank)
+                    ->setAddress($formData['address'])
+                    ->setGradeSchool($formData['gradeSchool'])
+                    ->setBloodGroup($formData['bloodGroup'])
+                    ->setAllergies($formData['allergies'])
+                    ->setDisease($formData['disease'])
+                    ->setTreatment($formData['treatment'])
                     ->setYear($formData['year'])
                     ->setIsActivo(TRUE)
                     ->setState(TRUE)
                     ->setCreated(new DateTime('now'))
                     ->setSex(1)
                     ->setPhonemobil($formData['phonemobil'])
-                    ->setPhonework('45646')
                     ->setPhone($formData['phone'])
                     ->setDateOfBirth(new DateTime('now'))
                     ->setIdentityCard($formData['ci'])
@@ -361,16 +395,21 @@ class RegistrationController extends Dis_Controller_Action {
 				$changed = $changed->format('d.m.Y');
 			}
 
+			$church = $directive->getChurch();
+			$district = $church->getDistrict();
+			$region = $district->getRegion();
+			$mission = $region->getMission();
+
 			$row = array();
 			$row[] = $directive->getId();
 			$row[] = $directive->getName();
-			$row[] = $directive->getPositions();
 			$row[] = $directive->getPhonemobil();
-			$row[] = $directive->getPhone();
-			$row[] = $directive->getEmail();
-			$row[] = $directive->getClubs();
-			$row[] = $directive->getCreated()->format('d.m.Y');
-			$row[] = $changed;
+			$row[] = $directive->getPosition()->getName();
+			$row[] = $region->getName();
+			$row[] = $directive->getClub()->getName();
+			$row[] = $directive->getArea()->getName();
+			$row[] = $church->getName();
+			$row[] = $district->getName();
 			$row[] = '[]';
 			$data[] = $row;
 			$posRecord++;
