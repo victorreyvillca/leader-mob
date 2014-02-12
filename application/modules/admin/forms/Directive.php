@@ -99,7 +99,7 @@ class Admin_Form_Directive extends Zend_Form {
 			))
 
 			->addElement('Text', 'phone', array(
-				'label' => _('Telefono'),
+				'label' => _('Telefono Fijo'),
 				'filters' => array(
                     array('StringTrim')
 				),

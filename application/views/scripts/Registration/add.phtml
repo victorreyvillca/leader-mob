@@ -1,3 +1,8 @@
+<?php $this->headLink()->appendStylesheet($this->baseUrl() . "/js/lib/jquery-ui-multiselect-widget/jquery.multiselect.css"); ?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl() . "/js/lib/jquery-ui-multiselect-widget/jquery.multiselect..filter.css"); ?>
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/jquery-ui-multiselect-widget/src/jquery.multiselect.min.js");?>
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/jquery-ui-multiselect-widget/src/jquery.multiselect.filter.min.js");?>
+
 <!-- title -->
 <div id="page-title">
 	<span class="title"><?php echo _('Ficha de Registro Individual')?></span>
@@ -21,3 +26,7 @@
 <!-- sidebar -->
 <?php echo $this->partial('sidebar_registration.phtml');?>
 <!-- ENDS sidebar -->
+
+<script type="text/javascript">
+$("#classConqueror").multiselect().multiselectfilter();
+</script>

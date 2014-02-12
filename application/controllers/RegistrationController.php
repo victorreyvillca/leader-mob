@@ -80,6 +80,7 @@ class RegistrationController extends Dis_Controller_Action {
                     ->setPosition($position)
                     ->setArea($area)
                     ->setRank($rank)
+                    ->setEmail($formData['email'])
                     ->setAddress($formData['address'])
                     ->setGradeSchool($formData['gradeSchool'])
                     ->setBloodGroup($formData['bloodGroup'])
@@ -183,44 +184,124 @@ class RegistrationController extends Dis_Controller_Action {
 	 */
 	public function editAction() {
         $form = new Admin_Form_Directive();
+        $form->getElement('saveButton')->setLabel(_('Editar'));
 
-// 	    $categoryRepo = $this->_entityManager->getRepository('Model\Category');
-// 	    $form->getElement('categoryId')->setMultiOptions($categoryRepo->findAllArray());
-	    $form->getElement('saveButton')->setLabel(_('Editar'));
+        $positionRepo = $this->_entityManager->getRepository('Model\Position');
+        $missionRepo = $this->_entityManager->getRepository('Model\Mission');
+        $regionRepo = $this->_entityManager->getRepository('Model\Region');
+        $districtRepo = $this->_entityManager->getRepository('Model\District');
+        $districtRepo = $this->_entityManager->getRepository('Model\District');
+        $churchRepo = $this->_entityManager->getRepository('Model\Church');
+        $clubRepo = $this->_entityManager->getRepository('Model\Club');
+        $classConquerorRepo = $this->_entityManager->getRepository('Model\ClassConqueror');
+        $areaRepo = $this->_entityManager->getRepository('Model\Area');
+        $rankRepo = $this->_entityManager->getRepository('Model\Rank');
+
+        $form->getElement('position')->setMultiOptions($positionRepo->findAllArray());
+        $form->getElement('mission')->setMultiOptions($missionRepo->findAllArray());
+        $form->getElement('region')->setMultiOptions($regionRepo->findAllArray());
+        $form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
+        $form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
+        $form->getElement('church')->setMultiOptions($churchRepo->findAllArray());
+        $form->getElement('club')->setMultiOptions($clubRepo->findAllArray());
+        $form->getElement('classConqueror')->setMultiOptions($classConquerorRepo->findAllArray());
+        $form->getElement('area')->setMultiOptions($areaRepo->findAllArray());
+        $form->getElement('rank')->setMultiOptions($rankRepo->findAllArray());
 
 	    if ($this->_request->isPost()) {
 	    	$formData = $this->_request->getPost();
 	    	if ($form->isValid($formData)) {
 	    		$id = $this->_getParam('id', 0);
-	    		$directivo = $this->_entityManager->find('Model\Directivo', $id);
-	    		if ($directivo != NULL) {//security
-	    			// 					if (!$newsMapper->verifyExistTitle($formData['title']) || $newsMapper->verifyExistIdAndTitle($id, $formData['title'])) {
+	    		$directive = $this->_entityManager->find('Model\Directive', $id);
+
+	    		if ($directive != NULL) {//security
+	    		    $mission = $this->_entityManager->find('Model\Mission', (int)$formData['mission']);
+	    		    $region = $this->_entityManager->find('Model\Region', (int)$formData['region']);
+	    		    $district = $this->_entityManager->find('Model\District', (int)$formData['district']);
+	    		    $church = $this->_entityManager->find('Model\Church', (int)$formData['church']);
+	    		    $club = $this->_entityManager->find('Model\Club', (int)$formData['club']);
+	    		    $position = $this->_entityManager->find('Model\Position', (int)$formData['position']);
+	    		    $area = $this->_entityManager->find('Model\Area', (int)$formData['area']);
+	    		    $rank = $this->_entityManager->find('Model\Rank', (int)$formData['rank']);
+
+	    		    $directive
+    	    		    ->setRegion($region)
+    	    		    ->setDistrict($district)
+    	    		    ->setChurch($church)
+    	    		    ->setClub($club)
+    	    		    ->setPosition($position)
+    	    		    ->setArea($area)
+    	    		    ->setRank($rank)
+    	    		    ->setEmail($formData['email'])
+    	    		    ->setAddress($formData['address'])
+    	    		    ->setGradeSchool($formData['gradeSchool'])
+    	    		    ->setBloodGroup($formData['bloodGroup'])
+    	    		    ->setAllergies($formData['allergies'])
+    	    		    ->setDisease($formData['disease'])
+    	    		    ->setTreatment($formData['treatment'])
+    	    		    ->setYear($formData['year'])
+    	    		    ->setIsActivo(TRUE)
+    	    		    ->setChanged(new DateTime('now'))
+    	    		    ->setSex(1)
+    	    		    ->setPhonemobil($formData['phonemobil'])
+    	    		    ->setPhone($formData['phone'])
+    	    		    ->setDateOfBirth(new DateTime('now'))
+    	    		    ->setIdentityCard($formData['ci'])
+    	    		    ->setLastName($formData['lastName'])
+    	    		    ->setFirstName($formData['firstName'])
+	    		    ;
+
+	    		    $this->_entityManager->persist($directive);
+	    		    $this->_entityManager->flush();
 
 
 
-
-	    			$this->_helper->flashMessenger(array('success' => _("News updated")));
-	    			$this->_helper->redirector('index', 'news', 'admin', array('type'=>'information'));
-	    			// 					} else {
-	    			// 						$this->_helper->flashMessenger(array('error' => _("The News already exists")));
-	    			// 					}
-	    			} else {
-	    				$this->_helper->flashMessenger(array('error' => _("The News does not exists")));
-	    			}
-	    		} else {
-	    			$this->_helper->flashMessenger(array('error' => _("The form contains error and is not updated")));
-	    		}
+	    			$this->_helper->flashMessenger(array('success' => _('Directivo Editado correctamente')));
+                    $this->_helper->redirector('index', 'Registration', array('type'=>'information'));
+    			} else {
+    				$this->_helper->flashMessenger(array('error' => _('Directivo no existente')));
+    			}
+    		} else {
+    			$this->_helper->flashMessenger(array('error' => _('El Formulario contiene Errores al Editar el Directivo')));
+    		}
         } else {
             $id = $this->_getParam('id', 0);
-            $directivo = $this->_entityManager->find('Model\Directive', $id);
+            $directive = $this->_entityManager->find('Model\Directive', $id);
 
-            if ($directivo != NULL) {//security
+            if ($directive != NULL) {//security
                 $form->getElement('id')->setValue($id);
-                $form->getElement('firstName')->setValue($directivo->getFirstName());
-                $form->getElement('lastName')->setValue($directivo->getLastName());
-                $form->getElement('ci')->setValue($directivo->getIdentityCard());
-                $form->getElement('year')->setValue($directivo->getYear());
-                $form->getElement('address')->setValue($directivo->getAddress());
+                $form->getElement('firstName')->setValue($directive->getFirstName());
+                $form->getElement('lastName')->setValue($directive->getLastName());
+                $form->getElement('ci')->setValue($directive->getIdentityCard());
+                $form->getElement('dateOfBirth')->setValue($directive->getDateOfBirth()->format('d.m.Y'));
+
+                $form->getElement('year')->setValue($directive->getYear());
+                $form->getElement('address')->setValue($directive->getAddress());
+
+                $form->getElement('position')->setValue($directive->getPosition()->getId());
+                $form->getElement('rank')->setValue($directive->getRank()->getId());
+                $form->getElement('area')->setValue($directive->getArea()->getId());
+
+                $form->getElement('phone')->setValue($directive->getPhone());
+                $form->getElement('phonemobil')->setValue($directive->getPhonemobil());
+                $form->getElement('email')->setValue($directive->getEmail());
+                $form->getElement('yearService')->setValue($directive->getYearService());
+
+                $church = $directive->getChurch();
+                $district = $church->getDistrict();
+                $region = $district->getRegion();
+                $mission = $region->getMission();
+
+                $form->getElement('club')->setValue($directive->getClub()->getId());
+                $form->getElement('church')->setValue($church->getId());
+                $form->getElement('district')->setValue($district->getId());
+                $form->getElement('region')->setValue($region->getId());
+
+                $form->getElement('gradeSchool')->setValue($directive->getGradeSchool());
+                $form->getElement('bloodGroup')->setValue($directive->getBloodGroup());
+                $form->getElement('allergies')->setValue($directive->getAllergies());
+                $form->getElement('disease')->setValue($directive->getDisease());
+                $form->getElement('treatment')->setValue($directive->getTreatment());
             }
         }
 
@@ -322,13 +403,13 @@ class RegistrationController extends Dis_Controller_Action {
 				$this->_entityManager->flush();
 				$removeCount++;
 			}
-			$message = sprintf(ngettext('%d directive removed.', '%d directives removed.', $removeCount), $removeCount);
+			$message = sprintf(ngettext('%d directivo eliminado', '%d directivos eliminados', $removeCount), $removeCount);
 
 			$this->stdResponse->success = TRUE;
 			$this->stdResponse->message = _($message);
 		} else {
 			$this->stdResponse->success = FALSE;
-			$this->stdResponse->message = _("Data submitted is empty.");
+			$this->stdResponse->message = _('Datos llegados estan vacios');
 		}
 		// sends response to client
 		$this->_helper->json($this->stdResponse);
