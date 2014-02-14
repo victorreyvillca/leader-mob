@@ -2,12 +2,12 @@
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/blueimp-Load-Image/load-image.min.js","text/javascript"); ?>
 
 <div style="margin:20px;">
-	<?php echo $this->tableHeader('filterHeader', _("Filter Directive"));?>
+	<?php echo $this->tableHeader('filterHeader', _('Buscador'));?>
 	<div id="containerFormFilter">
 		<?php echo $this->formFilter;?>
 	</div>
 	<br>
-	<?php echo $this->tableHeader('directiveHeader', _("Directives"));?>
+	<?php echo $this->tableHeader('directiveHeader', _('Lista de Directivos'));?>
 	<?php echo $this->tableList("tblDirective");?>
 	<br>
 	<br>

@@ -89,12 +89,9 @@ class Admin_Form_Directive extends Zend_Form {
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
-			->addElement('Text', 'department', array(
-				'label' => _('Departamento'),
-                'filters' => array(
-                    array('StringTrim')
-                ),
-                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese el Departamento'), 'autofocus' => ''),
+			->addElement('Select', 'department', array(
+				'label' => _('Lugar de Nacimiento'),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Seleccione el Departamento'), 'autofocus' => ''),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 

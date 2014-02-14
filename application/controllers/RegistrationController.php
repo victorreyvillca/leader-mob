@@ -26,7 +26,7 @@ class RegistrationController extends Dis_Controller_Action {
 	 */
 	public function indexAction() {
 	    $formFilter = new Admin_Form_SearchFilter();
-	    $formFilter->getElement('nameFilter')->setLabel(_("Firstname Directive"));
+	    $formFilter->getElement('nameFilter')->setLabel(_('Nombre Directivo'));
 	    $this->view->formFilter = $formFilter;
 	}
 
@@ -47,6 +47,7 @@ class RegistrationController extends Dis_Controller_Action {
 		$classConquerorRepo = $this->_entityManager->getRepository('Model\ClassConqueror');
 		$areaRepo = $this->_entityManager->getRepository('Model\Area');
 		$rankRepo = $this->_entityManager->getRepository('Model\Rank');
+		$departmentRepo = $this->_entityManager->getRepository('Model\Department');
 
 		$form->getElement('position')->setMultiOptions($positionRepo->findAllArray());
 		$form->getElement('mission')->setMultiOptions($missionRepo->findAllArray());
@@ -58,6 +59,7 @@ class RegistrationController extends Dis_Controller_Action {
 		$form->getElement('classConqueror')->setMultiOptions($classConquerorRepo->findAllArray());
 		$form->getElement('area')->setMultiOptions($areaRepo->findAllArray());
 		$form->getElement('rank')->setMultiOptions($rankRepo->findAllArray());
+		$form->getElement('department')->setMultiOptions($departmentRepo->findAllArray());
 
 		if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
@@ -70,6 +72,7 @@ class RegistrationController extends Dis_Controller_Action {
                 $position = $this->_entityManager->find('Model\Position', (int)$formData['position']);
                 $area = $this->_entityManager->find('Model\Area', (int)$formData['area']);
                 $rank = $this->_entityManager->find('Model\Rank', (int)$formData['rank']);
+                $department = $this->_entityManager->find('Model\Department', (int)$formData['department']);
 
                 $directive = new Directive();
                 $directive
@@ -80,6 +83,7 @@ class RegistrationController extends Dis_Controller_Action {
                     ->setPosition($position)
                     ->setArea($area)
                     ->setRank($rank)
+                    ->setDepartment($department)
                     ->setEmail($formData['email'])
                     ->setAddress($formData['address'])
                     ->setGradeSchool($formData['gradeSchool'])
@@ -196,6 +200,7 @@ class RegistrationController extends Dis_Controller_Action {
         $classConquerorRepo = $this->_entityManager->getRepository('Model\ClassConqueror');
         $areaRepo = $this->_entityManager->getRepository('Model\Area');
         $rankRepo = $this->_entityManager->getRepository('Model\Rank');
+        $departmentRepo = $this->_entityManager->getRepository('Model\Department');
 
         $form->getElement('position')->setMultiOptions($positionRepo->findAllArray());
         $form->getElement('mission')->setMultiOptions($missionRepo->findAllArray());
@@ -207,6 +212,7 @@ class RegistrationController extends Dis_Controller_Action {
         $form->getElement('classConqueror')->setMultiOptions($classConquerorRepo->findAllArray());
         $form->getElement('area')->setMultiOptions($areaRepo->findAllArray());
         $form->getElement('rank')->setMultiOptions($rankRepo->findAllArray());
+        $form->getElement('department')->setMultiOptions($departmentRepo->findAllArray());
 
 	    if ($this->_request->isPost()) {
 	    	$formData = $this->_request->getPost();
@@ -223,6 +229,7 @@ class RegistrationController extends Dis_Controller_Action {
 	    		    $position = $this->_entityManager->find('Model\Position', (int)$formData['position']);
 	    		    $area = $this->_entityManager->find('Model\Area', (int)$formData['area']);
 	    		    $rank = $this->_entityManager->find('Model\Rank', (int)$formData['rank']);
+	    		    $department = $this->_entityManager->find('Model\Department', (int)$formData['department']);
 
 	    		    $directive
     	    		    ->setRegion($region)
@@ -232,6 +239,7 @@ class RegistrationController extends Dis_Controller_Action {
     	    		    ->setPosition($position)
     	    		    ->setArea($area)
     	    		    ->setRank($rank)
+    	    		    ->setDepartment($department)
     	    		    ->setEmail($formData['email'])
     	    		    ->setAddress($formData['address'])
     	    		    ->setGradeSchool($formData['gradeSchool'])

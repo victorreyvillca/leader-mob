@@ -1,0 +1,94 @@
+INSERT INTO `tblmission` ( `name`, `abreviation`, `description`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
+( 'Misión del Oriente Boliviano', 'MOB', 'Zona Oriental de Bolivia', '2014-02-13 19:42:13', NULL, NULL, NULL, 1),
+( 'Misión Boliviana Occidental', 'MBO', 'Zona Occidental de Bolivia', '2014-02-13 19:43:47', NULL, NULL, NULL, 1),
+( 'Misión Bolivia Central', 'MBC', 'Zona Central de Bolivia', '2014-02-13 19:46:01', NULL, NULL, NULL, 1);
+
+
+INSERT INTO `tblregion` (`name`, `abreviation`, `description`, `missionId`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
+( 'Region A', 'R A', 'Conformado por varias iglesias', 1, '2014-02-13 19:56:13', NULL, NULL, NULL, 1),
+( 'Region B', 'R B', 'Conformado varias iglesias', 1, '2014-02-13 19:58:07', NULL, NULL, NULL, 1),
+( 'Region C', 'C', 'Conformado por varias iglesias', 1, '2014-02-13 20:00:44', NULL, NULL, NULL, 1);
+
+INSERT INTO `tbldistrict` ( `name`, `description`, `regionId`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
+( 'Barrio Lindo - SC', 'Pastor a cargo Werner Alaro - 2014', 1, '2014-02-13 20:04:18', NULL, NULL, NULL, 1),
+( 'Villa 1ro de Mayo - SC', 'Pastor a cargo Jorge Calle', 1, '2014-02-13 20:05:33', NULL, NULL, NULL, 1),
+( 'Colorada - SC', 'Pastor a cargo Brandom Campos - 2014', 1, '2014-02-13 20:06:53', NULL, NULL, NULL, 1),
+( 'Pirai', 'Pastor a cargo Nelson Carpio - 2014', 1, '2014-02-13 20:07:37', NULL, NULL, NULL, 1),
+( 'Nuevo Palmar - SC', 'Pastor a cargo Rolando Chipana - 2014', 1, '2014-02-13 20:10:59', NULL, NULL, NULL, 1),
+( 'Montero Central ', 'Pastor a cargo Salomon Colque - 2014', 1, '2014-02-13 20:11:54', NULL, NULL, NULL, 1),
+( 'Plan 3000 - SC', 'Pastor a cargo David Condori - 2014', 1, '2014-02-13 20:12:34', NULL, NULL, NULL, 1),
+( 'Pari - SC', 'Pastor a cargo Henry Coronel - 2014', 1, '2014-02-13 20:13:11', NULL, NULL, NULL, 1),
+( 'Paurito - SC', 'Pastor a cargo Saul Cruz - 2014', 1, '2014-02-13 20:13:40', NULL, NULL, NULL, 1),
+( 'Warnez', 'Pastor a cargo Eliseo Forondo - 2014', 1, '2014-02-13 20:14:44', NULL, NULL, NULL, 1),
+( 'Norte - SC', 'Pastor a cargo Juan Carlos Garcia - 2014', 1, '2014-02-13 20:15:22', NULL, NULL, NULL, 1),
+( 'Yapacani', 'Pastor a cargo Rolando Gomez - 2014', 1, '2014-02-13 20:16:06', NULL, NULL, NULL, 1),
+( 'Montero Norte', 'Pastor a cargo Jorge Vallejos - 2014', 1, '2014-02-13 20:19:12', NULL, NULL, NULL, 1),
+( 'Hamacas - SC', 'Pastor a cargo Ismael Kauffman - 2014', 1, '2014-02-13 20:20:39', NULL, NULL, NULL, 1),
+( 'Soberania - SC', 'Pastor a cargo Javier Lopez - 2014', 1, '2014-02-13 20:21:37', NULL, NULL, NULL, 1),
+( 'Suroeste - SC', 'Pastor a cargo Ivan Mamani - 2014', 1, '2014-02-13 20:22:14', NULL, NULL, NULL, 1),
+( 'Central - SC', 'Pastor a cargo Luis Martinez - 2014', 1, '2014-02-13 20:23:08', NULL, NULL, NULL, 1),
+( 'Noreste - SC', 'Pastor a cargo Wilfredo Mayta - 2014', 1, '2014-02-13 20:26:10', NULL, NULL, NULL, 1),
+( 'Sur - SC', 'Pastor a cargo Yamil Morales - 2014', 1, '2014-02-13 20:27:32', NULL, NULL, NULL, 1),
+( 'Arroyito - SC', 'Pastor a cargo Natalio Flores - 2014', 1, '2014-02-13 20:28:42', NULL, NULL, NULL, 1),
+( 'Chiquitania B', 'Pastor a cargo Nelson Noe Guamayo - 2014', 1, '2014-02-13 20:29:35', NULL, NULL, NULL, 1),
+( 'Puerto Suarez', 'Pastor a cargo Jorge Parada - 2014', 1, '2014-02-13 20:30:38', NULL, NULL, NULL, 1),
+( 'Samaipata ', 'Pastor a cargo Pablo Salvatierra - 2014', 1, '2014-02-13 20:31:47', NULL, NULL, NULL, 1),
+( 'Chiquitania A', 'Pastor a cargo Jose M Ugarteche - 2014', 1, '2014-02-13 20:32:29', NULL, NULL, NULL, 1),
+( 'Guayaramerin', 'Pastor a cargo Freddy Almendras - 2014', 1, '2014-02-13 20:33:49', NULL, NULL, NULL, 1),
+( 'Riveralta', 'Pastor a cargo Hiver Calizaya - 2014', 1, '2014-02-13 20:35:06', NULL, NULL, NULL, 1),
+( 'Trinidad Norte', 'Pastor a cargo Nelzon Cano - 2014', 1, '2014-02-13 20:35:49', NULL, NULL, NULL, 1),
+( 'Trinidad Sur Oeste', 'Pastor a cargo Clifor Chura - 2014', 1, '2014-02-13 20:36:26', NULL, NULL, NULL, 1),
+( 'Trinidad Sur Este', 'Pastor a cargo Ronal Mena - 2014', 1, '2014-02-13 20:37:12', NULL, NULL, NULL, 1),
+( 'Santa Ana', 'Pastor a cargo Jacobo Rosas - 2014', 1, '2014-02-13 20:37:50', NULL, NULL, NULL, 1),
+( 'Tarija - Bermejo', 'Pastor a cargo Gilmar Carrizal - 2014', 1, '2014-02-13 20:38:26', NULL, NULL, NULL, 1),
+( 'Tarija - Loma Linda', 'Pastor a cargo Raul Conde - 2014', 1, '2014-02-13 20:40:08', NULL, NULL, NULL, 1),
+( 'Yacuiba A', 'Pastor a cargo Roger Cuella - 2014', 1, '2014-02-13 20:41:15', NULL, NULL, NULL, 1),
+( 'Yacuiba B', 'Pastor a cargo Victor Mansilla - 2014', 1, '2014-02-13 20:41:56', NULL, NULL, NULL, 1),
+( 'Villamontes', 'Pastor a cargo Efrain Sihuairu - 2014', 1, '2014-02-13 20:43:12', NULL, NULL, NULL, 1),
+( 'Tarija - Central', 'Pastor a cargo David Vargas - 2014', 1, '2014-02-13 20:44:05', NULL, NULL, NULL, 1);
+
+
+
+INSERT INTO `tbldepartment` ( `name`, `description`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
+( 'Santa Cruz', 'ninguna', '2014-02-13 20:53:15', NULL, NULL, NULL, 1),
+( 'La Paz', 'ninguna	', '2014-02-13 20:53:33', NULL, NULL, NULL, 1),
+( 'Cochabamba', 'ninguna', '2014-02-13 20:54:04', NULL, NULL, NULL, 1),
+( 'Oruro', 'ninguna', '2014-02-13 20:54:44', NULL, NULL, NULL, 1),
+( 'Potosi', 'ninguno	', '2014-02-13 20:55:00', NULL, NULL, NULL, 1),
+( 'Sucre', 'ninguna', '2014-02-13 20:55:26', NULL, NULL, NULL, 1),
+( 'Beni', 'ninguna', '2014-02-13 20:56:05', NULL, NULL, NULL, 1),
+( 'Chuquisaca', 'ninguna', '2014-02-13 20:56:55', NULL, NULL, NULL, 1),
+( 'Tarija', 'ninguna', '2014-02-13 20:57:18', NULL, NULL, NULL, 1);
+
+
+INSERT INTO `tblclassconqueror` ( `name`, `description`, `classType`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
+( 'Amigo', 'Primera tarjeta\r\n', 1, '2014-02-13 07:11:27', NULL, NULL, NULL, 1),
+( 'Compañero', 'segunda tarjeta', 1, '2014-02-13 07:14:55', NULL, NULL, NULL, 1),
+( 'Explorador', 'tercera tarjeta', 1, '2014-02-13 07:15:31', NULL, NULL, NULL, 1),
+( 'Pionero', 'cuarta tarjeta', 1, '2014-02-13 07:15:54', NULL, NULL, NULL, 1),
+( 'Excursionista', 'quinta tarjeta', 1, '2014-02-13 07:16:51', NULL, NULL, NULL, 1),
+( 'Guia', 'Haber cumplido con las anteriores tarjetas', 1, '2014-02-13 07:17:44', NULL, NULL, NULL, 1),
+( 'Amigo de la Naturaleza', 'Haber cumplido todos los Requisitos', 2, '2014-02-13 07:19:41', NULL, NULL, NULL, 1),
+( 'Compañero de Excursionismo', 'Haber cumplido todos los Requisitos', 2, '2014-02-13 07:20:32', NULL, NULL, NULL, 1),
+( 'Explorador de Compo y Bosque', 'Haber cumplido todos los Requisitos', 2, '2014-02-13 07:21:08', NULL, NULL, NULL, 1),
+( 'Pionero de Nuevas Fromteras', 'Haber cumplido todos los Requisitos', 2, '2014-02-13 07:21:41', NULL, NULL, NULL, 1),
+( 'Excursionista en el Bosque', 'Haber cumplido todos los Requisitos', 2, '2014-02-13 07:22:14', NULL, NULL, NULL, 1),
+( 'Guia de Exploración', 'Haber cumplido todos los Requisitos', 2, '2014-02-13 07:23:12', NULL, NULL, NULL, 1),
+( 'Guía Mayor', 'Haber cumplido todos los Requisitos', 3, '2014-02-13 07:23:51', NULL, NULL, NULL, 1),
+( 'Guía Mayor Master', 'Haber cumplido todos los Requisitos', 3, '2014-02-13 07:24:30', NULL, NULL, NULL, 1),
+( 'Guía Mayor MAster Avanzado', 'Haber cumplido todos los Requisitos', 3, '2014-02-13 07:25:00', NULL, NULL, NULL, 1);
+
+
+INSERT INTO `tblchurch` ( `name`, `description`, `districtId`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
+( 'Nuevo Palmar', 'Iglesia central del distrito nuevo Palmar', 5, '2014-02-13 20:47:45', NULL, NULL, NULL, 1),
+( 'Roca Eterna', 'Iglesia ', 5, '2014-02-13 20:48:16', NULL, NULL, NULL, 1),
+( 'Nuevo Oriente', 'Iglesia	', 5, '2014-02-13 20:48:45', NULL, NULL, NULL, 1),
+( 'Palmira', 'Iglesia	', 5, '2014-02-13 20:49:44', NULL, NULL, NULL, 1),
+( 'Islas del Palmar', 'Iglesia', 5, '2014-02-13 20:50:22', NULL, NULL, NULL, 1);
+
+
+
+
+
+
+
