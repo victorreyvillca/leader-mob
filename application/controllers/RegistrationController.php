@@ -104,6 +104,24 @@ class RegistrationController extends Dis_Controller_Action {
                     ->setFirstName($formData['firstName'])
                 ;
 
+                if ($_FILES['file']['error'] !== UPLOAD_ERR_NO_FILE) {
+                	if ($_FILES['file']['error'] == UPLOAD_ERR_OK) {
+                		$fh = fopen($_FILES['file']['tmp_name'], 'r');
+                		$binary = fread($fh, filesize($_FILES['file']['tmp_name']));
+                		fclose($fh);
+
+                		$mimeType = $_FILES['file']['type'];
+                		$fileName = $_FILES['file']['name'];
+
+                		$dataVaultMapper = new Dis_Model_DataVaultMapper();
+                		$dataVault = new Dis_Model_DataVault();
+                		$dataVault->setFilename($fileName)->setMimeType($mimeType)->setBinary($binary);
+                		$dataVaultMapper->save($dataVault);
+
+                		$directive->setProfilePictureId($dataVault->getId());
+                	}
+                }
+
                 $this->_entityManager->persist($directive);
                 $this->_entityManager->flush();
 
@@ -259,6 +277,31 @@ class RegistrationController extends Dis_Controller_Action {
     	    		    ->setFirstName($formData['firstName'])
 	    		    ;
 
+	    		    if ($_FILES['file']['error'] !== UPLOAD_ERR_NO_FILE) {
+	    		    	if ($_FILES['file']['error'] == UPLOAD_ERR_OK) {
+	    		    		$fh = fopen($_FILES['file']['tmp_name'], 'r');
+	    		    		$binary = fread($fh, filesize($_FILES['file']['tmp_name']));
+	    		    		fclose($fh);
+
+	    		    		$mimeType = $_FILES['file']['type'];
+	    		    		$fileName = $_FILES['file']['name'];
+
+	    		    		$dataVaultMapper = new Dis_Model_DataVaultMapper();
+
+	    		    		if ($directive->getProfilePictureId() != NULL) {// if it has image profile update
+	    		    			$dataVault = $dataVaultMapper->find($directive->getProfilePictureId(), FALSE);
+	    		    			$dataVault->setFilename($fileName)->setMimeType($mimeType)->setBinary($binary);
+	    		    			$dataVaultMapper->update($directive->getProfilePictureId(), $dataVault);
+	    		    		} elseif ($directive->getProfilePictureId() == NULL) {// if it don't have image profile create
+	    		    			$dataVault = new Dis_Model_DataVault();
+	    		    			$dataVault->setFilename($fileName)->setMimeType($mimeType)->setBinary($binary);
+	    		    			$dataVaultMapper->save($dataVault);
+
+	    		    			$directive->setProfilePictureId($dataVault->getId());
+	    		    		}
+	    		    	}
+	    		    }
+
 	    		    $this->_entityManager->persist($directive);
 	    		    $this->_entityManager->flush();
 
@@ -310,6 +353,19 @@ class RegistrationController extends Dis_Controller_Action {
                 $form->getElement('allergies')->setValue($directive->getAllergies());
                 $form->getElement('disease')->setValue($directive->getDisease());
                 $form->getElement('treatment')->setValue($directive->getTreatment());
+
+                $dataVaultMapper = new Dis_Model_DataVaultMapper();
+                $dataVault = $dataVaultMapper->find($directive->getProfilePictureId());
+                if ($dataVault != NULL && $dataVault->getBinary()) {
+                	$src = $this->_helper->url('profile-picture', 'Administrator', 'admin', array('id' => $dataVault->getId(), 'timestamp' => time()));
+                } else {
+                	if ($directive->getSex() == Model\Person::SEX_MALE) {
+                		$src = '/image/profile/male_default.jpg';
+                	} elseif ($directive->getSex() == Model\Person::SEX_FEMALE) {
+                		$src = '/image/profile/female_default.jpg';
+                	}
+                }
+                $form->setSource($src);
             }
         }
 

@@ -2,6 +2,7 @@
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/blueimp-Load-Image/load-image.min.js","text/javascript"); ?>
 
 <div style="margin:20px;">
+    <br><br>
 	<?php echo $this->tableHeader('filterHeader', _('Buscador'));?>
 	<div id="containerFormFilter">
 		<?php echo $this->formFilter;?>
@@ -12,8 +13,8 @@
 	<br>
 	<br>
 	<div class="buttons right">
-		<?php echo $this->buttonRemove("delete-directive", $this->translate('Eliminar'), $this->url(array('action'=>'delete')));?>
 		<?php echo $this->buttonAdd('add', $this->translate('Registrar'), $this->url(array('action'=>'add')));?>
+		<?php echo $this->buttonRemove("delete-directive", $this->translate('Eliminar'), $this->url(array('action'=>'delete')));?>
 	</div>
 
 	<div id="dialog"><!-- Loads ajax dialog form --></div>

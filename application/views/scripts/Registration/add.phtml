@@ -2,11 +2,12 @@
 <?php $this->headLink()->appendStylesheet($this->baseUrl() . "/js/lib/jquery-ui-multiselect-widget/jquery.multiselect..filter.css"); ?>
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/jquery-ui-multiselect-widget/src/jquery.multiselect.min.js");?>
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/jquery-ui-multiselect-widget/src/jquery.multiselect.filter.min.js");?>
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/blueimp-Load-Image/load-image.min.js","text/javascript"); ?>
 
 <!-- title -->
 <div id="page-title">
-	<span class="title"><?php echo _('Ficha de Registro Individual')?></span>
-	<span class="subtitle"><?php echo _('Registrar Directivo')?></span>
+    <span class="title"><?php echo _('Registrar Directivo')?></span>
+	<span class="subtitle"><?php echo _('Ficha de Registro Individual')?></span>
 </div>
 <!-- ENDS title -->
 
@@ -28,5 +29,24 @@
 <!-- ENDS sidebar -->
 
 <script type="text/javascript">
+$(document).ready(function() {
+	var result = $('#result'),
+		load = function (e) {
+		e = e.originalEvent;
+		e.preventDefault();
+		window.loadImage(
+			(e.dataTransfer || e.target).files[0],
+			function (img) {
+				result.children().replaceWith(img);
+			},
+			{
+			maxWidth: result.children().outerWidth(),
+			canvas: true
+			}
+		);
+	};
+
+	$('#file-input').change(load);
+});
 $("#classConqueror").multiselect().multiselectfilter();
 </script>

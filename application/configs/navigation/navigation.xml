@@ -10,28 +10,28 @@
 
 		<whowe>
 			<id>whowe</id>
-			<label>Who We?</label>
+			<label>Quienes Somos?</label>
 			<uri>#</uri>
 			<action>index</action>
 			<controller>whowe</controller>
 			<pages>
 				<history>
-					<label>Our History</label>
+					<label>Nuestra Historia</label>
 					<controller>Whowe</controller>
 					<action>history</action>
 				</history>
 				<visionMission>
-					<label>Vision  Mission</label>
+					<label>Vision y Mision</label>
 					<controller>Whowe</controller>
 					<action>visionmission</action>
 				</visionMission>
 				<logo>
-					<label>Our Logo</label>
+					<label>Nuestros Logos</label>
 					<controller>Whowe</controller>
 					<action>logo</action>
 				</logo>
 				<belief>
-					<label>Our Belief</label>
+					<label>Nuestras Creencias</label>
 					<controller>Whowe</controller>
 					<action>belief</action>
 				</belief>

@@ -1,6 +1,18 @@
 <form class="form-line" id="<?php echo $this->element->getAttrib('id')?>" action="<?php echo $this->element->getAction()?>" method="post" enctype="multipart/form-data">
 <?php echo $this->element->getElement('id')->render();?>
     <fieldset>
+        <div class="row">
+            <div class="span7">
+                <div class="well" id="result" style="width: 127px; height: 127px;">
+                    <img src="<?php echo $this->element->getSource();?>" id="profile_img" style="width: 127px; height: 127px;"/>
+                </div>
+            </div>
+        </div>
+        <div>
+            <?php echo _('Subir su Fotografia')?>
+            <input id="MAX_FILE_SIZE" type="hidden" value="8388608" name="MAX_FILE_SIZE">
+            <input type="file" id="file-input" name="file" class="valid">
+		</div>
         <div>
     		<?php echo $this->element->getElement('firstName')->renderLabel()?>
     		<?php echo $this->element->getElement('firstName')->renderViewHelper()?>

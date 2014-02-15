@@ -35,13 +35,13 @@ class Admin_Form_Directive extends Zend_Form {
 				'label' => _('Apellidos'),
 				'required' => TRUE,
     			'filters' => array('StringTrim'),
-    			'attribs' => array('class' => 'form-poshytip', 'placeholder' => 'Nombre', 'title' => _('Ingrese su Apellido'), 'required' => '', 'autofocus' => ''),
+    			'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese su Apellido'), 'required' => '', 'autofocus' => ''),
     			'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
 			->addElement('Select', 'position', array(
 				'label' => _('Cargo'),
-                'attribs' => array('class' => 'form-poshytip', 'placeholder' => 'Nombre', 'title' => _('Seleccione su cargo'), 'required' => '', 'autofocus' => ''),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Seleccione su cargo'), 'required' => '', 'autofocus' => ''),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
