@@ -48,31 +48,31 @@ class Admin_Form_Directive extends Zend_Form {
 			->addElement('Text', 'ci', array(
 				'label' => _('Documento de Identidad'),
 				'required' => TRUE,
-                'attribs' => array('class' => 'form-poshytip', 'placeholder' => 'Nombre', 'title' => _('Ingrese su Documento de Identidad'), 'required' => '', 'autofocus' => ''),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese su Documento de Identidad'), 'required' => '', 'autofocus' => ''),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
 			->addElement('Text', 'year', array(
 				'label' => _('Edad'),
-                'attribs' => array('class' => 'form-poshytip', 'placeholder' => 'Nombre', 'title' => _('Ingrese sus Edad'), 'autofocus' => ''),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese sus Edad'), 'autofocus' => ''),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
 			->addElement('Radio', 'sex', array(
 				'label' => _('Sex'),
-                'attribs' => array('class' => 'form-poshytip', 'placeholder' => 'Nombre', 'title' => _('Ingrese sus Edad'), 'autofocus' => ''),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese sus Edad'), 'autofocus' => ''),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
 			->addElement('Text', 'dateOfBirth', array(
 				'label' => _('Fecha de Nacimiento'),
-                'attribs' => array('class' => 'form-poshytip', 'placeholder' => 'Nombre', 'title' => _('Ingrese sus Fecha de Nacimiento'), 'required' => '', 'autofocus' => ''),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese sus Fecha de Nacimiento'), 'required' => '', 'autofocus' => ''),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
 			->addElement('Text', 'birthplace', array(
 				'label' => _('Lugar de Nacimiento'),
-                'attribs' => array('class' => 'form-poshytip', 'placeholder' => 'Nombre', 'title' => _('Ingrese el Lugar de Nacimiento'), 'autofocus' => ''),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese el Lugar de Nacimiento'), 'autofocus' => ''),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
