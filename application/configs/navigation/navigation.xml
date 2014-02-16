@@ -39,7 +39,7 @@
 		</whowe>
 
 		<registration>
-			<label>Registracion</label>
+			<label>Registro</label>
 			<controller>Registration</controller>
 			<action>index</action>
 		</registration>

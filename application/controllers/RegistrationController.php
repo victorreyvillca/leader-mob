@@ -550,7 +550,7 @@ class RegistrationController extends Dis_Controller_Action {
 			$row[] = $directive->getName();
 			$row[] = $directive->getPhonemobil();
 			$row[] = $directive->getPosition()->getName();
-			$row[] = $region->getName();
+			$row[] = $directive->getRank()->getName();
 			$row[] = $directive->getClub()->getName();
 			$row[] = $directive->getArea()->getName();
 			$row[] = $church->getName();
@@ -606,6 +606,38 @@ class RegistrationController extends Dis_Controller_Action {
 		}
 
 		return $filters;
+	}
+
+	/**
+	 * Return the regions
+	 * @access public
+	 * @return Json
+	 */
+	public function dsRegionAction() {
+		$this->_helper->viewRenderer->setNoRender(TRUE);
+
+		$regionRepo = $this->_entityManager->getRepository('Model\Region');
+		$missionId = (int)$this->_getParam('missionId', 0);
+		$regions = $regionRepo->findByArray(array('missionId' => $missionId));
+
+		$this->stdResponse->regionsArray = $regions;
+		$this->_helper->json($this->stdResponse);
+	}
+
+	/**
+	 * Return the districts
+	 * @access public
+	 * @return Json
+	 */
+	public function dsDistrictAction() {
+		$this->_helper->viewRenderer->setNoRender(TRUE);
+
+		$districtRepo = $this->_entityManager->getRepository('Model\District');
+		$regionId = (int)$this->_getParam('regionId', 0);
+		$districts = $districtRepo->findByArray(array('regionId' => $regionId));
+
+		$this->stdResponse->districtsArray = $districts;
+		$this->_helper->json($this->stdResponse);
 	}
 
 	/**

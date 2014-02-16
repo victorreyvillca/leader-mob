@@ -49,4 +49,65 @@ $(document).ready(function() {
 	$('#file-input').change(load);
 });
 $("#classConqueror").multiselect().multiselectfilter();
+
+
+$("#mission").change(function () {
+	this.missionId = $("#mission").val();
+
+	// Sends request by ajax
+	$.ajax({
+	url: '<?php echo $this->url(array('controller'=>'Registration', 'action'=>'ds-region'));?>',
+	type: "POST",
+	dataType: 'json',
+	data: {'missionId' : this.missionId },
+	beforeSend: function(XMLHttpRequest) {
+		return true;
+	},
+
+	success: function(data, textStatus, XMLHttpRequest) {
+		// Removes all options for the select box
+		$('#region option').remove();
+		// .each loops through the array
+		$.each(data.regionsArray, function(i) {
+			$('#region').append($("<option></option>")
+				.attr("value", i)
+				.text(data.regionsArray[i]));
+		});
+	},
+
+	complete: function(jqXHR, textStatus) {},
+
+	error: function(jqXHR, textStatus, errorThrown) {}
+    });
+});
+
+$("#region").change(function () {
+	this.regionId = $("#region").val();
+
+	// Sends request by ajax
+	$.ajax({
+	url: '<?php echo $this->url(array('controller'=>'Registration', 'action'=>'ds-district'));?>',
+	type: "POST",
+	dataType: 'json',
+	data: {'regionId' : this.regionId },
+	beforeSend: function(XMLHttpRequest) {
+		return true;
+	},
+
+	success: function(data, textStatus, XMLHttpRequest) {
+		// Removes all options for the select box
+		$('#district option').remove();
+		// .each loops through the array
+		$.each(data.districtsArray, function(i) {
+			$('#district').append($("<option></option>")
+				.attr("value", i)
+				.text(data.districtsArray[i]));
+		});
+	},
+
+	complete: function(jqXHR, textStatus) {},
+
+	error: function(jqXHR, textStatus, errorThrown) {}
+    });
+});
 </script>

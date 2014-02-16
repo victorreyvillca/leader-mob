@@ -111,4 +111,19 @@ class DistrictRepository extends EntityRepository {
 
     	return $itemArray;
     }
+
+    /**
+     * Returns all models by criteria
+     * @return array
+     */
+    public function findByArray($criteria = array()) {
+        $items = $this->findBy($criteria);
+
+        $itemArray = array();
+        foreach ($items as $item) {
+            $itemArray[$item->getId()] = $item->getName();
+        }
+
+        return $itemArray;
+    }
 }
