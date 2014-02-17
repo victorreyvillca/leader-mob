@@ -64,10 +64,10 @@ class Directive extends \Model\Directive implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'churchId', 'church', 'areaId', 'area', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+            return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'churchId', 'church', 'areaId', 'area', 'classConquerors', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
         }
 
-        return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'churchId', 'church', 'areaId', 'area', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+        return array('__isInitialized__', 'dateChristening', 'address', 'note', 'email', 'yearService', 'isActivo', 'birthplace', 'city', 'nameMother', 'nameFather', 'gradeSchool', 'year', 'bloodGroup', 'allergies', 'disease', 'treatment', 'positions', 'ranks', 'departments', 'clubs', 'churchs', 'districts', 'regions', 'missions', 'positionId', 'position', 'rankId', 'rank', 'departmentId', 'department', 'clubId', 'club', 'districtId', 'district', 'regionId', 'region', 'churchId', 'church', 'areaId', 'area', 'classConquerors', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
     }
 
     /**

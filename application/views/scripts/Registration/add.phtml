@@ -49,7 +49,7 @@ $(document).ready(function() {
 	$('#file-input').change(load);
 });
 $("#classConqueror").multiselect().multiselectfilter();
-
+$('#dateOfBirth').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, yearRange: '-100:+0'});
 
 $("#mission").change(function () {
 	this.missionId = $("#mission").val();
@@ -102,6 +102,36 @@ $("#region").change(function () {
 			$('#district').append($("<option></option>")
 				.attr("value", i)
 				.text(data.districtsArray[i]));
+		});
+	},
+
+	complete: function(jqXHR, textStatus) {},
+
+	error: function(jqXHR, textStatus, errorThrown) {}
+    });
+});
+
+$("#district").change(function () {
+	this.districtId = $("#district").val();
+
+	// Sends request by ajax
+	$.ajax({
+	url: '<?php echo $this->url(array('controller'=>'Registration', 'action'=>'ds-church'));?>',
+	type: "POST",
+	dataType: 'json',
+	data: {'districtId' : this.districtId },
+	beforeSend: function(XMLHttpRequest) {
+		return true;
+	},
+
+	success: function(data, textStatus, XMLHttpRequest) {
+		// Removes all options for the select box
+		$('#church option').remove();
+		// .each loops through the array
+		$.each(data.churchesArray, function(i) {
+			$('#church').append($("<option></option>")
+				.attr("value", i)
+				.text(data.churchesArray[i]));
 		});
 	},
 

@@ -273,6 +273,19 @@ class Directive extends Person {
 	private $area;
 
 	/**
+	 * @ManyToMany(targetEntity="ClassConqueror")
+	 * @JoinTable(name="Directive_ClassConqueror",
+	 *		joinColumns={@JoinColumn(name="directiveId", referencedColumnName="id")},
+	 *		inverseJoinColumns={@JoinColumn(name="classConquerorId", referencedColumnName="id")}
+	 *		)
+	 */
+	private $classConquerors;
+
+	public function __construct() {
+		$this->classConquerors = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
+	/**
 	 * @return datetime
 	 */
 	public function getDateChristening() {
@@ -781,6 +794,44 @@ class Directive extends Person {
 	 */
 	public function setArea($area) {
 		$this->area = $area;
+		return $this;
+	}
+
+	/**
+	 * Returns a ArrayCollection ClassConqueror models
+	 * @return \Doctrine\Common\Collections\ArrayCollection
+	 */
+	public function getClassConquerors() {
+		return $this->classConquerors;
+	}
+
+	/**
+	 * @param ClassConqueror $classConqueror
+	 * @return Directive;
+	 */
+	public function addClassConqueror(ClassConqueror $classConqueror) {
+		if (!$this->classConquerors->contains($classConqueror)) {
+			$this->classConquerors->add($classConqueror);
+		}
+		return $this;
+	}
+
+	/**
+	 * @param ClassConqueror $classConqueror
+	 * @return Directive
+	 */
+	public function removeClassConqueror(ClassConqueror $classConqueror) {
+		if ($this->classConquerors->contains($classConqueror)) {
+			$this->classConquerors->removeElement($classConqueror);
+		}
+		return $this;
+	}
+
+	/**
+	 * @return Directive
+	 */
+	public function removeAllClassConqueror() {
+		$this->classConquerors->clear();
 		return $this;
 	}
 }

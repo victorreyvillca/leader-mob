@@ -30,8 +30,9 @@
             <?php echo $this->element->getElement('year')->renderViewHelper()?>
         </div>
         <div>
-            <?php echo $this->element->getElement('sex')->renderLabel()?>
-            <?php echo $this->element->getElement('sex')->renderViewHelper()?>
+            <label for="sex" class="required"><?php echo _('Sex')?></label>
+            <label for="sex-1"><input type="radio" value="1" id="sex-1" name="sex" style="width: 20px;" required=""><?php echo _('Masculino');?></label>
+			<label for="sex-2"><input type="radio" value="2" id="sex-2" name="sex" style="width: 20px;" required=""><?php echo _('Femenino');?></label>
         </div>
         <div>
             <?php echo $this->element->getElement('position')->renderLabel()?>

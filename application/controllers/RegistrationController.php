@@ -1,5 +1,6 @@
 <?php
 use Model\Directive;
+use Model\Person;
 /**
  * Controller for DIST 2.
  *
@@ -95,10 +96,10 @@ class RegistrationController extends Dis_Controller_Action {
                     ->setIsActivo(TRUE)
                     ->setState(TRUE)
                     ->setCreated(new DateTime('now'))
-                    ->setSex(1)
+                    ->setSex((int)$formData['sex'])
                     ->setPhonemobil($formData['phonemobil'])
                     ->setPhone($formData['phone'])
-                    ->setDateOfBirth(new DateTime('now'))
+                    ->setDateOfBirth(new DateTime($formData['dateOfBirth']))
                     ->setIdentityCard($formData['ci'])
                     ->setLastName($formData['lastName'])
                     ->setFirstName($formData['firstName'])
@@ -106,8 +107,8 @@ class RegistrationController extends Dis_Controller_Action {
 
                 if ($_FILES['file']['error'] !== UPLOAD_ERR_NO_FILE) {
                 	if ($_FILES['file']['error'] == UPLOAD_ERR_OK) {
-                		$fh = fopen($_FILES['file']['tmp_name'], 'r');
-                		$binary = fread($fh, filesize($_FILES['file']['tmp_name']));
+                        $fh = fopen($_FILES['file']['tmp_name'], 'r');
+                        $binary = fread($fh, filesize($_FILES['file']['tmp_name']));
                 		fclose($fh);
 
                 		$mimeType = $_FILES['file']['type'];
@@ -119,6 +120,15 @@ class RegistrationController extends Dis_Controller_Action {
                 		$dataVaultMapper->save($dataVault);
 
                 		$directive->setProfilePictureId($dataVault->getId());
+                	}
+                }
+
+                //saves the relationship many to many
+                $classConquerorIds = $formData['classConqueror'];
+                if (!empty($classConquerorIds)) {
+                	foreach ($classConquerorIds as $classConquerorId) {
+                		$classConqueror = $this->_entityManager->find('Model\ClassConqueror', $classConquerorId);
+                		$directive->addClassConqueror($classConqueror);
                 	}
                 }
 
@@ -271,7 +281,7 @@ class RegistrationController extends Dis_Controller_Action {
     	    		    ->setSex(1)
     	    		    ->setPhonemobil($formData['phonemobil'])
     	    		    ->setPhone($formData['phone'])
-    	    		    ->setDateOfBirth(new DateTime('now'))
+    	    		    ->setDateOfBirth(new DateTime($formData['dateOfBirth']))
     	    		    ->setIdentityCard($formData['ci'])
     	    		    ->setLastName($formData['lastName'])
     	    		    ->setFirstName($formData['firstName'])
@@ -324,7 +334,7 @@ class RegistrationController extends Dis_Controller_Action {
                 $form->getElement('firstName')->setValue($directive->getFirstName());
                 $form->getElement('lastName')->setValue($directive->getLastName());
                 $form->getElement('ci')->setValue($directive->getIdentityCard());
-                $form->getElement('dateOfBirth')->setValue($directive->getDateOfBirth()->format('d.m.Y'));
+                $form->getElement('dateOfBirth')->setValue($directive->getDateOfBirth()->format('d-m-Y'));
 
                 $form->getElement('year')->setValue($directive->getYear());
                 $form->getElement('address')->setValue($directive->getAddress());
@@ -353,6 +363,13 @@ class RegistrationController extends Dis_Controller_Action {
                 $form->getElement('allergies')->setValue($directive->getAllergies());
                 $form->getElement('disease')->setValue($directive->getDisease());
                 $form->getElement('treatment')->setValue($directive->getTreatment());
+
+                $classConquerorIds = array();
+                $classConquerors = $directive->getClassConquerors();
+                foreach ($classConquerors as $classConqueror) {
+                	$classConquerorIds[] = $classConqueror->getId();
+                }
+                $form->getElement('classConqueror')->setValue($classConquerorIds);
 
                 $dataVaultMapper = new Dis_Model_DataVaultMapper();
                 $dataVault = $dataVaultMapper->find($directive->getProfilePictureId());
@@ -611,7 +628,7 @@ class RegistrationController extends Dis_Controller_Action {
 	/**
 	 * Return the regions
 	 * @access public
-	 * @return Json
+	 * @return Json array
 	 */
 	public function dsRegionAction() {
 		$this->_helper->viewRenderer->setNoRender(TRUE);
@@ -627,7 +644,7 @@ class RegistrationController extends Dis_Controller_Action {
 	/**
 	 * Return the districts
 	 * @access public
-	 * @return Json
+	 * @return Json array
 	 */
 	public function dsDistrictAction() {
 		$this->_helper->viewRenderer->setNoRender(TRUE);
@@ -637,6 +654,22 @@ class RegistrationController extends Dis_Controller_Action {
 		$districts = $districtRepo->findByArray(array('regionId' => $regionId));
 
 		$this->stdResponse->districtsArray = $districts;
+		$this->_helper->json($this->stdResponse);
+	}
+
+	/**
+	 * Return the churches
+	 * @access public
+	 * @return Json array
+	 */
+	public function dsChurchAction() {
+		$this->_helper->viewRenderer->setNoRender(TRUE);
+
+		$churchRepo = $this->_entityManager->getRepository('Model\Church');
+		$districtId = (int)$this->_getParam('districtId', 0);
+		$churches = $churchRepo->findByArray(array('districtId' => $districtId));
+
+		$this->stdResponse->churchesArray = $churches;
 		$this->_helper->json($this->stdResponse);
 	}
 
@@ -677,6 +710,6 @@ class RegistrationController extends Dis_Controller_Action {
 	 * @return array
 	 */
 	private function getGenders() {
-		return array(Model_Person::SEX_MALE => _("Male"), Model_Person::SEX_FEMALE => _("Female"));
+		return array(Person::SEX_MALE => _('Masculino'), Person::SEX_FEMALE => _('Femenino'));
 	}
 }

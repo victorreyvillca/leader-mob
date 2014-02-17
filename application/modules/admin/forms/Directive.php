@@ -58,11 +58,12 @@ class Admin_Form_Directive extends Zend_Form {
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
-			->addElement('Radio', 'sex', array(
-				'label' => _('Sex'),
-                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese sus Edad'), 'autofocus' => ''),
-                'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
-			))
+// 			->addElement('Radio', 'sex', array(
+// 				'label' => _('Sexo'),
+//                 'required' => TRUE
+//                 'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese sus Edad'), 'autofocus' => ''),
+//                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
+// 			))
 
 			->addElement('Text', 'dateOfBirth', array(
 				'label' => _('Fecha de Nacimiento'),
@@ -225,7 +226,7 @@ class Admin_Form_Directive extends Zend_Form {
 				'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
-			->addElement('Select', 'classConqueror', array(
+			->addElement('MultiSelect', 'classConqueror', array(
                 'label' => _('Investiduras'),
                 'attribs' => array('class' => 'form-poshytip', 'title' => _('Seleccione Investiduras'), 'autofocus' => ''),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))

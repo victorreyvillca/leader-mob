@@ -136,4 +136,22 @@ class DomainObject {
 		$this->state = $state;
 		return $this;
 	}
+
+	/**
+	 * @param Data\ICollection $collection
+	 * @return int[]
+	 */
+// 	public static function getEntityIds(Data\ICollection $collection = NULL) {
+// 		$ids = array();
+
+// 		if ($collection) {
+// 			foreach ($collection as $entity) {
+// 				if ($entity->isValid()) {
+// 					$ids[] = $entity->getId();
+// 				}
+// 			}
+// 		}
+
+// 		return $ids;
+// 	}
 }
