@@ -98,17 +98,20 @@ class MissionRepository extends EntityRepository {
     }
 
     /**
-     * Returns all Positions models
+     * Returns all Missions models
      * @return array
      */
-    public function findAllArray() {
-    	$items = $this->findAll();
+    public function findAllArray($hasSelected = FALSE) {
+        $items = $this->findAll();
 
-    	$itemArray = array();
-    	foreach ($items as $item) {
-    		$itemArray[$item->getId()] = $item->getName();
-    	}
+        $itemArray = array();
+        if ($hasSelected) {
+            $itemArray[-1] = sprintf('-- %s --', _('Seleccione'));
+        }
+        foreach ($items as $item) {
+            $itemArray[$item->getId()] = $item->getName();
+        }
 
-    	return $itemArray;
+        return $itemArray;
     }
 }

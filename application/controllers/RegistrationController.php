@@ -12,6 +12,8 @@ use Model\Person;
 
 class RegistrationController extends Dis_Controller_Action {
 
+    const NO_SELECTED = -1;
+
     /**
 	 * (non-PHPdoc)
 	 * @see App_Controller_Action::init()
@@ -50,7 +52,7 @@ class RegistrationController extends Dis_Controller_Action {
 		$rankRepo = $this->_entityManager->getRepository('Model\Rank');
 		$departmentRepo = $this->_entityManager->getRepository('Model\Department');
 
-		$form->getElement('position')->setMultiOptions($positionRepo->findAllArray());
+		$form->getElement('position')->setMultiOptions($positionRepo->findAllArray(TRUE));
 		$form->getElement('mission')->setMultiOptions($missionRepo->findAllArray());
 		$form->getElement('region')->setMultiOptions($regionRepo->findAllArray());
 		$form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
@@ -58,88 +60,93 @@ class RegistrationController extends Dis_Controller_Action {
 		$form->getElement('church')->setMultiOptions($churchRepo->findAllArray());
 		$form->getElement('club')->setMultiOptions($clubRepo->findAllArray());
 		$form->getElement('classConqueror')->setMultiOptions($classConquerorRepo->findAllArray());
-		$form->getElement('area')->setMultiOptions($areaRepo->findAllArray());
-		$form->getElement('rank')->setMultiOptions($rankRepo->findAllArray());
-		$form->getElement('department')->setMultiOptions($departmentRepo->findAllArray());
+		$form->getElement('area')->setMultiOptions($areaRepo->findAllArray(TRUE));
+		$form->getElement('rank')->setMultiOptions($rankRepo->findAllArray(TRUE));
+		$form->getElement('department')->setMultiOptions($departmentRepo->findAllArray(TRUE));
 
 		if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
             if ($form->isValid($formData)) {
-                $mission = $this->_entityManager->find('Model\Mission', (int)$formData['mission']);
-                $region = $this->_entityManager->find('Model\Region', (int)$formData['region']);
-                $district = $this->_entityManager->find('Model\District', (int)$formData['district']);
-                $church = $this->_entityManager->find('Model\Church', (int)$formData['church']);
-                $club = $this->_entityManager->find('Model\Club', (int)$formData['club']);
-                $position = $this->_entityManager->find('Model\Position', (int)$formData['position']);
-                $area = $this->_entityManager->find('Model\Area', (int)$formData['area']);
-                $rank = $this->_entityManager->find('Model\Rank', (int)$formData['rank']);
-                $department = $this->_entityManager->find('Model\Department', (int)$formData['department']);
+                if (($formData['department'] > 0 && $formData['position'] > 0) && ($formData['area'] > 0 && $formData['rank'] > 0)) {
+                    $mission = $this->_entityManager->find('Model\Mission', (int)$formData['mission']);
+                    $region = $this->_entityManager->find('Model\Region', (int)$formData['region']);
+                    $district = $this->_entityManager->find('Model\District', (int)$formData['district']);
+                    $church = $this->_entityManager->find('Model\Church', (int)$formData['church']);
+                    $club = $this->_entityManager->find('Model\Club', (int)$formData['club']);
+                    $position = $this->_entityManager->find('Model\Position', (int)$formData['position']);
+                    $area = $this->_entityManager->find('Model\Area', (int)$formData['area']);
+                    $rank = $this->_entityManager->find('Model\Rank', (int)$formData['rank']);
+                    $department = $this->_entityManager->find('Model\Department', (int)$formData['department']);
 
-                $directive = new Directive();
-                $directive
-                    ->setRegion($region)
-                    ->setDistrict($district)
-                    ->setChurch($church)
-                    ->setClub($club)
-                    ->setPosition($position)
-                    ->setArea($area)
-                    ->setRank($rank)
-                    ->setDepartment($department)
-                    ->setEmail($formData['email'])
-                    ->setAddress($formData['address'])
-                    ->setGradeSchool($formData['gradeSchool'])
-                    ->setBloodGroup($formData['bloodGroup'])
-                    ->setAllergies($formData['allergies'])
-                    ->setDisease($formData['disease'])
-                    ->setTreatment($formData['treatment'])
-                    ->setYear($formData['year'])
-                    ->setIsActivo(TRUE)
-                    ->setState(TRUE)
-                    ->setCreated(new DateTime('now'))
-                    ->setSex((int)$formData['sex'])
-                    ->setPhonemobil($formData['phonemobil'])
-                    ->setPhone($formData['phone'])
-                    ->setDateOfBirth(new DateTime($formData['dateOfBirth']))
-                    ->setIdentityCard($formData['ci'])
-                    ->setLastName($formData['lastName'])
-                    ->setFirstName($formData['firstName'])
-                ;
+                    $directive = new Directive();
+                    $directive
+                        ->setRegion($region)
+                        ->setDistrict($district)
+                        ->setChurch($church)
+                        ->setClub($club)
+                        ->setPosition($position)
+                        ->setArea($area)
+                        ->setRank($rank)
+                        ->setDepartment($department)
+                        ->setEmail($formData['email'])
+                        ->setAddress($formData['address'])
+                        ->setGradeSchool($formData['gradeSchool'])
+                        ->setBloodGroup($formData['bloodGroup'])
+                        ->setAllergies($formData['allergies'])
+                        ->setDisease($formData['disease'])
+                        ->setTreatment($formData['treatment'])
+                        ->setYear($formData['year'])
+                        ->setIsActivo(TRUE)
+                        ->setState(TRUE)
+                        ->setCreated(new DateTime('now'))
+                        ->setSex((int)$formData['sex'])
+                        ->setPhonemobil($formData['phonemobil'])
+                        ->setPhone($formData['phone'])
+                        ->setDateOfBirth(new DateTime($formData['dateOfBirth']))
+                        ->setIdentityCard($formData['ci'])
+                        ->setLastName($formData['lastName'])
+                        ->setFirstName($formData['firstName'])
+                    ;
 
-                if ($_FILES['file']['error'] !== UPLOAD_ERR_NO_FILE) {
-                	if ($_FILES['file']['error'] == UPLOAD_ERR_OK) {
-                        $fh = fopen($_FILES['file']['tmp_name'], 'r');
-                        $binary = fread($fh, filesize($_FILES['file']['tmp_name']));
-                		fclose($fh);
+                    if ($_FILES['file']['error'] !== UPLOAD_ERR_NO_FILE) {
+                    	if ($_FILES['file']['error'] == UPLOAD_ERR_OK) {
+                            $fh = fopen($_FILES['file']['tmp_name'], 'r');
+                            $binary = fread($fh, filesize($_FILES['file']['tmp_name']));
+                    		fclose($fh);
 
-                		$mimeType = $_FILES['file']['type'];
-                		$fileName = $_FILES['file']['name'];
+                    		$mimeType = $_FILES['file']['type'];
+                    		$fileName = $_FILES['file']['name'];
 
-                		$dataVaultMapper = new Dis_Model_DataVaultMapper();
-                		$dataVault = new Dis_Model_DataVault();
-                		$dataVault->setFilename($fileName)->setMimeType($mimeType)->setBinary($binary);
-                		$dataVaultMapper->save($dataVault);
+                    		$dataVaultMapper = new Dis_Model_DataVaultMapper();
+                    		$dataVault = new Dis_Model_DataVault();
+                    		$dataVault->setFilename($fileName)->setMimeType($mimeType)->setBinary($binary);
+                    		$dataVaultMapper->save($dataVault);
 
-                		$directive->setProfilePictureId($dataVault->getId());
-                	}
+                    		$directive->setProfilePictureId($dataVault->getId());
+                    	}
+                    }
+
+                    //saves the relationship many to many
+                    $classConquerorIds = $formData['classConqueror'];
+                    if (!empty($classConquerorIds)) {
+                    	foreach ($classConquerorIds as $classConquerorId) {
+                    		$classConqueror = $this->_entityManager->find('Model\ClassConqueror', $classConquerorId);
+                    		$directive->addClassConqueror($classConqueror);
+                    	}
+                    }
+
+                    $this->_entityManager->persist($directive);
+                    $this->_entityManager->flush();
+
+                    $this->_helper->flashMessenger(array('success' => _('Directivo Guardado')));
+                    $this->_helper->redirector('index', 'Registration', array('type'=>'information'));
+                } else {
+                    if ($formData['area'] == self::NO_SELECTED) {
+                    	$form->getElement('department')->setRequired(TRUE);
+                    }
+                    $this->_helper->flashMessenger(array('error' => _('El formulario tiene errores')));
                 }
-
-                //saves the relationship many to many
-                $classConquerorIds = $formData['classConqueror'];
-                if (!empty($classConquerorIds)) {
-                	foreach ($classConquerorIds as $classConquerorId) {
-                		$classConqueror = $this->_entityManager->find('Model\ClassConqueror', $classConquerorId);
-                		$directive->addClassConqueror($classConqueror);
-                	}
-                }
-
-                $this->_entityManager->persist($directive);
-                $this->_entityManager->flush();
-
-                $this->_helper->flashMessenger(array('success' => _('Directivo Guardado')));
-                $this->_helper->redirector('index', 'Registration', array('type'=>'information'));
             }
-        } else {
-
         }
 
 		$src = '/image/profile/female_or_male_default.jpg';
@@ -670,6 +677,22 @@ class RegistrationController extends Dis_Controller_Action {
 		$churches = $churchRepo->findByArray(array('districtId' => $districtId));
 
 		$this->stdResponse->churchesArray = $churches;
+		$this->_helper->json($this->stdResponse);
+	}
+
+	/**
+	 * Return the club
+	 * @access public
+	 * @return Json array
+	 */
+	public function dsClubAction() {
+		$this->_helper->viewRenderer->setNoRender(TRUE);
+
+		$clubRepo = $this->_entityManager->getRepository('Model\Club');
+		$churchId = (int)$this->_getParam('churchId', 0);
+		$clubes = $clubRepo->findByArray(array('churchId' => $churchId));
+
+		$this->stdResponse->clubesArray = $clubes;
 		$this->_helper->json($this->stdResponse);
 	}
 

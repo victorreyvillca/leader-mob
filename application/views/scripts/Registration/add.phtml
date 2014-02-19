@@ -3,6 +3,7 @@
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/jquery-ui-multiselect-widget/src/jquery.multiselect.min.js");?>
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/jquery-ui-multiselect-widget/src/jquery.multiselect.filter.min.js");?>
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/blueimp-Load-Image/load-image.min.js","text/javascript"); ?>
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/Directive.js","text/javascript");?>
 
 <!-- title -->
 <div id="page-title">
@@ -47,6 +48,10 @@ $(document).ready(function() {
 	};
 
 	$('#file-input').change(load);
+
+	var directive = new com.em.Directive();
+	directive.setValidatorForm('#formId', true);
+
 });
 $("#classConqueror").multiselect().multiselectfilter();
 $('#dateOfBirth').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, yearRange: '-100:+0'});
@@ -132,6 +137,36 @@ $("#district").change(function () {
 			$('#church').append($("<option></option>")
 				.attr("value", i)
 				.text(data.churchesArray[i]));
+		});
+	},
+
+	complete: function(jqXHR, textStatus) {},
+
+	error: function(jqXHR, textStatus, errorThrown) {}
+    });
+});
+
+$('#church').change(function () {
+	this.churchId = $('#church').val();
+
+	// Sends request by ajax
+	$.ajax({
+	url: '<?php echo $this->url(array('controller'=>'Registration', 'action'=>'ds-club'));?>',
+	type: "POST",
+	dataType: 'json',
+	data: {'churchId' : this.churchId },
+	beforeSend: function(XMLHttpRequest) {
+		return true;
+	},
+
+	success: function(data, textStatus, XMLHttpRequest) {
+		// Removes all options for the select box
+		$('#club option').remove();
+		// .each loops through the array
+		$.each(data.clubesArray, function(i) {
+			$('#club').append($("<option></option>")
+				.attr("value", i)
+				.text(data.clubesArray[i]));
 		});
 	},
 

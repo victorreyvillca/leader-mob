@@ -29,7 +29,6 @@ com.em = com.em ||{};
 com.em.Directive.prototype = {
 
 	/**
-	 *
 	 * Initializes JQuery flash message component
 	 */
 	initFlashMessage: function() {
@@ -37,7 +36,6 @@ com.em.Directive.prototype = {
 	},
 
 	/**
-	 *
 	 * Initializes all the events for items on page
 	 */
 	initEvents: function() {with(this) {
@@ -70,7 +68,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Sets headers of datatable
 	 * @param pheaders
 	 */
@@ -104,7 +101,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Configures the table and elements
 	 * @param selector
 	 */	
@@ -144,7 +140,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Gets columns configuration for datatable
 	 * @return Array
 	 */
@@ -191,7 +186,7 @@ com.em.Directive.prototype = {
 	 *
 	 * Configures the form
 	 * @param selector (dialog of form)
-	 * */
+	 */
 	configureDialogForm: function(selector) {with (this) {
 		dialogForm = $(selector).dialog({
 			autoOpen: false,
@@ -207,7 +202,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Opens dialog and manages the creation of new register
 	 * @param selector
 	 */
@@ -257,7 +251,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Opens dialog and manages the update of register
 	 * @param selector
 	 */
@@ -307,7 +300,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Deletes n items
 	 * @param selector
 	 */
@@ -362,7 +354,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Configures the name autocomplete of the filter
 	 * @param selector
 	 */
@@ -386,7 +377,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Validates Directive form
 	 * @param selector
 	 */
@@ -394,34 +384,15 @@ com.em.Directive.prototype = {
 		validator = $(selector).validate({
 			rules:{
 				'firstName':{
-					required: true,
+					///required: true,
 					maxlength: 45
 				},
 				'lastName':{
-					required: true,
+					//required: true,
 					maxlength: 45
 				},
-				'sex':{
-					required: true
-				},
-				'username':{
-					required: true,
-					minlength: 5,
-					maxlength: 45
-				},
-				'password':{
-					required: true,
-					minlength: 5,
-					maxlength: 45
-				},
-				'passwordConfirm':{
-					required: true,
-					equalTo: '#password',
-					minlength: 5,
-					maxlength: 45
-				},
-				'phonemobil':{
-					required: true,
+				'ci':{
+					//required: true,
 					number: true
 				},
 			}
@@ -429,7 +400,6 @@ com.em.Directive.prototype = {
 	},
 
 	/**
-	 *
 	 * Sets url for action side server
 	 * @param url json
 	 */
@@ -438,7 +408,6 @@ com.em.Directive.prototype = {
 	},
 
 	/**
-	 *
 	 * Gets number position of name in array data
 	 * @param array containing sub-arrays with the structure name->valname, value->valvalue
 	 * @param name is the string we are looking for and must match with valname
@@ -454,7 +423,6 @@ com.em.Directive.prototype = {
 	},
 
 	/**
-	 *
 	 * Shows alert if it exists, if not create a new instance of alert and show it
 	 * @param message to show
 	 * @param header of the message
@@ -467,7 +435,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Shows flash message success if it exists, if not creates a new instance of flash message success and shows it.
 	 * @param message string
 	 * @param header string
@@ -480,7 +447,6 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 *
 	 * Shows flash message error if it exists, if not creates a new instance of flash message error and shows it.
 	 * @param message string
 	 * @param header string
