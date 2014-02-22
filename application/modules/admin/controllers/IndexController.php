@@ -73,11 +73,11 @@ class Admin_IndexController extends Dis_Controller_Action {
         $this->_entityManager->persist($club);
         $this->_entityManager->flush();
 
-        $directive = new Directive();
-        $directive->setTreatment('super mal')->setRanks('Guia mayor')->setPositions('Director')->setYear(22)->setIsActivo(TRUE)->setState(TRUE)->setCreated(new DateTime('now'))->setSex(1)->setPhonemobil(465456)->setPhonework('45646') ->setPhone('45645') ->setDateOfBirth(new DateTime('now')) ->setIdentityCard(59387823)->setLastName('Villca')->setFirstName('Joel');
+//         $directive = new Directive();
+//         $directive->setTreatment('super mal')->setRanks('Guia mayor')->setPositions('Director')->setYear(22)->setIsActivo(TRUE)->setState(TRUE)->setCreated(new DateTime('now'))->setSex(1)->setPhonemobil(465456)->setPhonework('45646') ->setPhone('45645') ->setDateOfBirth(new DateTime('now')) ->setIdentityCard(59387823)->setLastName('Villca')->setFirstName('Joel');
 
-        $this->_entityManager->persist($directive);
-        $this->_entityManager->flush();
+//         $this->_entityManager->persist($directive);
+//         $this->_entityManager->flush();
 
 
 	}

@@ -116,7 +116,7 @@ com.em.Directive.prototype = {
 			"aoColumns"     : getColumns(),
 			"sPaginationType" : "full_numbers",
 			"oLanguage": {
-				"sEmptyTable": "No Catagory found."
+				"sEmptyTable": 'Directivos No Encontrados'
 			},
 			"fnDrawCallback": function() {
 				clickToUpdate('#tblDirective a[id^=update-directive-]');
@@ -151,7 +151,7 @@ com.em.Directive.prototype = {
 			"sWidth": "15%",
 			"bSercheable": "true",
 			fnRender : function (oObj){
-				return '<a id="update-directive22-'+oObj.aData[0]+'" href="'+url.toUpdate+'/id/'+oObj.aData[0]+'">'+oObj.aData[1]+'</a>';
+				return '<a id="update-directive-'+oObj.aData[0]+'" href="'+url.toUpdate+'/id/'+oObj.aData[0]+'">'+oObj.aData[1]+'</a>';
 				}
 			});
 		columns.push({"sWidth": "13%"});

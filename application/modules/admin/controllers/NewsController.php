@@ -58,7 +58,9 @@ class Admin_NewsController extends Dis_Controller_Action {
 					}
 
 // 					$managerialId = Zend_Auth::getInstance()->getIdentity()->id;
-                    $administrator = $this->_entityManager->find('Model\Administrator', 1);
+// 					var_dump(Zend_Auth::getInstance()->getIdentity());
+// 					var_dump($managerialId); exit;
+                    $administrator = $this->_entityManager->find('Model\Administrator', 25);
                     $category = $this->_entityManager->find('Model\Category', (int)$formData['categoryId']);
 
 					$news = new Model\News();

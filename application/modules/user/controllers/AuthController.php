@@ -55,14 +55,23 @@ class User_AuthController extends Dis_Controller_Action {
     private function verify($values) {
         $adapter = $this->getAuthAdapter();
 
+//         $adapter->setIdentity($values['username']);
+//         $adapter->setCredential(md5($values['password']));
+
         $adapter->setIdentity($values['username']);
-        $adapter->setCredential(md5($values['password']));
+        $adapter->setCredential($values['password']);
 
         $auth = Zend_Auth::getInstance();
         $result = $auth->authenticate($adapter);
 
         if ($result->isValid()) {
             $data = $adapter->getResultRowObject(NULL, array('password', 'created'));
+
+            $account = $this->_entityManager->find('Model\Account', (int)$data->id);
+            $administratorRepo = $this->_entityManager->getRepository('Model\Administrator');
+            $administrator = $administratorRepo->findByAccount($account);
+            $data->id = $administrator->getId();
+
             $auth->getStorage()->write($data);
 
             $member = 'admin';

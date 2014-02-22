@@ -1,4 +1,7 @@
 <?php
+use Model\Account;
+use Model\Administrator;
+
 /**
  * Controller for DIST 3.
  *
@@ -36,11 +39,10 @@ class Admin_AdministratorController extends Dis_Controller_Action {
         $this->_helper->layout()->disableLayout();
 
         $roleRepo = $this->_entityManager->getRepository('Model\Role');
-        $roles = $roleRepo->findAllArray();
 
         $form = new Admin_Form_Administrator();
         $form->getElement('sex')->setMultiOptions($this->getGenders());
-        $form->getElement('role')->setMultiOptions($roles);
+        $form->getElement('role')->setMultiOptions($roleRepo->findAllArray());
         $form->setAction($this->_helper->url('add-save'));
 
         $src = '/image/profile/female_or_male_default.jpg';
@@ -56,18 +58,17 @@ class Admin_AdministratorController extends Dis_Controller_Action {
      */
     public function addSaveAction() {
         if ($this->_request->isPost()) {
+            $roleRepo = $this->_entityManager->getRepository('Model\Role');
+
             $form = new Admin_Form_Administrator();
             $form->getElement('sex')->setMultiOptions($this->getGenders());
-
-            $roleRepo = $this->_entityManager->getRepository('Model\Role');
-            $roles = $roleRepo->findAllArray();
             $form->getElement('role')->setMultiOptions($roleRepo->findAllArray());
 
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
                 $role = $this->_entityManager->find('Model\Role', (int)$formData['role']);
 
-                $account = new Model\Account();
+                $account = new Account();
                 $account
                     ->setUsername($formData['username'])
                     ->setEmail($formData['email'])
@@ -81,8 +82,9 @@ class Admin_AdministratorController extends Dis_Controller_Action {
                 $this->_entityManager->persist($account);
                 $this->_entityManager->flush();
 
-                $administrator = new Model\Administrator();
+                $administrator = new Administrator();
                 $administrator
+                    ->setDateOfBirth(new DateTime('now'))
                     ->setIdentityCard(3)
                     ->setFirstName($formData['firstName'])
                     ->setLastName($formData['lastName'])
@@ -92,7 +94,7 @@ class Admin_AdministratorController extends Dis_Controller_Action {
                     ->setAccount($account)
                     ->setRole($role)
                     ->setVisible(TRUE)
-                    ->setCreated(new \DateTime('now'))
+                    ->setCreated(new DateTime('now'))
                     ->setState(TRUE)
                 ;
 
@@ -135,11 +137,10 @@ class Admin_AdministratorController extends Dis_Controller_Action {
         $this->_helper->layout()->disableLayout();
 
         $roleRepo = $this->_entityManager->getRepository('Model\Role');
-        $roles = $roleRepo->findAllArray();
 
         $form = new Admin_Form_Administrator();
         $form->getElement('sex')->setMultiOptions($this->getGenders());
-        $form->getElement('role')->setMultiOptions($roles);
+        $form->getElement('role')->setMultiOptions($roleRepo->findAllArray());
         $form->setAction($this->_helper->url('edit-save'));
 
         $id = $this->_getParam('id', 0);
@@ -184,16 +185,15 @@ class Admin_AdministratorController extends Dis_Controller_Action {
      */
     public function editSaveAction() {
         if ($this->_request->isPost()) {
-            $form = new Admin_Form_Administrator();
-
             $roleRepo = $this->_entityManager->getRepository('Model\Role');
-            $roles = $roleRepo->findAllArray();
 
+            $form = new Admin_Form_Administrator();
+            $form->getElement('password')->setRequired(FALSE);
+            $form->getElement('passwordConfirm')->setRequired(FALSE);
             $form->getElement('sex')->setMultiOptions($this->getGenders());
-            $form->getElement('role')->setMultiOptions($roles);
+            $form->getElement('role')->setMultiOptions($roleRepo->findAllArray());
 
             $formData = $this->getRequest()->getPost();
-
             if ($form->isValid($formData)) {
                 $id = $this->_getParam('id', 0);
                 $administrator = $this->_entityManager->find('Model\Administrator', $id);
@@ -216,6 +216,7 @@ class Admin_AdministratorController extends Dis_Controller_Action {
                         ->setSex((int)$formData['sex'])
                         ->setAccount($account)
                         ->setRole($role)
+                        ->setDateOfBirth(new DateTime('now'))
 //                         ->setVisible(TRUE)
                         ->setChanged(new \DateTime('now'))
                     ;
@@ -355,7 +356,7 @@ class Admin_AdministratorController extends Dis_Controller_Action {
 
 			$row = array();
 			$row[] = $directive->getId();
-			$row[] = $directive->getFirstName();
+			$row[] = $directive->getName();
 			$row[] = '';
 			$row[] = $directive->getPhonemobil();
 			$row[] = $directive->getPhone();

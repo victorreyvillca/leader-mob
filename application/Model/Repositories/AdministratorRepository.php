@@ -3,6 +3,7 @@
 namespace Model\Repositories;
 
 use Doctrine\ORM\EntityRepository;
+use Model\Account;
 
 /**
  * AdministratorRepository
@@ -38,10 +39,10 @@ class AdministratorRepository extends EntityRepository {
     	}
 
     	$query->select($this->_alias)
-    	->from($this->_entityName, $this->_alias)
-    	->where("$condName $this->_alias.state = TRUE")
-    	->setFirstResult($offset)
-    	->setMaxResults($limit);
+        	->from($this->_entityName, $this->_alias)
+        	->where("$condName $this->_alias.state = TRUE")
+        	->setFirstResult($offset)
+        	->setMaxResults($limit);
 
     	$sort = '';
     	switch ($sortColumn) {
@@ -105,5 +106,9 @@ class AdministratorRepository extends EntityRepository {
     	->where("$condName $this->_alias.state = TRUE");
 
     	return (int)$query->getQuery()->getSingleScalarResult();
+    }
+
+    public function findByAccount(Account $account) {
+        return  $this->findOneBy(array('state' => TRUE, 'accountId' => $account->getId()));
     }
 }
