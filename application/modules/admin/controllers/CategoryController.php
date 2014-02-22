@@ -56,7 +56,7 @@ class Admin_CategoryController extends Dis_Controller_Action {
                     ->setName($formData['name'])
                     ->setDescription($formData['description'])
                     ->setCreated(new DateTime('now'))
-                    ->setCreatedBy(1)
+                    ->setCreatedBy(Zend_Auth::getInstance()->getIdentity()->id)
                     ->setState(TRUE)
                 ;
                 $this->_entityManager->persist($category);
@@ -123,7 +123,7 @@ class Admin_CategoryController extends Dis_Controller_Action {
                     ->setName($formData['name'])
                     ->setDescription($formData['description'])
                     ->setChanged(new DateTime('now'))
-                    ->setChangedBy(1)
+                    ->setChangedBy(Zend_Auth::getInstance()->getIdentity()->id)
                 ;
 
 				$this->_entityManager->persist($category);
