@@ -38,6 +38,12 @@
 			</pages>
 		</whowe>
 
+		<news>
+			<label>News</label>
+			<controller>News</controller>
+			<action>index</action>
+		</news>
+
 		<registration>
 			<label>Registro</label>
 			<controller>Registration</controller>

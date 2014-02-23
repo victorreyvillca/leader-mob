@@ -17,7 +17,7 @@ class NewsController extends Dis_Controller_Action {
 	public function init() {
 		parent::init();
 		$response = $this->getResponse();
-		$response->insert("sidebar", $this->view->render("sidebar.phtml"));
+		$response->insert("sidebar", $this->view->render('sidebar.phtml'));
 	}
 
 	/**
