@@ -28,13 +28,13 @@ class Admin_NewsController extends Dis_Controller_Action {
 		$categoryRepo = $this->_entityManager->getRepository('Model\Category');
 
 		$formFilter->getElement('nameFilter')->setLabel(_('Title news'));
-		$formFilter->getElement('countryFilter')->setLabel(_("Category"));
+		$formFilter->getElement('countryFilter')->setLabel(_('Category'));
 		$formFilter->getElement('countryFilter')->setMultiOptions($categoryRepo->findAllArray());
         $this->view->formFilter = $formFilter;
 	}
 
 	/**
-	 * This action shows a form in create mode on the view
+	 * This action shows a form in create mode for the news
 	 * @access public
 	 */
 	public function addAction() {
@@ -57,10 +57,9 @@ class Admin_NewsController extends Dis_Controller_Action {
 						$e->getMessage();
 					}
 
-// 					$managerialId = Zend_Auth::getInstance()->getIdentity()->id;
-// 					var_dump(Zend_Auth::getInstance()->getIdentity());
-// 					var_dump($managerialId); exit;
-                    $administrator = $this->_entityManager->find('Model\Administrator', 25);
+                    $administratorId = Zend_Auth::getInstance()->getIdentity()->id;
+                    $administrator = $this->_entityManager->find('Model\Administrator', $administratorId);
+
                     $category = $this->_entityManager->find('Model\Category', (int)$formData['categoryId']);
 
 					$news = new Model\News();
@@ -73,7 +72,7 @@ class Admin_NewsController extends Dis_Controller_Action {
 						->setTitle($formData['title'])
 						->setImagename($fileName)
 						->setNewsdate(new DateTime('now'))
-						->setCreatedBy($administrator->getId())
+						->setCreatedBy($administratorId)
 						->setCreated(new DateTime('now'))
 						->setState(TRUE)
 					;
@@ -81,13 +80,13 @@ class Admin_NewsController extends Dis_Controller_Action {
 					$this->_entityManager->persist($news);
                     $this->_entityManager->flush();
 
-					$this->_helper->flashMessenger(array('success' => _("News saved")));
+					$this->_helper->flashMessenger(array('success' => _('News saved')));
 					$this->_helper->redirector('index', 'news', 'admin', array('type'=>'information'));
 // 				} else {
 // 					$this->_helper->flashMessenger(array('error' => _("The News already exists")));
 // 				}
 			} else {
-				$this->_helper->flashMessenger(array('error' => _("The form contains error and is not saved")));
+				$this->_helper->flashMessenger(array('error' => _('The form contains error and is not saved')));
 			}
 		}
 
@@ -124,7 +123,9 @@ class Admin_NewsController extends Dis_Controller_Action {
 							$fileName = $news->getImagename();
 						}
 
-                        $administrator = $this->_entityManager->find('Model\Administrator', 1);
+                        $administratorId = Zend_Auth::getInstance()->getIdentity()->id;
+                        $administrator = $this->_entityManager->find('Model\Administrator', $administratorId);
+
                         $category = $this->_entityManager->find('Model\Category', (int)$formData['categoryId']);
 
 						$news->setCategory($category)
@@ -134,7 +135,7 @@ class Admin_NewsController extends Dis_Controller_Action {
 							->setTitle($formData['title'])
 							->setContain($formData['contain'])
 							->setImagename($fileName)
-							->setChangedBy($administrator->getId())
+							->setChangedBy($administratorId)
 							->setNewsdate(new DateTime('now'))
 							->setChanged(new DateTime('now'))
                         ;
@@ -142,16 +143,16 @@ class Admin_NewsController extends Dis_Controller_Action {
 						$this->_entityManager->persist($news);
 						$this->_entityManager->flush();
 
-						$this->_helper->flashMessenger(array('success' => _("News updated")));
+						$this->_helper->flashMessenger(array('success' => _('News updated')));
 						$this->_helper->redirector('index', 'news', 'admin', array('type'=>'information'));
 // 					} else {
 // 						$this->_helper->flashMessenger(array('error' => _("The News already exists")));
 // 					}
 				} else {
-					$this->_helper->flashMessenger(array('error' => _("The News does not exists")));
+					$this->_helper->flashMessenger(array('error' => _('The News does not exists')));
 				}
 			} else {
-				$this->_helper->flashMessenger(array('error' => _("The form contains error and is not updated")));
+				$this->_helper->flashMessenger(array('error' => _('The form contains error and is not updated')));
 			}
 		} else {
 			$id = $this->_getParam('id', 0);
@@ -215,7 +216,7 @@ class Admin_NewsController extends Dis_Controller_Action {
 		} else {
 			$this->stdResponse = new stdClass();
 			$this->stdResponse->success = FALSE;
-			$this->stdResponse->message = _("Data submitted is empty.");
+			$this->stdResponse->message = _('Data submitted is empty.');
 		}
 		// sends response to client
 		$this->_helper->json($this->stdResponse);
@@ -223,7 +224,6 @@ class Admin_NewsController extends Dis_Controller_Action {
 
 	/**
 	 * Outputs an XHR response containing all entries in news.
-	 * This action serves as a datasource for the read/index view
 	 * @xhrParam int filter_category
 	 * @xhrParam int filter_name
 	 * @xhrParam int iDisplayStart
@@ -285,6 +285,7 @@ class Admin_NewsController extends Dis_Controller_Action {
 	 * @return array(field, filter, operator)
 	 */
 	private function getFilters($filterParams) {
+
 		foreach ($filterParams as $field => $filter) {
 			$filterParams[$field] = trim($filter);
 		}

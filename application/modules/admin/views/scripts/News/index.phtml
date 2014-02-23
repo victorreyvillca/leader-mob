@@ -3,16 +3,16 @@
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/News.js","text/javascript");?>
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/HelpTextUpdate.js","text/javascript"); ?>
 <div style="margin:20px;">
-	<?php echo $this->tableHeader('filterHeader', _("Filter News"));?>
+	<?php echo $this->tableHeader('filterHeader', _('Filter News'));?>
 	<div id="containerFormFilter">
 		<?php echo $this->formFilter; ?>
 	</div>
 	<br>
-	<?php echo $this->tableHeader('newsHeader', _("News"));?>
+	<?php echo $this->tableHeader('newsHeader', _('News'));?>
 	<?php echo $this->tableList("tblNews");?>
 	<div class="buttons right">
-		<?php echo $this->buttonRemove("delete-news", $this->translate('Remove'), $this->url(array('action'=>'remove')));?>
-		<?php echo $this->buttonAdd("create-news2", $this->translate('Add'), $this->url(array('action'=>'add')));?>
+		<?php echo $this->buttonRemove('delete-news', $this->translate('Remove'), $this->url(array('action'=>'remove')));?>
+		<?php echo $this->buttonAdd('create-news2', $this->translate('Add'), $this->url(array('action'=>'add')));?>
 	</div>
 
 	<div id="dialog"><!-- Loads ajax dialog form --></div>
