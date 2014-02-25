@@ -27,7 +27,7 @@ class Admin_NewsController extends Dis_Controller_Action {
 
 		$categoryRepo = $this->_entityManager->getRepository('Model\Category');
 
-		$formFilter->getElement('nameFilter')->setLabel(_("Title news"));
+		$formFilter->getElement('nameFilter')->setLabel(_('Title news'));
 		$formFilter->getElement('countryFilter')->setLabel(_("Category"));
 		$formFilter->getElement('countryFilter')->setMultiOptions($categoryRepo->findAllArray());
         $this->view->formFilter = $formFilter;

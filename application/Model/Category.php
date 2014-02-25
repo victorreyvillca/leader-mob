@@ -5,7 +5,7 @@
  * @category Dist
  * @package Model
  * @author Victor Villca <victor.villca@people-trust.com>
- * @copyright Copyright (c) 2013 Emini A/S
+ * @copyright Copyright (c) 2014 Emini A/S
  * @license Proprietary
  */
 
