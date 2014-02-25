@@ -64,7 +64,7 @@ class Admin_CategoryController extends Dis_Controller_Action {
 
                 $this->stdResponse = new stdClass();
 				$this->stdResponse->success = TRUE;
-				$this->stdResponse->message = _("Category saved");
+				$this->stdResponse->message = _('Category saved');
 // 			} else {
 // 				$this->stdResponse->success = FALSE;
 // 				$this->stdResponse->name_duplicate = TRUE;
@@ -74,7 +74,7 @@ class Admin_CategoryController extends Dis_Controller_Action {
             $this->stdResponse = new stdClass();
 			$this->stdResponse->success = FALSE;
 			$this->stdResponse->messageArray = $form->getMessages();
-			$this->stdResponse->message = _("The form contains error and is not saved");
+			$this->stdResponse->message = _('The form contains error and is not saved');
 		}
 		// sends response to client
 		$this->_helper->json($this->stdResponse);
@@ -97,7 +97,7 @@ class Admin_CategoryController extends Dis_Controller_Action {
 			// response to client
             $this->stdResponse = new stdClass();
 			$this->stdResponse->success = FALSE;
-			$this->stdResponse->message = _("The requested record was not found.");
+			$this->stdResponse->message = _('The requested record was not found.');
 			$this->_helper->json($this->stdResponse);
 		}
 
@@ -131,7 +131,7 @@ class Admin_CategoryController extends Dis_Controller_Action {
 
 				$this->stdResponse = new stdClass();
 				$this->stdResponse->success = TRUE;
-				$this->stdResponse->message = _("Category updated");
+				$this->stdResponse->message = _('Category updated');
 // 				} else {
 // 					$this->stdResponse->success = FALSE;
 // 					$this->stdResponse->name_duplicate = TRUE;
@@ -140,13 +140,13 @@ class Admin_CategoryController extends Dis_Controller_Action {
 			} else {
                 $this->stdResponse = new stdClass();
 				$this->stdResponse->success = FALSE;
-				$this->stdResponse->message = _("The Category does not exists");
+				$this->stdResponse->message = _('The Category does not exists');
 			}
 		} else {
             $this->stdResponse = new stdClass();
 			$this->stdResponse->success = FALSE;
 			$this->stdResponse->messageArray = $form->getMessages();
-			$this->stdResponse->message = _("The form contains error and is not saved");
+			$this->stdResponse->message = _('The form contains error and is not saved');
 		}
 		// sends response to client
 		$this->_helper->json($this->stdResponse);
@@ -179,7 +179,7 @@ class Admin_CategoryController extends Dis_Controller_Action {
 		} else {
             $this->stdResponse = new stdClass();
 			$this->stdResponse->success = FALSE;
-			$this->stdResponse->message = _("Data submitted is empty.");
+			$this->stdResponse->message = _('Data submitted is empty.');
 		}
 		// sends response to client
 		$this->_helper->json($this->stdResponse);
