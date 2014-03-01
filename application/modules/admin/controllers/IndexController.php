@@ -1,12 +1,14 @@
 <?php
+use Model\Area;
 use Model\Position;
 use Model\Mission;
 use Model\Region;
 use Model\District;
 use Model\Church;
-use Model\Directive;
-use Model\Area;
 use Model\Club;
+use Model\Picture;
+use Model\PictureNews;
+
 /**
  * Controller for DIST 2.
  *
@@ -71,6 +73,19 @@ class Admin_IndexController extends Dis_Controller_Action {
         $club->setArea($area)->setChurch($church)->setName('Orion Santa Cruz')->setState(TRUE)->setCreated(new DateTime('now'));
 
         $this->_entityManager->persist($club);
+        $this->_entityManager->flush();
+
+        $picture = new Picture();
+        $picture->setTitle('my title')->setDescription('des')->setFilename('filename')->setMimeType('mimitype')->setSrc('src')->setState(TRUE)->setCreated(new DateTime('now'))->setCreatedBy(1);
+
+        $this->_entityManager->persist($picture);
+        $this->_entityManager->flush();
+
+        $news = $this->_entityManager->find('Model\News', 1);
+        $pictureNews = new PictureNews();
+        $pictureNews->setNews($news)->setTitle('my title')->setFilename('filename')->setMimeType('mimitype')->setSrc('src')->setState(TRUE)->setCreated(new DateTime('now'))->setCreatedBy(1);
+
+        $this->_entityManager->persist($pictureNews);
         $this->_entityManager->flush();
 
 //         $directive = new Directive();
