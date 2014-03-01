@@ -204,7 +204,7 @@ com.em.Picture.prototype = {
 			"sWidth": "18%",
 			"bSercheable": "true",
 			fnRender : function (oObj){
-				return '<a id="download-memberFile-'+oObj.aData[0]+'" href="'+url.toDownload+'/id/'+oObj.aData[0]+'">'+oObj.aData[3]+'</a>';
+				return '<a id="download-memberFile-'+oObj.aData[0]+'" href="'+url.toDownload+oObj.aData[3]+'" target="_blank">'+oObj.aData[3]+'</a>';
 				}
 			});
 		columns.push({"sWidth": "14%"});

@@ -9,10 +9,7 @@
  */
 
 class Admin_PictureController extends Dis_Controller_Action {
-	const SRC_PICTURE = "/image/upload/galleryview/photos/";
-	const SRC_CROP_PICTURE = "/image/upload/galleryview/photos/crops/";
-
-	const SRC_PICTURE_NIVO_SLIDER = "/image/upload/nivoslider/";
+	const SRC_PICTURE = "/image/upload/news/";
 
 	/**
 	 * (non-PHPdoc)
@@ -266,7 +263,7 @@ class Admin_PictureController extends Dis_Controller_Action {
 	 * @xhrParam int iDisplayStart
 	 * @xhrParam int iDisplayLength
 	 */
-	public function readItemsAction() {
+    public function dsPictureEntriesAction() {
 		$sortCol = $this->_getParam('iSortCol_0', 1);
 		$sortDirection = $this->_getParam('sSortDir_0', 'asc');
 
