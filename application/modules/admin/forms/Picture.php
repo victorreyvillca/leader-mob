@@ -34,9 +34,9 @@ class Admin_Form_Picture extends Zend_Form {
 				->setDestination(APPLICATION_PATH.'/../public/image/upload/galleryview/photos')
 				->addValidator('Extension', FALSE, 'jpg, png, gif');
 
-		$pictureCategory = new Zend_Form_Element_Select('pictureCategory');
-		$pictureCategory->setRequired(FALSE)->setLabel(_('Category'));
+		$newsSelect = new Zend_Form_Element_Select('news');
+		$newsSelect->setRequired(TRUE)->setLabel(_('News'));
 
-		$this->addElements(array($hidden, $title, $description, $file, $pictureCategory));
+		$this->addElements(array($hidden, $title, $description, $file, $newsSelect));
 	}
 }

@@ -43,7 +43,7 @@ class Admin_PictureController extends Dis_Controller_Action {
 
 		$form = new Admin_Form_Picture();
 		$form->setAction($this->_helper->url('add-save'));
-		$form->getElement('pictureCategory')->setMultiOptions($newsRepo->findAllArray());
+		$form->getElement('news')->setMultiOptions($newsRepo->findAllArray());
 		$this->view->form = $form;
 	}
 
@@ -56,7 +56,7 @@ class Admin_PictureController extends Dis_Controller_Action {
 			$form = new Admin_Form_Picture();
 
 			$newsRepo = $this->_entityManager->getRepository('Model\News');
-			$form->getElement('pictureCategory')->setMultiOptions($newsRepo->findAllArray());
+			$form->getElement('news')->setMultiOptions($newsRepo->findAllArray());
 
 			$formData = $this->getRequest()->getPost();
 			if ($form->isValid($formData)) {
@@ -73,7 +73,7 @@ class Admin_PictureController extends Dis_Controller_Action {
 					$mimeType = $_FILES['file']['type'];
 					$filename = $_FILES['file']['name'];
 
-					$news = $this->_entityManager->find('Model\News', (int)$formData['pictureCategory']);
+					$news = $this->_entityManager->find('Model\News', (int)$formData['news']);
 
 					$picture = new Model\PictureNews();
 					$picture
@@ -121,8 +121,8 @@ class Admin_PictureController extends Dis_Controller_Action {
 			$form->getElement('title')->setValue($picture->getTitle());
 			$form->getElement('description')->setValue($picture->getDescription());
 			$newsRepo = $this->_entityManager->getRepository('Model\News');
-			$form->getElement('pictureCategory')->setMultiOptions($newsRepo->findAllArray());
-			$form->getElement('pictureCategory')->setValue($picture->getNews()->getId());
+			$form->getElement('news')->setMultiOptions($newsRepo->findAllArray());
+			$form->getElement('news')->setValue($picture->getNews()->getId());
 		} else {
 			$this->stdResponse->success = FALSE;
 			$this->stdResponse->message = _('The requested record was not found.');
@@ -141,7 +141,7 @@ class Admin_PictureController extends Dis_Controller_Action {
 			$form->getElement('file')->setRequired(FALSE);
 
 			$newsRepo = $this->_entityManager->getRepository('Model\News');
-			$form->getElement('pictureCategory')->setMultiOptions($newsRepo->findAllArray());
+			$form->getElement('news')->setMultiOptions($newsRepo->findAllArray());
 
 			$formData = $this->getRequest()->getPost();
 			if ($form->isValid($formData)) {
@@ -150,7 +150,7 @@ class Admin_PictureController extends Dis_Controller_Action {
 			    if ($picture != NULL) {
 					$pictureRepo = $this->_entityManager->getRepository('Model\PictureNews');
 					if (!$pictureRepo->verifyExistTitle($formData['title']) || $pictureRepo->verifyExistIdAndTitle($id, $formData['title'])) {
-					    $news = $this->_entityManager->find('Model\News', (int)$formData['pictureCategory']);
+					    $news = $this->_entityManager->find('Model\News', (int)$formData['news']);
 
                         $imageFile = $form->getElement('file');
 
@@ -167,7 +167,7 @@ class Admin_PictureController extends Dis_Controller_Action {
     						$picture->setFilename($filename)->setMimeType($mimeType);
     					}
 
-    					$news = $this->_entityManager->find('Model\News', (int)$formData['pictureCategory']);
+    					$news = $this->_entityManager->find('Model\News', (int)$formData['news']);
 
     					$picture
         					->setTitle($formData['title'])
