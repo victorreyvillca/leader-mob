@@ -331,11 +331,29 @@ class Admin_PictureController extends Dis_Controller_Action {
 	 * Outputs an XHR response, loads the titles of the pictures.
 	 */
 	public function autocompleteAction() {
+// 		$filterParams['title'] = $this->_getParam('title_auto', NULL);
+// 		$filters = $this->getFilters($filterParams);
+
+// 		$pictureRepo = $this->_entityManager->getRepository('Model\Picture');
+// 		$this->stdResponse->items = $pictureRepo->findByCriteriaOnlyTitle($filters);
+// 		$this->_helper->json($this->stdResponse);
+
+
 		$filterParams['title'] = $this->_getParam('title_auto', NULL);
+
 		$filters = $this->getFilters($filterParams);
 
-		$pictureRepo = $this->_entityManager->getRepository('Model\Picture');
-		$this->stdResponse->items = $pictureRepo->findByCriteriaOnlyTitle($filters);
+
+		$categoryRepo = $this->_entityManager->getRepository('Model\PictureNews');
+		$categories = $categoryRepo->findByCriteria($filters);
+// var_dump($categories); exit;
+		$data = array();
+		foreach ($categories as $category) {
+			$data[] = $category->getTitle();
+		}
+
+		$this->stdResponse = new stdClass();
+		$this->stdResponse->items = $data;
 		$this->_helper->json($this->stdResponse);
 	}
 }

@@ -33,6 +33,15 @@
 				<type>information</type>
 			</params>
 			<pages>
+				<picture>
+					<label>Pictures</label>
+					<module>admin</module>
+					<controller>Picture</controller>
+					<action>index</action>
+					<params>
+						<type>information</type>
+					</params>
+				</picture>
 				<news>
 					<label>News</label>
 					<module>admin</module>
@@ -111,104 +120,6 @@
 				</province>
 			</pages>
 		</organization>
-
-		<pathfinder>
-			<id>pathfinder</id>
-			<label>Pathfinders</label>
-			<module>admin</module>
-			<controller>Pathfinder</controller>
-			<action>index</action>
-			<params>
-				<type>pathfinder</type>
-			</params>
-			<pages>
-				<clubPathfinder>
-					<label>Club Pathfinders</label>
-					<module>admin</module>
-					<controller>Pathfinder</controller>
-					<action>index</action>
-					<params>
-						<type>pathfinder</type>
-					</params>
-				</clubPathfinder>
-				<directive>
-					<label>Directive</label>
-					<module>admin</module>
-					<controller>Directive</controller>
-					<action>read</action>
-					<params>
-						<type>pathfinder</type>
-					</params>
-				</directive>
-				<memberClub>
-					<label>Member Club</label>
-					<module>admin</module>
-					<controller>Memberclub</controller>
-					<action>index</action>
-					<params>
-						<type>pathfinder</type>
-					</params>
-				</memberClub>
-				<position>
-					<label>Position</label>
-					<module>admin</module>
-					<controller>Position</controller>
-					<action>read</action>
-					<params>
-						<type>pathfinder</type>
-					</params>
-				</position>
-				<unityClub>
-					<label>Unity Club</label>
-					<module>admin</module>
-					<controller>Unityclub</controller>
-					<action>read</action>
-					<params>
-						<type>pathfinder</type>
-					</params>
-				</unityClub>
-			</pages>
-		</pathfinder>
-
-		<gallery>
-			<id>picture</id>
-			<label>Pictures</label>
-			<module>admin</module>
-			<controller>Picture</controller>
-			<action>index</action>
-			<params>
-				<type>picture</type>
-			</params>
-			<pages>
-				<picture>
-					<label>Pictures</label>
-					<module>admin</module>
-					<controller>Picture</controller>
-					<action>index</action>
-					<params>
-						<type>picture</type>
-					</params>
-				</picture>
-				<pictureType>
-					<label>Picture Type</label>
-					<module>admin</module>
-					<controller>Picturetype</controller>
-					<action>read</action>
-					<params>
-						<type>picture</type>
-					</params>
-				</pictureType>
-				<pictureCategory>
-					<label>Picture Category</label>
-					<module>admin</module>
-					<controller>PictureCategory</controller>
-					<action>read</action>
-					<params>
-						<type>picture</type>
-					</params>
-				</pictureCategory>
-			</pages>
-		</gallery>
 
 		<security>
 			<id>security</id>

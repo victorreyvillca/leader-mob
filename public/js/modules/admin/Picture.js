@@ -54,17 +54,11 @@ com.em.Picture.prototype = {
 		});
 		
 		$("#resetButton").bind('click', function() {
-			$("#categoryFilter option[value="+-1+"]").attr("selected", true);
+			//$("#categoryFilter option[value="+-1+"]").attr("selected", true);
 			$('#nameFilter').attr('value', '');
 			
 			initDisplayStart();
 			table.oApi._fnAjaxUpdate(table.fnSettings());
-		});
-		
-		$("#categoryFilter").change(function() {
-			var oSettings = table.fnSettings();
-	   		oSettings._iDisplayStart = 0;
-	   		table.oApi._fnAjaxUpdate(oSettings);
 		});
 	}},
 	
@@ -120,7 +114,7 @@ com.em.Picture.prototype = {
 		$(selector).autocomplete({
 			source: function(request, response) {
 				$.ajax({
-					url: "http://dist2/admin/picture/autocomplete",
+					url: url.toAutocomplete,
 					dataType: 'json',
 					data: {title_auto: request.term},
 					success: function(data, textStatus, XMLHttpRequest) {
@@ -163,17 +157,9 @@ com.em.Picture.prototype = {
 				var position = getPosition(aoData, 'filter_title');
 				
 				if (position == -1)
-					aoData.push({"name": "filter_title", "value": $('#nameFilter').attr('value')});				
+					aoData.push({"name": "filter_title", "value": $('#nameFilter').attr('value')});
 				else
 					aoData[position].value=$('#nameFilter').attr('value');
-				
-				//applying filter category
-				position = getPosition(aoData,'filter_category');
-				
-				if(position == -1)
-					aoData.push({"name": "filter_category", "value": $('#categoryFilter').attr('value')});				
-				else
-					aoData[position].value = $('#categoryFilter').attr('value');
 				
 	            $.getJSON(sSource, aoData, function (json) {
 	                fnCallback(json);       

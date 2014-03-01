@@ -29,13 +29,25 @@ class PictureNewsRepository extends EntityRepository {
      * @return Array Objects
      */
     public function findByCriteria($filters = array(), $limit = NULL, $offset = NULL, $sortColumn = NULL, $sortDirection = NULL) {
-    	$filters['state'] = TRUE;
+        $query = $this->_em->createQueryBuilder();
 
-    	$sort = '';
-    	switch ($sortColumn) {
-    		case 1:
-    			$sort = 'title';
-    			break;
+        $condName = "";
+        foreach ($filters as $filter) {
+            $condName = "$this->_alias.title LIKE :title AND ";
+            $query->setParameter($filter['field'], $filter['filter']);
+        }
+
+        $query->select($this->_alias)
+            ->from($this->_entityName, $this->_alias)
+            ->where("$condName $this->_alias.state = TRUE")
+            ->setFirstResult($offset)
+            ->setMaxResults($limit);
+
+        $sort = '';
+        switch ($sortColumn) {
+            case 1:
+                $sort = 'title';
+                break;
 
     		case 2:
     			$sort = 'description';
@@ -53,12 +65,12 @@ class PictureNewsRepository extends EntityRepository {
     			$sort = 'changed';
     			break;
 
-    		default: $sort = 'title';
+    		default: $sort = 'id'; $sortDirection = 'desc';
     	}
 
-    	$entries = $this->findBy($filters, array($sort => $sortDirection), $limit, $offset);
+    	$query->orderBy("$this->_alias.$sort", $sortDirection);
 
-    	return $entries;
+    	return $query->getQuery()->getResult();
     }
 
     /**
@@ -67,19 +79,19 @@ class PictureNewsRepository extends EntityRepository {
      * @return int
      */
     public function getTotalCount($filters = array()) {
-    	$query = $this->_em->createQueryBuilder();
+        $query = $this->_em->createQueryBuilder();
 
-    	$query->select("count($this->_alias.id)")
-    	->from($this->_entityName, $this->_alias);
+        $condName = "";
+        foreach ($filters as $filter) {
+            $condName = "$this->_alias.title LIKE :title AND ";
+            $query->setParameter($filter['field'], $filter['filter']);
+        }
 
-    	foreach ($filters as $filter) {
-    		$query->where("$this->_alias.".$filter['field'].' '.$filter['operator'].' :'.$filter['field']);
-    		$query->setParameter($filter['field'], $filter['filter']);
-    	}
+        $query->select("count($this->_alias.id)")
+            ->from($this->_entityName, $this->_alias)
+            ->where("$condName $this->_alias.state = TRUE");
 
-    	$query->where("$this->_alias.state = TRUE");
-
-    	return (int)$query->getQuery()->getSingleScalarResult();
+        return (int)$query->getQuery()->getSingleScalarResult();
     }
 
     /**
