@@ -329,7 +329,7 @@ com.em.Picture.prototype = {
 							// Configs dialog
 							configureDialogForm('#dialog-form', 'update');
 							// Sets validator
-							setValidatorForm("#formId");
+							setValidatorEditForm("#formId");
 							// open dialog
 							dialogForm.dialog('open');
 							// Loads buttons for dialog. dialogButtons is defined by ajax
@@ -405,8 +405,7 @@ com.em.Picture.prototype = {
 		});
 	}},
 	
-	/**
-	 * 
+	/** 
 	 * Validates Picture form
 	 * @param selector
 	 */
@@ -424,6 +423,21 @@ com.em.Picture.prototype = {
 				'filecrop':{
 					required: true,
 					accept: "jpg|png|gif"
+				}
+	        }
+	    });
+	},
+	
+	/** 
+	 * Validates Picture form
+	 * @param selector
+	 */
+	setValidatorEditForm : function(selector) {
+		validator = $(selector).validate({
+	        rules:{
+	        	'title':{
+					required: true,
+					maxlength: 45
 				}
 	        }
 	    });

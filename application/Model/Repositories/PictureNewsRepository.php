@@ -45,11 +45,11 @@ class PictureNewsRepository extends EntityRepository {
     			$sort = 'filename';
     			break;
 
-    		case 4:
+    		case 5:
     			$sort = 'created';
     			break;
 
-    		case 5:
+    		case 6:
     			$sort = 'changed';
     			break;
 
@@ -111,7 +111,7 @@ class PictureNewsRepository extends EntityRepository {
     public function findByCriteriaOnlyTitle($filters = array()) {
     	$query = $this->_em->createQueryBuilder();
     	$query->select($this->_alias)
-    	->from($this->_entityName, $this->_alias);
+    	   ->from($this->_entityName, $this->_alias);
 
     	foreach ($filters as $filter) {
     		$query->where("$this->_alias.".$filter['field'].' '.$filter['operator'].' :'.$filter['field']);

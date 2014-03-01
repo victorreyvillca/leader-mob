@@ -39,10 +39,10 @@ class NewsRepository extends EntityRepository {
     	}
 
     	$query->select($this->_alias)
-    	->from($this->_entityName, $this->_alias)
-    	->where("$condName $this->_alias.state = TRUE")
-    	->setFirstResult($offset)
-    	->setMaxResults($limit);
+    	   ->from($this->_entityName, $this->_alias)
+    	   ->where("$condName $this->_alias.state = TRUE")
+    	   ->setFirstResult($offset)
+    	   ->setMaxResults($limit);
 
     	$sort = '';
     	switch ($sortColumn) {
@@ -100,10 +100,33 @@ class NewsRepository extends EntityRepository {
     		$query->setParameter($filter['field'], $filter['filter']);
     	}
 
-    	$query->select("count($this->_alias.id)")
-    	->from($this->_entityName, $this->_alias)
-    	->where("$condName $this->_alias.state = TRUE");
+        $query->select("count($this->_alias.id)")
+            ->from($this->_entityName, $this->_alias)
+            ->where("$condName $this->_alias.state = TRUE");
 
     	return (int)$query->getQuery()->getSingleScalarResult();
+    }
+
+    /**
+     * (non-PHPdoc)
+     * @see Doctrine\ORM.EntityRepository::findAll()
+     */
+    public function findAll() {
+        return $this->findBy(array('state' => TRUE));
+    }
+
+    /**
+     * Returns all news
+     * @return array
+     */
+    public function findAllArray() {
+        $items = $this->findAll();
+
+        $itemArray = array();
+        foreach ($items as $item) {
+            $itemArray[$item->getId()] = $item->getTitle();
+        }
+
+        return $itemArray;
     }
 }

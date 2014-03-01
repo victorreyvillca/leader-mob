@@ -1,11 +1,10 @@
 <?php
-
 /**
- * Controller for DIST 3.
+ * Controller for MOB.
  *
  * @category Dist
  * @author Victor Villca <victor.villca@people-trust.com>
- * @copyright Copyright (c) 2013 Gisof A/S
+ * @copyright Copyright (c) 2014 Gisof A/S
  * @license Proprietary
  */
 
@@ -24,13 +23,12 @@ class Admin_PictureController extends Dis_Controller_Action {
 	}
 
 	/**
-	 *
-	 * In case no action redirects the action read will be executed
+	 * lists all pictures news
 	 * @access public
 	 */
 	public function indexAction() {
 		$formFilter = new Admin_Form_SearchFilter();
-		$formFilter->getElement('nameFilter')->setLabel(_("Title picture"));
+		$formFilter->getElement('nameFilter')->setLabel(_('Title'));
 		$this->view->formFilter = $formFilter;
 	}
 
@@ -41,16 +39,15 @@ class Admin_PictureController extends Dis_Controller_Action {
 	public function addAction() {
 		$this->_helper->layout()->disableLayout();
 
-		$categoryRepo = $this->_entityManager->getRepository('Model\Category');
+		$newsRepo = $this->_entityManager->getRepository('Model\News');
 
 		$form = new Admin_Form_Picture();
 		$form->setAction($this->_helper->url('add-save'));
-		$form->getElement('pictureCategory')->setMultiOptions($categoryRepo->findAllArray());
+		$form->getElement('pictureCategory')->setMultiOptions($newsRepo->findAllArray());
 		$this->view->form = $form;
 	}
 
 	/**
-	 *
 	 * Creates a new Picture
 	 * @access public
 	 */
@@ -58,19 +55,17 @@ class Admin_PictureController extends Dis_Controller_Action {
 		if ($this->_request->isPost()) {
 			$form = new Admin_Form_Picture();
 
-			$categoryRepo = $this->_entityManager->getRepository('Model\Category');
-			$form->getElement('pictureCategory')->setMultiOptions($categoryRepo->findAllArray());
+			$newsRepo = $this->_entityManager->getRepository('Model\News');
+			$form->getElement('pictureCategory')->setMultiOptions($newsRepo->findAllArray());
 
 			$formData = $this->getRequest()->getPost();
 			if ($form->isValid($formData)) {
-				$pictureRepo = $this->_entityManager->getRepository('Model\Picture');
+				$pictureRepo = $this->_entityManager->getRepository('Model\PictureNews');
 				if (!$pictureRepo->verifyExistTitle($formData['title'])) {
 					$imageFile = $form->getElement('file');
-					$imageFilecrop = $form->getElement('filecrop');
 
 					try {
 						$imageFile->receive();
-						$imageFilecrop->receive();
 					} catch (Zend_File_Transfer_Exception $e) {
 						$e->getMessage();
 					}
@@ -78,33 +73,26 @@ class Admin_PictureController extends Dis_Controller_Action {
 					$mimeType = $_FILES['file']['type'];
 					$filename = $_FILES['file']['name'];
 
-					$mimeTypeCrop = $_FILES['filecrop']['type'];
-					$filenameCrop = $_FILES['filecrop']['name'];
+					$news = $this->_entityManager->find('Model\News', (int)$formData['pictureCategory']);
 
-					$category = $this->_entityManager->find('Model\Category', (int)$formData['pictureCategory']);
-
-					$picture = new Model\Picture();
-					$picture->setTitle($formData['title'])
+					$picture = new Model\PictureNews();
+					$picture
+                        ->setTitle($formData['title'])
 						->setDescription($formData['description'])
 						->setSrc(self::SRC_PICTURE)
 						->setFilename($filename)
 						->setMimeType($mimeType)
-						->setSrcCrop(self::SRC_CROP_PICTURE)
-						->setFilenameCrop($filenameCrop)
-						->setMimeTypeCrop(self::SRC_CROP_PICTURE)
-                        ->setOwnerId(1)
-                        ->setOwnerType(1)
-						->setCategory($category)
+						->setNews($news)
 						->setCreated(new DateTime('now'))
 						->setState(TRUE);
 
 					$this->_entityManager->persist($picture);
 					$this->_entityManager->flush();
 
-					$this->_helper->flashMessenger(array('success' => _("Picture saved")));
+					$this->_helper->flashMessenger(array('success' => _('Picture saved')));
 					$this->_helper->redirector('index', 'Picture', 'admin', array('type'=>'information'));
 				} else {
-					$this->_helper->flashMessenger(array('success' => _("erro saved")));
+					$this->_helper->flashMessenger(array('success' => _('erro saved')));
 					$this->_helper->redirector('index', 'Picture', 'admin', array('type'=>'information'));
 				}
 			} else {
@@ -116,7 +104,6 @@ class Admin_PictureController extends Dis_Controller_Action {
 	}
 
 	/**
-	 *
 	 * This action shows the form in update mode.
 	 * @access public
 	 */
@@ -124,20 +111,21 @@ class Admin_PictureController extends Dis_Controller_Action {
 		$this->_helper->layout()->disableLayout();
 
 		$form = new Admin_Form_Picture();
-		$form->removeElement('file');
-		$form->removeElement('filecrop');
+
+		$form->setAction($this->_helper->url('edit-save'));
 
 		$id = $this->_getParam('id', 0);
-		$picture = $this->_entityManager->find('Model\Picture', $id);
+		$picture = $this->_entityManager->find('Model\PictureNews', $id);
 		if ($picture != NULL) {//security
+		    $form->getElement('id')->setValue($picture->getId());
 			$form->getElement('title')->setValue($picture->getTitle());
 			$form->getElement('description')->setValue($picture->getDescription());
-			$categoryRepo = $this->_entityManager->getRepository('Model\Category');
-			$form->getElement('pictureCategory')->setMultiOptions($categoryRepo->findAllArray());
-			$form->getElement('pictureCategory')->setValue($picture->getCategory()->getId());
+			$newsRepo = $this->_entityManager->getRepository('Model\News');
+			$form->getElement('pictureCategory')->setMultiOptions($newsRepo->findAllArray());
+			$form->getElement('pictureCategory')->setValue($picture->getNews()->getId());
 		} else {
 			$this->stdResponse->success = FALSE;
-			$this->stdResponse->message = _("The requested record was not found.");
+			$this->stdResponse->message = _('The requested record was not found.');
 			$this->_helper->json($this->stdResponse);
 		}
 		$this->view->form = $form;
@@ -148,53 +136,67 @@ class Admin_PictureController extends Dis_Controller_Action {
 	 * @access public
 	 */
 	public function editSaveAction() {
-		$this->_helper->viewRenderer->setNoRender(TRUE);
+		if ($this->_request->isPost()) {
+			$form = new Admin_Form_Picture();
+			$form->getElement('file')->setRequired(FALSE);
 
-		$form = new Admin_Form_Picture();
-		$form->removeElement('file');
-		$form->removeElement('filecrop');
+			$newsRepo = $this->_entityManager->getRepository('Model\News');
+			$form->getElement('pictureCategory')->setMultiOptions($newsRepo->findAllArray());
 
-		$categoryRepo = $this->_entityManager->getRepository('Model\Category');
-		$form->getElement('pictureCategory')->setMultiOptions($categoryRepo->findAllArray());
+			$formData = $this->getRequest()->getPost();
+			if ($form->isValid($formData)) {
+			    $id = $this->_getParam('id', 0);
+			    $picture = $this->_entityManager->find('Model\PictureNews', $id);
+			    if ($picture != NULL) {
+					$pictureRepo = $this->_entityManager->getRepository('Model\PictureNews');
+					if (!$pictureRepo->verifyExistTitle($formData['title']) || $pictureRepo->verifyExistIdAndTitle($id, $formData['title'])) {
+					    $news = $this->_entityManager->find('Model\News', (int)$formData['pictureCategory']);
 
-		$formData = $this->getRequest()->getPost();
-		if ($form->isValid($formData)) {
-			$id = $this->_getParam('id', 0);
+                        $imageFile = $form->getElement('file');
 
-			$picture = $this->_entityManager->find('Model\Picture', $id);
-			if ($picture != NULL) {
-				$pictureRepo = $this->_entityManager->getRepository('Model\Picture');
-				if (!$pictureRepo->verifyExistTitle($formData['title']) || $pictureRepo->verifyExistIdAndTitle($id, $formData['title'])) {
-				    $category = $this->_entityManager->find('Model\Category', (int)$formData['pictureCategory']);
+    					try {
+    						$imageFile->receive();
+    					} catch (Zend_File_Transfer_Exception $e) {
+    						$e->getMessage();
+    					}
 
-					$picture->setTitle($formData['title'])
-						->setDescription($formData['description'])
-						->setCategory($category)
-						->setChanged(new DateTime('now'))
-						->setCreatedBy(1)
-					   ;
+    					$mimeType = $_FILES['file']['type'];
+    					$filename = $_FILES['file']['name'];
 
-					$this->_entityManager->persist($picture);
-					$this->_entityManager->flush();
+    					if ($mimeType != NULL && $filename != '') {
+    						$picture->setFilename($filename)->setMimeType($mimeType);
+    					}
 
-					$this->stdResponse->success = TRUE;
-					$this->stdResponse->message = _("Picture updated");
+    					$news = $this->_entityManager->find('Model\News', (int)$formData['pictureCategory']);
+
+    					$picture
+        					->setTitle($formData['title'])
+        					->setDescription($formData['description'])
+        					->setSrc(self::SRC_PICTURE)
+        					->setNews($news)
+        					->setChanged(new DateTime('now'))
+                        ;
+
+    					$this->_entityManager->persist($picture);
+    					$this->_entityManager->flush();
+
+    					$this->_helper->flashMessenger(array('success' => _('Picture saved')));
+    					$this->_helper->redirector('index', 'Picture', 'admin', array('type'=>'information'));
+					} else {
+                        $this->_helper->flashMessenger(array('success' => _('Picture no exist')));
+                        $this->_helper->redirector('index', 'Picture', 'admin', array('type'=>'information'));
+					}
 				} else {
-					$this->stdResponse->success = FALSE;
-					$this->stdResponse->name_duplicate = TRUE;
-					$this->stdResponse->message = _("The Picture already exists");
+					$this->_helper->flashMessenger(array('success' => _('error saved')));
+					$this->_helper->redirector('index', 'Picture', 'admin', array('type'=>'information'));
 				}
 			} else {
-				$this->stdResponse->success = FALSE;
-				$this->stdResponse->message = _("The Picture does not exists");
+			    $this->_helper->flashMessenger(array('error' => _('the form contains errors')));
+				$this->_helper->redirector('index', 'Picture', 'admin', array('type'=>'information'));
 			}
 		} else {
-			$this->stdResponse->success = FALSE;
-			$this->stdResponse->messageArray = $form->getMessages();
-			$this->stdResponse->message = _("The form contains error and is not saved");
+			$this->_helper->redirector('index', 'Picture', 'admin', array('type'=>'information'));
 		}
-		// sends response to client
-		$this->_helper->json($this->stdResponse);
 	}
 
 // 	/**
@@ -224,43 +226,42 @@ class Admin_PictureController extends Dis_Controller_Action {
 // 		readfile(sprintf('%s//%s%s%s', $protocol, $_SERVER['SERVER_NAME'], $picture->getSrc(), $file->getFilename()));
 // 	}
 
-// 	/**
-// 	 *
-// 	 * Deletes pictures
-// 	 * @access public
-// 	 * @internal
-// 	 * 1) Gets the model Picture
-// 	 * 2) Validate the existance of dependencies
-// 	 * 3) Change the state field or records to delete
-// 	 */
-// 	public function deleteAction() {
-// 		$this->_helper->viewRenderer->setNoRender(TRUE);
+	/**
+	 * Deletes pictures
+	 * @access public
+	 * @internal
+	 * 1) Gets the model Picture
+	 * 2) Validate the existance of dependencies
+	 * 3) Change the state field or records to delete
+	 */
+	public function removeAction() {
+		$this->_helper->viewRenderer->setNoRender(TRUE);
 
-// 		$itemIds = $this->_getParam('itemIds', array());
-// 		if (!empty($itemIds) ) {
-// 			$removeCount = 0;
-// 			foreach ($itemIds as $id) {
-// 				$picture = $this->_entityManager->find('Model\Picture', $id);
-// 				$picture->setState(FALSE);
+		$itemIds = $this->_getParam('itemIds', array());
+		if (!empty($itemIds) ) {
+			$removeCount = 0;
+			foreach ($itemIds as $id) {
+				$picture = $this->_entityManager->find('Model\PictureNews', $id);
+				$picture->setChanged(new DateTime('now'));
+				$picture->setState(FALSE);
 
-// 				$this->_entityManager->persist($picture);
-// 				$this->_entityManager->flush();
-// 				$removeCount++;
-// 			}
-// 			$message = sprintf(ngettext('%d picture removed.', '%d pictures removed.', $removeCount), $removeCount);
-// 			$this->stdResponse->success = TRUE;
-// 			$this->stdResponse->message = _($message);
-// 		} else {
-// 			$this->stdResponse->success = FALSE;
-// 			$this->stdResponse->message = _("Data submitted is empty.");
-// 		}
-// 		// sends response to client
-// 		$this->_helper->json($this->stdResponse);
-// 	}
+				$this->_entityManager->persist($picture);
+				$this->_entityManager->flush();
+				$removeCount++;
+			}
+			$message = sprintf(ngettext('%d picture removed.', '%d pictures removed.', $removeCount), $removeCount);
+			$this->stdResponse->success = TRUE;
+			$this->stdResponse->message = _($message);
+		} else {
+			$this->stdResponse->success = FALSE;
+			$this->stdResponse->message = _('Data submitted is empty.');
+		}
+		// sends response to client
+		$this->_helper->json($this->stdResponse);
+	}
 
 	/**
 	 * Outputs an XHR response containing all entries in pictures.
-	 * This action serves as a datasource for the read/index view
 	 * @xhrParam int filter_title
 	 * @xhrParam int iDisplayStart
 	 * @xhrParam int iDisplayLength
@@ -276,7 +277,7 @@ class Admin_PictureController extends Dis_Controller_Action {
 		$limit = $this->_getParam('iDisplayLength', 10);
 		$page = ($start + $limit) / $limit;
 
-		$pictureRepo = $this->_entityManager->getRepository('Model\Picture');
+		$pictureRepo = $this->_entityManager->getRepository('Model\PictureNews');
 		$pictures = $pictureRepo->findByCriteria($filters, $limit, $start, $sortCol, $sortDirection);
 		$total = $pictureRepo->getTotalCount($filters);
 
@@ -293,7 +294,7 @@ class Admin_PictureController extends Dis_Controller_Action {
 			$row[] = $picture->getTitle();
 			$row[] = $picture->getDescription();
 			$row[] = $picture->getFilename();
-			$row[] = "";
+			$row[] = $picture->getNews()->getTitle();
 			$row[] = $picture->getCreated()->format('d.m.Y');
 			$row[] = $changed;
 			$row[] = '[]';
@@ -330,7 +331,6 @@ class Admin_PictureController extends Dis_Controller_Action {
 	}
 
 	/**
-	 *
 	 * Outputs an XHR response, loads the titles of the pictures.
 	 */
 	public function autocompleteAction() {
@@ -341,20 +341,4 @@ class Admin_PictureController extends Dis_Controller_Action {
 		$this->stdResponse->items = $pictureRepo->findByCriteriaOnlyTitle($filters);
 		$this->_helper->json($this->stdResponse);
 	}
-
-// 	/**
-// 	 * Returns all club pathfinders
-// 	 * @return array
-// 	 */
-// 	public function getClubPathfinders() {
-// 		$clubRepo = $this->_entityManager->getRepository('Model\ClubPathfinder');
-// 		$clubs = $clubRepo->findAll();
-
-// 		$clubPathfinderArray = array();
-// 		foreach ($clubs as $club) {
-// 			$clubPathfinderArray[$club->getId()] = $club->getName();
-// 		}
-
-// 		return $clubPathfinderArray;
-// 	}
 }
