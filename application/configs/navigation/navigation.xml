@@ -39,6 +39,7 @@
 		</whowe>
 
 		<news>
+			<id>guest.news</id>
 			<label>News</label>
 			<controller>News</controller>
 			<action>index</action>
@@ -50,38 +51,38 @@
 			<action>index</action>
 		</registration>
 
-		<config>
-			<id>configuration</id>
-			<label>Configuracion</label>
-			<action>index</action>
-			<controller>Mission</controller>
-			<pages>
-				<mission>
-					<label>Mision</label>
-					<action>index</action>
-					<controller>Mission</controller>
-				</mission>
-				<region>
-					<label>Region</label>
-					<action>index</action>
-					<controller>Region</controller>
-				</region>
-				<district>
-					<label>Distrito</label>
-					<action>index</action>
-					<controller>District</controller>
-				</district>
-				<church>
-					<label>Iglesia</label>
-					<action>index</action>
-					<controller>Church</controller>
-				</church>
-				<position>
-					<label>Cargo Liderazgo</label>
-					<action>index</action>
-					<controller>Position</controller>
-				</position>
-			</pages>
-		</config>
+<!-- 		<config> -->
+<!-- 			<id>configuration</id> -->
+<!-- 			<label>Configuracion</label> -->
+<!-- 			<action>index</action> -->
+<!-- 			<controller>Mission</controller> -->
+<!-- 			<pages> -->
+<!-- 				<mission> -->
+<!-- 					<label>Mision</label> -->
+<!-- 					<action>index</action> -->
+<!-- 					<controller>Mission</controller> -->
+<!-- 				</mission> -->
+<!-- 				<region> -->
+<!-- 					<label>Region</label> -->
+<!-- 					<action>index</action> -->
+<!-- 					<controller>Region</controller> -->
+<!-- 				</region> -->
+<!-- 				<district> -->
+<!-- 					<label>Distrito</label> -->
+<!-- 					<action>index</action> -->
+<!-- 					<controller>District</controller> -->
+<!-- 				</district> -->
+<!-- 				<church> -->
+<!-- 					<label>Iglesia</label> -->
+<!-- 					<action>index</action> -->
+<!-- 					<controller>Church</controller> -->
+<!-- 				</church> -->
+<!-- 				<position> -->
+<!-- 					<label>Cargo Liderazgo</label> -->
+<!-- 					<action>index</action> -->
+<!-- 					<controller>Position</controller> -->
+<!-- 				</position> -->
+<!-- 			</pages> -->
+<!-- 		</config> -->
 	</navigation>
 </config>

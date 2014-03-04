@@ -32,6 +32,8 @@ class NewsController extends Dis_Controller_Action {
 	 * Shows the news at detail
 	 */
 	public function singleAction() {
+        $this->view->navigation()->getContainer()->findOneBy('id', 'guest.news')->setActive(TRUE);
+
 		$id = $this->_request->getParam('id', 0);
 		$news = $this->_entityManager->find('Model\News', $id);
 		if ($news->getImagename() == NULL) {
