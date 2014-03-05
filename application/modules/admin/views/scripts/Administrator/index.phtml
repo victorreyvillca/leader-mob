@@ -1,4 +1,4 @@
-<?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/Directive.js","text/javascript");?>
+<?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/Administrator.js","text/javascript");?>
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/lib/blueimp-Load-Image/load-image.min.js","text/javascript"); ?>
 
 <div style="margin:20px;">
@@ -8,11 +8,11 @@
 
 	</div>
 	<br>
-	<?php echo $this->tableHeader('directiveHeader', _('Administradores'));?>
-	<?php echo $this->tableList("tblDirective");?>
+	<?php echo $this->tableHeader('administratorHeader', _('Administradores'));?>
+	<?php echo $this->tableList('tblAdministrator');?>
 	<div class="buttons right">
-		<?php echo $this->buttonRemove("delete-directive", $this->translate('Eliminar'), $this->url(array('action'=>'delete')));?>
-		<?php echo $this->buttonAdd("create-directive", $this->translate('Adicionar'), $this->url(array('action'=>'add')));?>
+		<?php echo $this->buttonRemove("delete-administrator", $this->translate('Eliminar'), $this->url(array('action'=>'delete')));?>
+		<?php echo $this->buttonAdd("create-administrator", $this->translate('Adicionar'), $this->url(array('action'=>'add')));?>
 	</div>
 
 	<div id="dialog"><!-- Loads ajax dialog form --></div>
@@ -20,10 +20,10 @@
 <?php //echo $this->imagelogo;?>
 <script type="text/javascript">
 	$(document).ready(function() {
-	var directive = new com.em.Directive();
+	var administrator = new com.em.Administrator();
 
 	// network
-	directive.setUrl({
+	administrator.setUrl({
 		toTable : '<?php echo $this->url(array('action'=>'read-items'));?>',
 		toBase : '<?php echo $this->baseUrl(); ?>',
 		toUpdate : '<?php echo $this->url(array('action'=>'edit')); ?>',
@@ -37,17 +37,17 @@
 		'<?php echo $this->translate('Celular')?>',
 		'<?php echo $this->translate('Telf. Fijo')?>',
 		'<?php echo $this->translate('Correo')?>',
-		'<?php echo $this->translate('Club Pathfinder')?>',
+		'<?php echo $this->translate('Cedula de Identidad')?>',
 		'<?php echo $this->translate('Fecha Creacion')?>',
 		'<?php echo $this->translate('Fecha Edicion')?>');
-	directive.setHeaders(headers);
+	administrator.setHeaders(headers);
 	// configuration of widgets
-	directive.configureTable('#tblDirective', true);
+	administrator.configureTable('#tblAdministrator', true);
 
 	// CRUD
-	directive.clickToAdd('#create-directive');
-	directive.clickToUpdate('#tblDirective a[id^=update-directive-]');
-	directive.clickToDelete('#delete-directive');
-	directive.configureAuto('input#nameFilter');
+	administrator.clickToAdd('#create-administrator');
+	administrator.clickToUpdate('#tblAdministrator a[id^=update-administrator-]');
+	administrator.clickToDelete('#delete-administrator');
+	administrator.configureAuto('input#nameFilter');
 });
 </script>

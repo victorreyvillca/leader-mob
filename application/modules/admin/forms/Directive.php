@@ -64,7 +64,7 @@ class Admin_Form_Directive extends Zend_Form {
 
 			->addElement('Text', 'year', array(
 				'label' => _('Edad'),
-                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese sus Edad'), 'autofocus' => ''),
+                'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese sus Edad'), 'autofocus' => '', 'readonly' => TRUE),
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 

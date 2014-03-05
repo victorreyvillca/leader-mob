@@ -9,7 +9,7 @@
 
 var com = com || {};
 com.em = com.em ||{};
-	com.em.Directive = function () {
+	com.em.Administrator = function () {
 		// For create or update register
 		this.dialogForm;
 		// For show message to client
@@ -26,7 +26,7 @@ com.em = com.em ||{};
 		this.dtHeaders = undefined;
 		this.actionSort = undefined;
 	};
-com.em.Directive.prototype = {
+com.em.Administrator.prototype = {
 
 	/**
 	 * Initializes JQuery flash message component
@@ -93,9 +93,9 @@ com.em.Directive.prototype = {
 		$("#check-master").bind('click', function() {
 			var checked = $("#check-master").attr('checked');
 			if (checked) {
-				$('#tblDirective input[id^=check-slave-]').attr('checked', true);
+				$('#tblAdministrator input[id^=check-slave-]').attr('checked', true);
 			} else {
-				$('#tblDirective input[id^=check-slave-]').attr('checked', false);
+				$('#tblAdministrator input[id^=check-slave-]').attr('checked', false);
 			}
 		});
 	}},
@@ -119,7 +119,7 @@ com.em.Directive.prototype = {
 				"sUrl": "/js/lib/jquery-datatables/languages/dataTables.spanish.txt"
 			},
 			"fnDrawCallback": function() {
-				clickToUpdate('#tblDirective a[id^=update-directive-]');
+				clickToUpdate('#tblAdministrator a[id^=update-administrator-]');
 			},
 
 			"fnServerData": function (sSource, aoData, fnCallback ) {
@@ -151,7 +151,7 @@ com.em.Directive.prototype = {
 			"sWidth": "15%",
 			"bSercheable": "true",
 			fnRender : function (oObj){
-				return '<a href="'+url.toUpdate+'/id/'+oObj.aData[0]+'">'+oObj.aData[1]+'</a>';
+				return '<a id="update-administrator-'+oObj.aData[0]+'" href="'+url.toUpdate+'/id/'+oObj.aData[0]+'">'+oObj.aData[1]+'</a>';
 				}
 			});
 		columns.push({"sWidth": "13%"});
@@ -307,7 +307,7 @@ com.em.Directive.prototype = {
 		$(selector).bind('click',function(event) {
 			event.preventDefault();
 			// Serializes items checked
-			var items = $('#tblDirective :checked');
+			var items = $('#tblAdministrator :checked');
 			var itemsChecked = items.serialize();
 			if (itemsChecked == '') {
 				alert.flashInfo('No hay registro seleccionado', {header: com.em.Alert.NOTICE});
@@ -377,7 +377,7 @@ com.em.Directive.prototype = {
 	}},
 
 	/**
-	 * Validates Directive form
+	 * Validates Administrator form
 	 * @param selector
 	 */
 	setValidatorForm : function(selector) {

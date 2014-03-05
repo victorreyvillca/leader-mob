@@ -26,10 +26,6 @@
     		<?php echo $this->element->getElement('ci')->renderViewHelper()?>
         </div>
         <div>
-            <?php echo $this->element->getElement('year')->renderLabel()?>
-            <?php echo $this->element->getElement('year')->renderViewHelper()?>
-        </div>
-        <div>
             <label for="sex" class="required"><?php echo _('Sex')?></label>
             <label for="sex-1"><input type="radio" value="1" id="sex-1" name="sex" style="width: 20px;" required="" <?php echo $this->element->getGenderMaleChecked()?>><?php echo _('Masculino');?></label>
 			<label for="sex-2"><input type="radio" value="2" id="sex-2" name="sex" style="width: 20px;" required="" <?php echo $this->element->getGenderFemaleChecked()?>><?php echo _('Femenino');?></label>
@@ -49,6 +45,10 @@
         <div>
             <?php echo $this->element->getElement('dateOfBirth')->renderLabel()?>
             <?php echo $this->element->getElement('dateOfBirth')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('year')->renderLabel()?>
+            <?php echo $this->element->getElement('year')->renderViewHelper()?>
         </div>
         <div>
             <?php echo $this->element->getElement('department')->renderLabel()?>

@@ -120,12 +120,12 @@ class Admin_AdministratorController extends Dis_Controller_Action {
                 $this->_entityManager->flush();
 
                 $this->_helper->flashMessenger(array('success' => _('Administrador registrado')));
-                $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
+                $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'organization'));
             } else {
-                $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
+                $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'organization'));
             }
         } else {
-            $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
+            $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'organization'));
         }
     }
 
@@ -149,6 +149,7 @@ class Admin_AdministratorController extends Dis_Controller_Action {
             $form->getElement('id')->setValue($administrator->getId());
             $form->getElement('firstName')->setValue($administrator->getFirstName());
             $form->getElement('lastName')->setValue($administrator->getLastName());
+            $form->getElement('ci')->setValue($administrator->getIdentityCard());
             $form->getElement('sex')->setValue($administrator->getSex());
             $form->getElement('phonemobil')->setValue($administrator->getPhonemobil());
             $form->getElement('phone')->setValue($administrator->getPhone());
@@ -357,11 +358,11 @@ class Admin_AdministratorController extends Dis_Controller_Action {
 			$row = array();
 			$row[] = $directive->getId();
 			$row[] = $directive->getName();
-			$row[] = '';
+			$row[] = $directive->getRole()->getName();
 			$row[] = $directive->getPhonemobil();
 			$row[] = $directive->getPhone();
-			$row[] = '';
-			$row[] = '';
+			$row[] = $directive->getAccount()->getEmail();
+			$row[] = $directive->getIdentityCard();
 			$row[] = $directive->getCreated()->format('d.m.Y');
 			$row[] = $changed;
 			$row[] = '[]';

@@ -51,6 +51,7 @@ class RegistrationController extends Dis_Controller_Action {
 		$rankRepo = $this->_entityManager->getRepository('Model\Rank');
 		$departmentRepo = $this->_entityManager->getRepository('Model\Department');
 
+		var_dump($missionRepo->findAllArray());
 		$form->getElement('position')->setMultiOptions($positionRepo->findAllArray(TRUE));
 		$form->getElement('mission')->setMultiOptions($missionRepo->findAllArray());
 		$form->getElement('region')->setMultiOptions($regionRepo->findAllArray());
@@ -93,7 +94,6 @@ class RegistrationController extends Dis_Controller_Action {
                         ->setAllergies($formData['allergies'])
                         ->setDisease($formData['disease'])
                         ->setTreatment($formData['treatment'])
-                        ->setYear($formData['year'])
                         ->setIsActivo(TRUE)
                         ->setState(TRUE)
                         ->setCreated(new DateTime('now'))
@@ -278,7 +278,6 @@ class RegistrationController extends Dis_Controller_Action {
     	    		    ->setAllergies($formData['allergies'])
     	    		    ->setDisease($formData['disease'])
     	    		    ->setTreatment($formData['treatment'])
-    	    		    ->setYear($formData['year'])
     	    		    ->setIsActivo(TRUE)
     	    		    ->setChanged(new DateTime('now'))
                         ->setSex((int)$formData['sex'])
