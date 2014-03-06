@@ -761,7 +761,7 @@ h6{ font-size: 20px; }
 	margin-left: 30px;
 	margin-bottom: 30px;
 }
-#posts .post h1{
+/*#posts .post h1{
 	display: inline;
 	text-align: left;
 }
@@ -772,7 +772,7 @@ h6{ font-size: 20px; }
 }
 #posts .post a.link-button{
 	margin: 0px;
-}
+}*/
 
 #comments-block{
 	position: relative;
