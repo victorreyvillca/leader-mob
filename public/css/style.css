@@ -236,7 +236,7 @@ h6{ font-size: 20px; }
 #social-holder{
 	overflow: hidden;
 	width: 100%;
-	padding-top: 20px;
+	padding-top: 7px;
 }
 
 .social{
@@ -301,7 +301,7 @@ h6{ font-size: 20px; }
 #nav{
 	display: block;
 	position: absolute;
-	top: 75px;
+	top: 125px;
 	left: 210px;
 	height: 46px;
 	width: 736px;
