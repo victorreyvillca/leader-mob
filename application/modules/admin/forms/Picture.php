@@ -31,7 +31,7 @@ class Admin_Form_Picture extends Zend_Form {
 		$file = new Zend_Form_Element_File('file');
 		$file->setLabel(_('File'))
 				->setRequired(TRUE)
-				->setDestination(APPLICATION_PATH.'/../public/image/upload/galleryview/photos')
+				->setDestination(APPLICATION_PATH.'/../public/image/upload/news')
 				->addValidator('Extension', FALSE, 'jpg, png, gif');
 
 		$newsSelect = new Zend_Form_Element_Select('news');
