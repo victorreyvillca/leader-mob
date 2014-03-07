@@ -82,6 +82,15 @@
 						<type>organization</type>
 					</params>
 				</managerial>
+				<pastor>
+					<label>Pastores</label>
+					<module>admin</module>
+					<controller>Pastor</controller>
+					<action>index</action>
+					<params>
+						<type>organization</type>
+					</params>
+				</pastor>
 				<club>
 					<label>Club</label>
 					<module>admin</module>

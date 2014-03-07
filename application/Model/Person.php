@@ -16,7 +16,7 @@ namespace Model;
  * @Table(name="Person")
  * @InheritanceType("JOINED")
  * @DiscriminatorColumn(name="type", type="string")
- * @DiscriminatorMap({"person"="Person", "administrator"="Administrator", "directive"="Directive"})
+ * @DiscriminatorMap({"person"="Person", "administrator"="Administrator", "directive"="Directive", "pastor"="Pastor"})
  */
 class Person extends DomainObject {
 
@@ -227,5 +227,12 @@ class Person extends DomainObject {
 	public function setProfilePictureId($profilePictureId) {
 		$this->profilePictureId = $profilePictureId;
 		return $this;
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function getGenderArray() {
+		return array(self::SEX_MALE => _('Masculino'), self::SEX_FEMALE => _('Femenino'));
 	}
 }
