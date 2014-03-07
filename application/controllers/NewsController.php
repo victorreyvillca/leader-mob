@@ -38,7 +38,20 @@ class NewsController extends Dis_Controller_Action {
 			$news->setImagename('newsdefault.gif');
 		}
 
+		$pictureNewsRepo = $this->_entityManager->getRepository('Model\PictureNews');
+		$pictures = $pictureNewsRepo->findByNews($news);
+
+		$page = $this->_getParam('page', 1);
+		$page_record = 6;
+		$page_range = 10;
+
+        $paginator = Zend_Paginator::factory($pictures);
+        $paginator->setItemCountPerPage($page_record)
+            ->setCurrentPageNumber($page)
+            ->setPageRange($page_range);
+
 		$this->view->news = $news;
+		$this->view->pictures = $paginator;
 	}
 
 	public function jaAction() {

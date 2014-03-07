@@ -49,8 +49,25 @@
 
 	</div>
 	<!-- ENDS post -->
+
+	<!-- gallery-->
+    <ul id="portfolio-list" class="gallery three-cols">
+        <?php foreach ($this->pictures as $picture) {?>
+        <li class="blue">
+            <a href="/image/upload/news/<?php echo $picture->getFilename()?>" rel="group1" class="fancybox" title="<?php echo $picture->getTitle()?>">
+            <img src="/image/upload/news/<?php echo $picture->getFilename()?>" alt="Pic" width="282" height="267"></a>
+        </li>
+        <?php }?>
+	</ul>
+	<!-- ENDS gallery -->
+
+	<!-- pagination -->
+	<?php echo $this->paginationControl($this->pictures, 'Sliding', 'pagination_gallery_control.phtml');?>
+	<!-- ENDS pagination -->
+
 </div>
 <!-- ENDS Posts -->
+
 
 <!-- sidebar -->
 <ul id="sidebar">

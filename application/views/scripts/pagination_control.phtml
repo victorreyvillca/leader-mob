@@ -1,0 +1,24 @@
+<?php if ($this->pageCount):?>
+<div class="comments-pagination">
+<!-- Previous page link -->
+<?php if (isset($this->previous)):?>
+	<a href="<?php echo $this->url(array('page' => $this->previous));?>">&laquo; Previous</a><?php else:?>
+	<span class="disabled">&laquo; Previous</span>
+<?php endif;?>
+
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page):?>
+<?php if ($page != $this->current):?>
+	<a href="<?php echo $this->url(array('page' => $page)); ?>"><?php echo $page;?></a><?php else:?>
+	<a class = "page-numbers current"><?php echo $page;?></a>
+<?php endif;?>
+<?php endforeach;?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)):?>
+	<a href="<?php echo $this->url(array('page' => $this->next));?>">Next &raquo;</a>
+<?php else:?>
+	<span class="disabled">Next &raquo;</span>
+<?php endif;?>
+</div>
+<?php endif;?>

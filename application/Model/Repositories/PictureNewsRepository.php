@@ -3,6 +3,7 @@
 namespace Model\Repositories;
 
 use Doctrine\ORM\EntityRepository;
+use Model\News;
 
 /**
  * PictureNewsRepository
@@ -139,5 +140,14 @@ class PictureNewsRepository extends EntityRepository {
      */
     public function findAll() {
     	return $this->findBy(array('state' => TRUE));
+    }
+
+    /**
+     * Returns picture models by news
+     * @param News $news
+     * @return Ambigous <multitype:, mixed>
+     */
+    public function findByNews(News $news) {
+        return $this->findBy(array('state' => TRUE, 'newsId' => $news->getId()));
     }
 }
