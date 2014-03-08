@@ -1,6 +1,7 @@
 <?php
 use Model\Pastor;
 use Model\Person;
+use Model\District;
 
 /**
  * Controller for DIST 3.
@@ -38,8 +39,13 @@ class Admin_PastorController extends Dis_Controller_Action {
     public function addAction() {
         $this->_helper->layout()->disableLayout();
 
+        $departmentRepo = $this->_entityManager->getRepository('Model\Department');
+        $districtRepo = $this->_entityManager->getRepository('Model\District');
+
         $form = new Admin_Form_Pastor();
         $form->getElement('sex')->setMultiOptions(Person::getGenderArray());
+        $form->getElement('department')->setMultiOptions($departmentRepo->findAllArray());
+        $form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
         $form->setAction($this->_helper->url('add-save'));
 
         $src = '/image/profile/female_or_male_default.jpg';
@@ -55,34 +61,27 @@ class Admin_PastorController extends Dis_Controller_Action {
      */
     public function addSaveAction() {
         if ($this->_request->isPost()) {
+            $departmentRepo = $this->_entityManager->getRepository('Model\Department');
+            $districtRepo = $this->_entityManager->getRepository('Model\District');
 
             $form = new Admin_Form_Pastor();
-            $form->getElement('sex')->setMultiOptions($this->getGenders());
+            $form->getElement('sex')->setMultiOptions(Person::getGenderArray());
+            $form->getElement('department')->setMultiOptions($departmentRepo->findAllArray());
+            $form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
 
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
-//                 $role = $this->_entityManager->find('Model\Role', (int)$formData['role']);
-
-//                 $account = new Account();
-//                 $account
-//                     ->setUsername($formData['username'])
-//                     ->setEmail($formData['email'])
-//                     ->setAccountType(1)
-//                     ->setPassword(md5($formData['password']))
-//                     ->setRole($role->getName())
-//                     ->setCreated(new DateTime('now'))
-//                     ->setState(TRUE)
-//                 ;
-
-//                 $this->_entityManager->persist($account);
-//                 $this->_entityManager->flush();
+                $department = $this->_entityManager->find('Model\Department', (int)$formData['department']);
+                $district = $this->_entityManager->find('Model\District', (int)$formData['district']);
 
                 $administrator = new Pastor();
                 $administrator
+                    ->setDepartment($department)
+                    ->setDistrict($district)
                     ->setDateOfBirth(new DateTime('now'))
-                    ->setIdentityCard((int)$formData['ci'])
                     ->setFirstName($formData['firstName'])
                     ->setLastName($formData['lastName'])
+                    ->setIdentityCard(10)
                     ->setPhone($formData['phone'])
                     ->setPhonemobil($formData['phonemobil'])
                     ->setSex((int)$formData['sex'])
@@ -111,12 +110,14 @@ class Admin_PastorController extends Dis_Controller_Action {
                 $this->_entityManager->persist($administrator);
                 $this->_entityManager->flush();
 
-                $this->_helper->flashMessenger(array('success' => _('Administrador registrado')));
+                $this->_helper->flashMessenger(array('success' => _('Pastor registrado')));
                 $this->_helper->redirector('index', 'Pastor', 'admin', array('type'=>'organization'));
             } else {
+                $this->_helper->flashMessenger(array('success' => _('Error Pastor NO registrado')));
                 $this->_helper->redirector('index', 'Pastor', 'admin', array('type'=>'organization'));
             }
         } else {
+            $this->_helper->flashMessenger(array('success' => _('Error Pastor NO registrado')));
             $this->_helper->redirector('index', 'Pastor', 'admin', array('type'=>'organization'));
         }
     }
@@ -128,44 +129,43 @@ class Admin_PastorController extends Dis_Controller_Action {
     public function editAction() {
         $this->_helper->layout()->disableLayout();
 
-        $roleRepo = $this->_entityManager->getRepository('Model\Role');
+        $departmentRepo = $this->_entityManager->getRepository('Model\Department');
+        $districtRepo = $this->_entityManager->getRepository('Model\District');
 
-        $form = new Admin_Form_Administrator();
-        $form->getElement('sex')->setMultiOptions($this->getGenders());
-        $form->getElement('role')->setMultiOptions($roleRepo->findAllArray());
+        $form = new Admin_Form_Pastor();
+        $form->getElement('sex')->setMultiOptions(Person::getGenderArray());
+        $form->getElement('department')->setMultiOptions($departmentRepo->findAllArray());
+        $form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
         $form->setAction($this->_helper->url('edit-save'));
 
         $id = $this->_getParam('id', 0);
-        $administrator = $this->_entityManager->find('Model\Administrator', $id);
-        if ($administrator != NULL) {
-            $form->getElement('id')->setValue($administrator->getId());
-            $form->getElement('firstName')->setValue($administrator->getFirstName());
-            $form->getElement('lastName')->setValue($administrator->getLastName());
-            $form->getElement('ci')->setValue($administrator->getIdentityCard());
-            $form->getElement('sex')->setValue($administrator->getSex());
-            $form->getElement('phonemobil')->setValue($administrator->getPhonemobil());
-            $form->getElement('phone')->setValue($administrator->getPhone());
-            $form->getElement('role')->setValue($administrator->getRole()->getId());
-
-            $account = $administrator->getAccount();
-            $form->getElement('username')->setValue($account->getUsername());
-            $form->getElement('email')->setValue($account->getEmail());
+        $pastor = $this->_entityManager->find('Model\Pastor', $id);
+        if ($pastor != NULL) {
+            $form->getElement('id')->setValue($pastor->getId());
+            $form->getElement('firstName')->setValue($pastor->getFirstName());
+            $form->getElement('lastName')->setValue($pastor->getLastName());
+            $form->getElement('ci')->setValue($pastor->getIdentityCard());
+            $form->getElement('sex')->setValue($pastor->getSex());
+            $form->getElement('phonemobil')->setValue($pastor->getPhonemobil());
+            $form->getElement('phone')->setValue($pastor->getPhone());
+            $form->getElement('department')->setValue($pastor->getDepartment()->getId());
+            $form->getElement('district')->setValue($pastor->getDistrict()->getId());
 
             $dataVaultMapper = new Dis_Model_DataVaultMapper();
-            $dataVault = $dataVaultMapper->find($administrator->getProfilePictureId());
+            $dataVault = $dataVaultMapper->find($pastor->getProfilePictureId());
             if ($dataVault != NULL && $dataVault->getBinary()) {
                 $src = $this->_helper->url('profile-picture', 'Administrator', 'admin', array('id' => $dataVault->getId(), 'timestamp' => time()));
             } else {
-                if ($administrator->getSex() == Model\Person::SEX_MALE) {
+                if ($pastor->getSex() == Model\Person::SEX_MALE) {
                     $src = '/image/profile/male_default.jpg';
-                } elseif ($administrator->getSex() == Model\Person::SEX_FEMALE) {
+                } elseif ($pastor->getSex() == Model\Person::SEX_FEMALE) {
                     $src = '/image/profile/female_default.jpg';
                 }
             }
             $form->setSource($src);
         } else {
             $this->stdResponse->success = FALSE;
-            $this->stdResponse->message = _("The requested record was not found.");
+            $this->stdResponse->message = _('The requested record was not found.');
             $this->_helper->json($this->stdResponse);
         }
 
@@ -178,27 +178,21 @@ class Admin_PastorController extends Dis_Controller_Action {
      */
     public function editSaveAction() {
         if ($this->_request->isPost()) {
-            $roleRepo = $this->_entityManager->getRepository('Model\Role');
+            $departmentRepo = $this->_entityManager->getRepository('Model\Department');
+            $districtRepo = $this->_entityManager->getRepository('Model\District');
 
-            $form = new Admin_Form_Administrator();
-            $form->getElement('password')->setRequired(FALSE);
-            $form->getElement('passwordConfirm')->setRequired(FALSE);
-            $form->getElement('sex')->setMultiOptions($this->getGenders());
-            $form->getElement('role')->setMultiOptions($roleRepo->findAllArray());
+            $form = new Admin_Form_Pastor();
+            $form->getElement('sex')->setMultiOptions(Person::getGenderArray());
+            $form->getElement('department')->setMultiOptions($departmentRepo->findAllArray());
+            $form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
 
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
                 $id = $this->_getParam('id', 0);
-                $administrator = $this->_entityManager->find('Model\Administrator', $id);
+                $administrator = $this->_entityManager->find('Model\Pastor', $id);
                 if ($administrator != NULL) {
-                    $role = $this->_entityManager->find('Model\Role', (int)$formData['role']);
-
-                    $account = $administrator->getAccount();
-                    $account
-                        ->setUsername($formData['username'])
-                        ->setPassword(md5($formData['password']))
-                        ->setEmail($formData['email'])
-                    ;
+                    $department = $this->_entityManager->find('Model\Department', (int)$formData['department']);
+                    $district = $this->_entityManager->find('Model\District', (int)$formData['district']);
 
                     $administrator
                         ->setIdentityCard((int)$formData['ci'])
@@ -207,11 +201,10 @@ class Admin_PastorController extends Dis_Controller_Action {
                         ->setPhone($formData['phone'])
                         ->setPhonemobil($formData['phonemobil'])
                         ->setSex((int)$formData['sex'])
-                        ->setAccount($account)
-                        ->setRole($role)
+                        ->setDepartment($department)
+                        ->setDistrict($district)
                         ->setDateOfBirth(new DateTime('now'))
-//                         ->setVisible(TRUE)
-                        ->setChanged(new \DateTime('now'))
+                        ->setChanged(new DateTime('now'))
                     ;
 
                     if ($_FILES['file']['error'] !== UPLOAD_ERR_NO_FILE) {
@@ -224,7 +217,6 @@ class Admin_PastorController extends Dis_Controller_Action {
                             $fileName = $_FILES['file']['name'];
 
                             $dataVaultMapper = new Dis_Model_DataVaultMapper();
-
                             if ($administrator->getProfilePictureId() != NULL) {// if it has image profile update
                                 $dataVault = $dataVaultMapper->find($administrator->getProfilePictureId(), FALSE);
                                 $dataVault->setFilename($fileName)->setMimeType($mimeType)->setBinary($binary);
@@ -242,18 +234,19 @@ class Admin_PastorController extends Dis_Controller_Action {
                     $this->_entityManager->persist($administrator);
                     $this->_entityManager->flush();
 
-                    $this->_helper->flashMessenger(array('success' => _('Administrador editado')));
-                    $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
+                    $this->_helper->flashMessenger(array('success' => _('Pastor registrador y editado')));
+                    $this->_helper->redirector('index', 'Pastor', 'admin', array('type'=>'organization'));
                 } else {
-                    $this->_helper->flashMessenger(array('error' => _("Administrator do not found")));
-                    $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
+                    $this->_helper->flashMessenger(array('error' => _('Pastor no encotrado')));
+                    $this->_helper->redirector('index', 'Pastor', 'admin', array('type'=>'organization'));
                 }
             } else {
-                $this->_helper->flashMessenger(array('error' => _('Error')));
-                $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
+                $this->_helper->flashMessenger(array('error' => _('Error al editar el Pastor')));
+                $this->_helper->redirector('index', 'Pastor', 'admin', array('type'=>'organization'));
             }
         } else {
-            $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
+            $this->_helper->flashMessenger(array('error' => _('Error al editar el Pastor')));
+            $this->_helper->redirector('index', 'Pastor', 'admin', array('type'=>'organization'));
         }
     }
 
@@ -268,14 +261,16 @@ class Admin_PastorController extends Dis_Controller_Action {
         if (!empty($itemIds) ) {
             $removeCount = 0;
             foreach ($itemIds as $id) {
-                $administrator = $this->_entityManager->find('Model\Administrator', $id);
-                $administrator->setState(FALSE);
+                $administrator = $this->_entityManager->find('Model\Pastor', $id);
+                $administrator
+                    ->setState(FALSE)
+                    ->setChanged(new \DateTime('now'));
 
                 $this->_entityManager->persist($administrator);
                 $this->_entityManager->flush();
                 $removeCount++;
             }
-            $message = sprintf(ngettext('%d administrador eliminado.', '%d administradores eliminados.', $removeCount), $removeCount);
+            $message = sprintf(ngettext('%d pastor eliminado.', '%d pastores eliminados.', $removeCount), $removeCount);
 
             $this->stdResponse->success = TRUE;
             $this->stdResponse->message = _($message);
@@ -335,7 +330,6 @@ class Admin_PastorController extends Dis_Controller_Action {
 		$limit = $this->_getParam('iDisplayLength', 10);
 		$page = ($start + $limit) / $limit;
 
-// 		$administratorRepo = $this->_entityManager->getRepository('Model\Pastor');
 		$pastorRepo = $this->_entityManager->getRepository('Model\Pastor');
 		$pastores = $pastorRepo->findByCriteria($filters, $limit, $start, $sortCol, $sortDirection);
 		$total = $pastorRepo->getTotalCount($filters);
@@ -351,9 +345,9 @@ class Admin_PastorController extends Dis_Controller_Action {
 			$row = array();
 			$row[] = $pastor->getId();
 			$row[] = $pastor->getName();
-			$row[] = '';
 			$row[] = $pastor->getPhonemobil();
 			$row[] = $pastor->getPhone();
+			$row[] = $pastor->getDistrict()->getName();
 			$row[] = '';
 			$row[] = $pastor->getIdentityCard();
 			$row[] = $pastor->getCreated()->format('d.m.Y');
@@ -371,13 +365,13 @@ class Admin_PastorController extends Dis_Controller_Action {
 	}
 
     /**
-     * Outputs an XHR response, loads the first names of the directives.
+     * Outputs an XHR response, loads the first names of the pastores.
      */
     public function autocompleteAction() {
         $filterParams['name'] = $this->_getParam('name_auto', NULL);
         $filters = $this->getFilters($filterParams);
 
-        $directiveRepo = $this->_entityManager->getRepository('Model\Administrator');
+        $directiveRepo = $this->_entityManager->getRepository('Model\Pastor');
         $directives = $directiveRepo->findByCriteria($filters);
 
         $data = array();
@@ -390,7 +384,6 @@ class Admin_PastorController extends Dis_Controller_Action {
     }
 
     /**
-     *
      * Returns an associative array where:
      * field: name of the table field
      * filter: value to match
@@ -410,13 +403,5 @@ class Admin_PastorController extends Dis_Controller_Action {
         }
 
         return $filters;
-    }
-
-    /**
-     * Returns the genders of a person
-     * @return array
-     */
-    private function getGenders() {
-        return array(Model\Person::SEX_MALE => _('Masculino'), Model\Person::SEX_FEMALE => _('Femenino'));
     }
 }

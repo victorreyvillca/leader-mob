@@ -41,7 +41,6 @@ class Admin_Form_Pastor extends Zend_Form {
 
 			->addElement('Text', 'ci', array(
 				'label' => _('Cedula de Identidad'),
-				'required' => TRUE,
 				'validators' => array(
 					array('Digits', false)
 				)
@@ -49,6 +48,16 @@ class Admin_Form_Pastor extends Zend_Form {
 
 			->addElement('Radio', 'sex', array(
 				'label' => _('Genero'),
+				'required' => TRUE
+			))
+
+			->addElement('Select', 'department', array(
+				'label' => _('Lugar de Nacimiento'),
+				'required' => TRUE
+			))
+
+			->addElement('Select', 'district', array(
+				'label' => _('Distrito'),
 				'required' => TRUE
 			))
 
@@ -64,7 +73,6 @@ class Admin_Form_Pastor extends Zend_Form {
 
 			->addElement('Text', 'phonemobil', array(
 				'label' => _('Nro de Celular'),
-				'required' => TRUE,
 				'filters' => array(
 					array('StringTrim')
 				),
