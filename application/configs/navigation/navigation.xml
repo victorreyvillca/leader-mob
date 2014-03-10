@@ -40,7 +40,7 @@
 
 		<news>
 			<id>guest.news</id>
-			<label>News</label>
+			<label>Noticias</label>
 			<controller>News</controller>
 			<action>index</action>
 		</news>

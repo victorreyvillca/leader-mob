@@ -122,7 +122,7 @@ com.em.Category.prototype = {
 			"aoColumns"		: getColumns(),
 			"sPaginationType" : "full_numbers",
 			"oLanguage": {
-				"sEmptyTable": "No Catagory found."
+				"sUrl": "/js/lib/jquery-datatables/languages/dataTables.spanish.txt"
 			},
 			"fnDrawCallback": function() {
 				clickToUpdate('#tblCategory a[id^=update-category-]');

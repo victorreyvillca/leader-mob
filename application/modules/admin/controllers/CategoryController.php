@@ -24,7 +24,7 @@ class Admin_CategoryController extends Dis_Controller_Action {
 	 */
 	public function indexAction() {
 		$formFilter = new Admin_Form_SearchFilter();
-		$formFilter->getElement('nameFilter')->setLabel(_('Name category'));
+		$formFilter->getElement('nameFilter')->setLabel(_('Nombre de categoria'));
 		$this->view->formFilter = $formFilter;
 	}
 

@@ -3,7 +3,7 @@
 	<navigation>
 		<home>
 			<id>home</id>
-			<label>Home</label>
+			<label>Inicio</label>
 			<module>admin</module>
 			<controller>Index</controller>
 			<action>index</action>
@@ -12,7 +12,7 @@
 			</params>
 			<pages>
 				<about>
-					<label>About</label>
+					<label>Acerca de</label>
 					<module>admin</module>
 					<controller>Index</controller>
 					<action>index</action>
@@ -25,7 +25,7 @@
 
 		<information>
 			<id>information</id>
-			<label>Information</label>
+			<label>Informacion</label>
 			<module>admin</module>
 			<controller>news</controller>
 			<action>index</action>
@@ -34,7 +34,7 @@
 			</params>
 			<pages>
 				<picture>
-					<label>Pictures</label>
+					<label>Imagenes Noticias</label>
 					<module>admin</module>
 					<controller>Picture</controller>
 					<action>index</action>
@@ -43,7 +43,7 @@
 					</params>
 				</picture>
 				<news>
-					<label>News</label>
+					<label>Noticias</label>
 					<module>admin</module>
 					<controller>news</controller>
 					<action>index</action>
@@ -52,7 +52,7 @@
 					</params>
 				</news>
 				<category>
-					<label>Category</label>
+					<label>Categorias</label>
 					<module>admin</module>
 					<controller>category</controller>
 					<action>index</action>
@@ -65,7 +65,7 @@
 
 		<organization>
 			<id>organization</id>
-			<label>Organization</label>
+			<label>Organizacion</label>
 			<module>admin</module>
 			<controller>Administrator</controller>
 			<action>index</action>
@@ -74,7 +74,7 @@
 			</params>
 			<pages>
 				<managerial>
-					<label>Managerial</label>
+					<label>Administrador</label>
 					<module>admin</module>
 					<controller>Administrator</controller>
 					<action>index</action>
@@ -83,7 +83,7 @@
 					</params>
 				</managerial>
 				<church>
-					<label>Role</label>
+					<label>Roles</label>
 					<module>admin</module>
 					<controller>Role</controller>
 					<action>index</action>
@@ -92,7 +92,7 @@
 					</params>
 				</church>
 				<country>
-					<label>Country</label>
+					<label>Paises</label>
 					<module>admin</module>
 					<controller>country</controller>
 					<action>index</action>
@@ -101,7 +101,7 @@
 					</params>
 				</country>
 				<department>
-					<label>Department</label>
+					<label>Departmentos</label>
 					<module>admin</module>
 					<controller>department</controller>
 					<action>index</action>
@@ -110,7 +110,7 @@
 					</params>
 				</department>
 				<province>
-					<label>Provincia</label>
+					<label>Provincias</label>
 					<module>admin</module>
 					<controller>provincia</controller>
 					<action>index</action>
@@ -123,7 +123,7 @@
 
 		<security>
 			<id>security</id>
-			<label>Security</label>
+			<label>Seguridad</label>
 			<module>admin</module>
 			<controller>usergroup</controller>
 			<action>read</action>
@@ -132,7 +132,7 @@
 			</params>
 			<pages>
 				<userGroup>
-					<label>User Groups</label>
+					<label>Grupo de Usuarios</label>
 					<module>admin</module>
 					<controller>usergroup</controller>
 					<action>read</action>
@@ -141,7 +141,7 @@
 					</params>
 				</userGroup>
 				<privilege>
-					<label>Privileges</label>
+					<label>Privilegios</label>
 					<module>admin</module>
 					<controller>privilege</controller>
 					<action>read</action>

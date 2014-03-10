@@ -1,15 +1,15 @@
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/Category.js","text/javascript");?>
 <div style="margin:20px;">
-	<?php echo $this->tableHeader('filterHeader', _("Filter Category"));?>
+	<?php echo $this->tableHeader('filterHeader', _('Filtrar Categorias'));?>
 	<div id="containerFormFilter">
 		<?php echo $this->formFilter; ?>
 	</div>
 	<br>
-	<?php echo $this->tableHeader('categoryHeader', _("Categories"));?>
+	<?php echo $this->tableHeader('categoryHeader', _('Categorias'));?>
 	<?php echo $this->tableList("tblCategory");?>
 	<div class="buttons right">
-		<?php echo $this->buttonRemove("delete-category", $this->translate('Remove'), $this->url(array('action'=>'remove')));?>
-		<?php echo $this->buttonAdd("create-category", $this->translate('Add'), $this->url(array('action'=>'add')));?>
+		<?php echo $this->buttonRemove("delete-category", $this->translate('Eliminar'), $this->url(array('action'=>'remove')));?>
+		<?php echo $this->buttonAdd("create-category", $this->translate('Adicionar'), $this->url(array('action'=>'add')));?>
 	</div>
 
 	<div id="dialog"><!-- Loads ajax dialog form --></div>
@@ -29,10 +29,10 @@
 
 	var headers = new Object();
 	headers.headerArray = new Array(
-		'<?php echo $this->translate('Name'); ?>',
-		'<?php echo $this->translate('Description'); ?>',
-		'<?php echo $this->translate('Created'); ?>',
-		'<?php echo $this->translate('Changed'); ?>');
+		'<?php echo $this->translate('Nombre'); ?>',
+		'<?php echo $this->translate('Descripcion'); ?>',
+		'<?php echo $this->translate('Fecha Creacion'); ?>',
+		'<?php echo $this->translate('Fecha Edicion'); ?>');
 	category.setHeaders(headers);
 	// configuration of widgets
 	category.configureTable('#tblCategory', true);

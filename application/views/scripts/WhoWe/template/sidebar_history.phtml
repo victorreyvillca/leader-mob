@@ -1,15 +1,13 @@
 <ul id="sidebar">
-	<!-- init sidebar -->
 	<li>
-		<h6><?php echo _('Who We?')?></h6>
+	<h6><?php echo _('Categorias')?></h6>
 		<ul>
-			<li class="cat-item"><a href="<?php echo $this->url(array('action'=>'history', 'controller'=>'Whowe'));?>" title="<?php echo _('Nuestra Histo')?>"><?php echo _('Our History')?></a></li>
-			<li class="cat-item"><a href="<?php echo $this->url(array('action'=>'visionmission', 'controller'=>'Whowe'));?>" title="<?php echo _('Vision Mission')?>"><?php echo _('Vision Mission')?></a></li>
-			<li class="cat-item"><a href="<?php echo $this->url(array('action'=>'logo', 'controller'=>'Whowe'));?>" title="<?php echo _('Our Logo')?>"><?php echo _('Our Logo')?></a></li>
-			<li class="cat-item"><a href="<?php echo $this->url(array('action'=>'belief', 'controller'=>'Whowe'));?>" title="<?php echo _('Our Belief')?>"><?php echo _('Our Belief')?></a></li>
+			<li class="cat-item"><a href="<?php echo $this->url(array('action'=>'index', 'controller'=>'Index'))?>" title="<?php echo _('Inicio')?>"><?php echo _('Inicio')?></a></li>
+			<li class="cat-item"><a href="<?php echo $this->url(array('action'=>'history', 'controller'=>'Whowe'))?>" title="<?php echo _('¿Quienes Somos?')?>"><?php echo _('¿Quienes Somos?')?></a></li>
+			<li class="cat-item"><a href="<?php echo $this->url(array('action'=>'index', 'controller'=>'News'))?>" title="<?php echo _('Noticias')?>"><?php echo _('Noticias')?></a></li>
+			<li class="cat-item"><a href="<?php echo $this->url(array('action'=>'index', 'controller'=>'Registration'))?>" title="<?php echo _('Registro')?>"><?php echo _('Registro')?></a></li>
 		</ul>
 	</li>
-	<!-- ENDS init sidebar -->
 </ul>
 
 <div class="moduletable">

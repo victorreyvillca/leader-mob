@@ -15,7 +15,7 @@ class Admin_Form_Category extends Zend_Form {
 			->setAttrib('id', 'formId')
 
 			->addElement('Text', 'name', array(
-				'label' => _('Nombre del Cargo'),
+				'label' => _('Nombre de Categoria'),
 				'required'   => TRUE,
 				'filters' => array(
 					array('StringTrim')
@@ -23,7 +23,7 @@ class Admin_Form_Category extends Zend_Form {
 			))
 
 			->addElement('TextArea', 'description', array(
-				'label' => _('Description'),
+				'label' => _('Descripcion'),
 				'cols' =>'40',
 				'rows' =>'4',
 				'filters' => array(
