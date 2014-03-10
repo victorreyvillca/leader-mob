@@ -24,7 +24,8 @@ class Admin_RoleController extends Dis_Controller_Action {
 	 */
 	public function indexAction() {
 		$formFilter = new Admin_Form_SearchFilter();
-		$formFilter->getElement('nameFilter')->setLabel(_("Name role"));
+		$formFilter->getElement('nameFilter')->setLabel(_('Nombre del Rol'));
+
 		$this->view->formFilter = $formFilter;
 	}
 
@@ -36,6 +37,7 @@ class Admin_RoleController extends Dis_Controller_Action {
 		$this->_helper->layout()->disableLayout();
 
 		$form = new Admin_Form_Category();
+		$form->getElement('name')->setLabel(_('Nombre del Rol'));
 		$this->view->form = $form;
 	}
 
@@ -64,7 +66,7 @@ class Admin_RoleController extends Dis_Controller_Action {
 
                 $this->stdResponse = new stdClass();
 				$this->stdResponse->success = TRUE;
-				$this->stdResponse->message = _('Role saved');
+				$this->stdResponse->message = _('Rol registrado');
 // 			} else {
 // 				$this->stdResponse->success = FALSE;
 // 				$this->stdResponse->name_duplicate = TRUE;
@@ -74,7 +76,7 @@ class Admin_RoleController extends Dis_Controller_Action {
             $this->stdResponse = new stdClass();
 			$this->stdResponse->success = FALSE;
 			$this->stdResponse->messageArray = $form->getMessages();
-			$this->stdResponse->message = _('The form contains error and is not saved');
+			$this->stdResponse->message = _('El formulario tiene errores y no se ha registrado');
 		}
 		// sends response to client
 		$this->_helper->json($this->stdResponse);
@@ -87,6 +89,7 @@ class Admin_RoleController extends Dis_Controller_Action {
 	public function editAction() {
 		$this->_helper->layout()->disableLayout();
 		$form = new Admin_Form_Category();
+		$form->getElement('name')->setLabel(_('Nombre del Rol'));
 
 		$id = $this->_getParam('id', 0);
 		$role = $this->_entityManager->find('Model\Role', $id);
@@ -112,6 +115,7 @@ class Admin_RoleController extends Dis_Controller_Action {
 		$this->_helper->viewRenderer->setNoRender(TRUE);
 
 		$form = new Admin_Form_Category();
+		$form->getElement('name')->setLabel(_('Nombre del Rol'));
 
 		$formData = $this->getRequest()->getPost();
 		if ($form->isValid($formData)) {

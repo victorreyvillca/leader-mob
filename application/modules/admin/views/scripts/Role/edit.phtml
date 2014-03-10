@@ -1,13 +1,13 @@
-<div id="dialog-form" title="<?php echo $this->translate('Edit Role'); ?>" class="header" style="display: none;">
+<div id="dialog-form" title="<?php echo $this->translate('Editar Rol'); ?>" class="header" style="display: none;">
 	<?php echo $this->form; ?>
 </div>
 
 <script type="text/javascript">
 	com.em.Category.prototype.dialogButtons = {
-		'<?php echo $this->translate('Cancel'); ?>': function() {
+		'<?php echo $this->translate('Cancelar'); ?>': function() {
 			$(this).dialog("close");
 		},
-		'<?php echo $this->translate('Edit'); ?>': function() {
+		'<?php echo $this->translate('Editar'); ?>': function() {
 			$.ajax({
 				url: '<?php echo $this->url(array('module'=>'admin', 'controller'=>'Role', 'action'=>'edit-save')); ?>',
 				type: "POST",
@@ -16,7 +16,7 @@
 				beforeSend: function(XMLHttpRequest) {
 					validator.form();
 					if (!validator.valid()) {
-						com.em.Category.prototype.flashError('<?php echo _("The form contains error and is not updated");?>', {header: com.em.Alert.ERROR});
+						com.em.Category.prototype.flashError('<?php echo _('El Formulario tiene errores y no se ha guardado');?>', {header: com.em.Alert.ERROR});
 						return false;
 					}
 
