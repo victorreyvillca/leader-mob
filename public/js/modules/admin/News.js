@@ -133,7 +133,7 @@ com.em.News.prototype = {
 			"aoColumns"     : getColumns(),
 		    "sPaginationType" : "full_numbers",
 			"oLanguage": {
-				"sEmptyTable": "No Catagory found."
+				"sUrl": "/js/lib/jquery-datatables/languages/dataTables.spanish.txt"
 			},
 			"fnDrawCallback": function() {
 				clickToUpdate('#tblNews a[id^=update-news-]');
@@ -144,7 +144,7 @@ com.em.News.prototype = {
 				var position = getPosition(aoData, 'filter_name');
 				
 				if (position == -1)
-					aoData.push({"name": "filter_name", "value": $('#nameFilter').attr('value')});				
+					aoData.push({"name": "filter_name", "value": $('#nameFilter').attr('value')});
 				else
 					aoData[position].value=$('#nameFilter').attr('value');
 				
@@ -152,12 +152,12 @@ com.em.News.prototype = {
 				position = getPosition(aoData,'filter_category');
 				
 				if(position == -1)
-					aoData.push({"name": "filter_category", "value": $('#countryFilter').attr('value')});				
+					aoData.push({"name": "filter_category", "value": $('#countryFilter').attr('value')});
 				else
 					aoData[position].value = $('#countryFilter').attr('value');
 				
 	            $.getJSON(sSource, aoData, function (json) {
-	                fnCallback(json);       
+	            	fnCallback(json);
 	            } );
 			}
 		});

@@ -3,16 +3,16 @@
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/News.js","text/javascript");?>
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/HelpTextUpdate.js","text/javascript"); ?>
 <div style="margin:20px;">
-	<?php echo $this->tableHeader('filterHeader', _('Filter News'));?>
+	<?php echo $this->tableHeader('filterHeader', _('Filtrar Noticias'));?>
 	<div id="containerFormFilter">
 		<?php echo $this->formFilter; ?>
 	</div>
 	<br>
-	<?php echo $this->tableHeader('newsHeader', _('News'));?>
+	<?php echo $this->tableHeader('newsHeader', _('Noticias'));?>
 	<?php echo $this->tableList("tblNews");?>
 	<div class="buttons right">
-		<?php echo $this->buttonRemove('delete-news', $this->translate('Remove'), $this->url(array('action'=>'remove')));?>
-		<?php echo $this->buttonAdd('create-news2', $this->translate('Add'), $this->url(array('action'=>'add')));?>
+		<?php echo $this->buttonRemove('delete-news', $this->translate('Eliminar'), $this->url(array('action'=>'remove')));?>
+		<?php echo $this->buttonAdd('create-news2', $this->translate('Adicionar'), $this->url(array('action'=>'add')));?>
 	</div>
 
 	<div id="dialog"><!-- Loads ajax dialog form --></div>
@@ -31,14 +31,14 @@
 
 	var headers = new Object();
 	headers.headerArray = new Array(
-		'<?php echo $this->translate('Title'); ?>',
-		'<?php echo $this->translate('Summary'); ?>',
-		'<?php echo $this->translate('Category'); ?>',
-		'<?php echo $this->translate('Download'); ?>',
-		'<?php echo $this->translate('News date'); ?>',
-		'<?php echo $this->translate('Fount'); ?>',
-		'<?php echo $this->translate('Created'); ?>',
-		'<?php echo $this->translate('Changed'); ?>');
+		'<?php echo $this->translate('Titulo'); ?>',
+		'<?php echo $this->translate('Resumen'); ?>',
+		'<?php echo $this->translate('Categoria'); ?>',
+		'<?php echo $this->translate('Nombre Imagen'); ?>',
+		'<?php echo $this->translate('Fecha de Noticia'); ?>',
+		'<?php echo $this->translate('Fuente'); ?>',
+		'<?php echo $this->translate('Fecha Creacion'); ?>',
+		'<?php echo $this->translate('Fecha Edicion'); ?>');
 	news.setHeaders(headers);
 	// configuration of widgets
 	news.configureTable('#tblNews', true);

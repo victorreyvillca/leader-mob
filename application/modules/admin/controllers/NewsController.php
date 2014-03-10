@@ -27,8 +27,8 @@ class Admin_NewsController extends Dis_Controller_Action {
 
 		$categoryRepo = $this->_entityManager->getRepository('Model\Category');
 
-		$formFilter->getElement('nameFilter')->setLabel(_('Title news'));
-		$formFilter->getElement('countryFilter')->setLabel(_('Category'));
+		$formFilter->getElement('nameFilter')->setLabel(_('Titulo de la noticia'));
+		$formFilter->getElement('countryFilter')->setLabel(_('Categoria'));
 		$formFilter->getElement('countryFilter')->setMultiOptions($categoryRepo->findAllArray());
         $this->view->formFilter = $formFilter;
 	}
@@ -102,7 +102,7 @@ class Admin_NewsController extends Dis_Controller_Action {
 
 		$categoryRepo = $this->_entityManager->getRepository('Model\Category');
 		$form->getElement('categoryId')->setMultiOptions($categoryRepo->findAllArray());
-		$form->getElement('update')->setLabel(_('Update'));
+		$form->getElement('update')->setLabel(_('Editar Noticia'));
 
 		if ($this->_request->isPost()) {
 			$formData = $this->_request->getPost();
