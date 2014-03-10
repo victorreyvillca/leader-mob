@@ -310,12 +310,12 @@ com.em.Directive.prototype = {
 			var items = $('#tblDirective :checked');
 			var itemsChecked = items.serialize();
 			if (itemsChecked == '') {
-				alert.flashInfo('There is no item selected', {header: com.em.Alert.NOTICE});
+				alert.flashInfo('No hay registro seleccionado', {header: com.em.Alert.NOTICE});
 				return;
 			}
 			var action = $(this).attr('href');
 
-			jConfirm('Are you sure to delete?', 'Delete Directive', function(r) {
+			jConfirm('Estas seguro de Eliminar ?', 'Eliminar Administrador', function(r) {
 				if (r) {
 					$.ajax({
 						dataType: 'json', 

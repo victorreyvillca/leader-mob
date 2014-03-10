@@ -27,7 +27,7 @@
 			<id>information</id>
 			<label>Informacion</label>
 			<module>admin</module>
-			<controller>news</controller>
+			<controller>Picture</controller>
 			<action>index</action>
 			<params>
 				<type>information</type>

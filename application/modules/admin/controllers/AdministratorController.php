@@ -26,7 +26,7 @@ class Admin_AdministratorController extends Dis_Controller_Action {
      */
     public function indexAction() {
         $formFilter = new Admin_Form_SearchFilter();
-        $formFilter->getElement('nameFilter')->setLabel(_("Firstname Administrator"));
+        $formFilter->getElement('nameFilter')->setLabel(_('Nombre del Administrador'));
         $this->view->formFilter = $formFilter;
     }
 
@@ -85,7 +85,7 @@ class Admin_AdministratorController extends Dis_Controller_Action {
                 $administrator = new Administrator();
                 $administrator
                     ->setDateOfBirth(new DateTime('now'))
-                    ->setIdentityCard(3)
+                    ->setIdentityCard((int)$formData['ci'])
                     ->setFirstName($formData['firstName'])
                     ->setLastName($formData['lastName'])
                     ->setPhone($formData['phone'])
@@ -119,7 +119,7 @@ class Admin_AdministratorController extends Dis_Controller_Action {
                 $this->_entityManager->persist($administrator);
                 $this->_entityManager->flush();
 
-                $this->_helper->flashMessenger(array('success' => _("Administrator created")));
+                $this->_helper->flashMessenger(array('success' => _('Administrador registrado')));
                 $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
             } else {
                 $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
@@ -208,7 +208,7 @@ class Admin_AdministratorController extends Dis_Controller_Action {
                     ;
 
                     $administrator
-                        ->setIdentityCard(3)
+                        ->setIdentityCard((int)$formData['ci'])
                         ->setFirstName($formData['firstName'])
                         ->setLastName($formData['lastName'])
                         ->setPhone($formData['phone'])
@@ -249,7 +249,7 @@ class Admin_AdministratorController extends Dis_Controller_Action {
                     $this->_entityManager->persist($administrator);
                     $this->_entityManager->flush();
 
-                    $this->_helper->flashMessenger(array('success' => _('Administrator updated')));
+                    $this->_helper->flashMessenger(array('success' => _('Administrador editado')));
                     $this->_helper->redirector('index', 'Administrator', 'admin', array('type'=>'pathfinder'));
                 } else {
                     $this->_helper->flashMessenger(array('error' => _("Administrator do not found")));
@@ -282,13 +282,13 @@ class Admin_AdministratorController extends Dis_Controller_Action {
                 $this->_entityManager->flush();
                 $removeCount++;
             }
-            $message = sprintf(ngettext('%d administrator removed.', '%d administrators removed.', $removeCount), $removeCount);
+            $message = sprintf(ngettext('%d administrador eliminado.', '%d administradores eliminados.', $removeCount), $removeCount);
 
             $this->stdResponse->success = TRUE;
             $this->stdResponse->message = _($message);
         } else {
             $this->stdResponse->success = FALSE;
-            $this->stdResponse->message = _("Data submitted is empty.");
+            $this->stdResponse->message = _('Los datos estan vacios.');
         }
         // sends response to client
         $this->_helper->json($this->stdResponse);
@@ -423,6 +423,6 @@ class Admin_AdministratorController extends Dis_Controller_Action {
      * @return array
      */
     private function getGenders() {
-        return array(Model\Person::SEX_MALE => _("Male"), Model\Person::SEX_FEMALE => _("Female"));
+        return array(Model\Person::SEX_MALE => _('Masculino'), Model\Person::SEX_FEMALE => _('Femenino'));
     }
 }

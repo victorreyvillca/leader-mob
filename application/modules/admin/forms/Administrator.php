@@ -24,7 +24,7 @@ class Admin_Form_Administrator extends Zend_Form {
 			->addElement('Hidden', 'id')
 
 			->addElement('Text', 'firstName', array(
-				'label' => _('Firstname'),
+				'label' => _('Nombres'),
 				'required' => TRUE,
 				'filters' => array(
 					array('StringTrim')
@@ -32,20 +32,28 @@ class Admin_Form_Administrator extends Zend_Form {
 			))
 
 			->addElement('Text', 'lastName', array(
-				'label' => _('Lastname'),
+				'label' => _('Apellidos'),
 				'required' => TRUE,
 				'filters' => array(
 					array('StringTrim')
 				)
 			))
 
+			->addElement('Text', 'ci', array(
+				'label' => _('Cedula de Identidad'),
+				'required' => TRUE,
+				'validators' => array(
+					array('Digits', false)
+				)
+			))
+
 			->addElement('Radio', 'sex', array(
-				'label' => _('Sex'),
+				'label' => _('Genero'),
 				'required' => TRUE
 			))
 
 			->addElement('Text', 'username', array(
-				'label' => _('Username'),
+				'label' => _('Nombre de Usuario'),
 				'required' => TRUE,
 				'filters' => array(
 					array('StringTrim')
@@ -53,7 +61,7 @@ class Admin_Form_Administrator extends Zend_Form {
 			))
 
 			->addElement('Password', 'password', array(
-				'label' => _('Password'),
+				'label' => _('Contraseña'),
 				'required' => TRUE,
 				'filters' => array(
 					array('StringTrim')
@@ -61,15 +69,15 @@ class Admin_Form_Administrator extends Zend_Form {
 			))
 
 			->addElement('Password', 'passwordConfirm', array(
-                'label' => _('Confirm Password'),
+                'label' => _('Confirmar Contraseña'),
 				'required' => TRUE,
 				'filters' => array(
-						array('StringTrim')
+					array('StringTrim')
 				)
 			))
 
 			->addElement('Text', 'email', array(
-				'label' => _('Email'),
+				'label' => _('Correo Electronico'),
 				'filters' => array(
 					array('StringTrim')
 				),
@@ -79,7 +87,7 @@ class Admin_Form_Administrator extends Zend_Form {
 			))
 
 			->addElement('Text', 'phonemobil', array(
-				'label' => _('Phone mobil'),
+				'label' => _('Nro de Celular'),
 				'required' => TRUE,
 				'filters' => array(
 					array('StringTrim')
@@ -90,14 +98,14 @@ class Admin_Form_Administrator extends Zend_Form {
 			))
 
 			->addElement('Text', 'phone', array(
-				'label' => _('Phone'),
+				'label' => _('Nro de Telefono Fijo'),
 				'filters' => array(
 					array('StringTrim')
 				)
 			))
 
 			->addElement('Select', 'role', array(
-				'label' => _('Role'),
+				'label' => _('Rol'),
 				'required' => TRUE
 			))
 		;
