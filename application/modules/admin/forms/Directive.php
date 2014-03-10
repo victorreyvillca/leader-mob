@@ -15,6 +15,16 @@ class Admin_Form_Directive extends Zend_Form {
 	 */
 	private $source;
 
+	/**
+	 * @var bool
+	 */
+	private $genderMaleChecked;
+
+	/**
+	 * @var bool
+	 */
+	private $genderFemaleChecked;
+
 	public function init() {
 		$this
 			->setAttrib('id', 'formId')
@@ -267,4 +277,43 @@ class Admin_Form_Directive extends Zend_Form {
 		$this->source = $source;
 		return $this;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getGenderMaleChecked() {
+	    if ($this->genderMaleChecked) {
+	    	return 'checked';
+	    }
+		return NULL;
+	}
+
+	/**
+	 * @param boolean $genderMaleChecked
+	 * @return Zend_Form
+	 */
+	public function setGenderMaleChecked($genderMaleChecked) {
+		$this->genderMaleChecked = $genderMaleChecked;
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getGenderFemaleChecked() {
+        if ($this->genderFemaleChecked) {
+            return 'checked';
+        }
+		return NULL;
+	}
+
+	/**
+	 * @param boolean $genderFemaleChecked
+	 * @return Zend_Form
+	 */
+	public function setGenderFemaleChecked($genderFemaleChecked) {
+		$this->genderFemaleChecked = $genderFemaleChecked;
+		return $this;
+	}
+
 }

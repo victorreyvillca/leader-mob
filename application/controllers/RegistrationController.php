@@ -44,7 +44,6 @@ class RegistrationController extends Dis_Controller_Action {
 		$missionRepo = $this->_entityManager->getRepository('Model\Mission');
 		$regionRepo = $this->_entityManager->getRepository('Model\Region');
 		$districtRepo = $this->_entityManager->getRepository('Model\District');
-		$districtRepo = $this->_entityManager->getRepository('Model\District');
 		$churchRepo = $this->_entityManager->getRepository('Model\Church');
 		$clubRepo = $this->_entityManager->getRepository('Model\Club');
 		$classConquerorRepo = $this->_entityManager->getRepository('Model\ClassConqueror');
@@ -55,7 +54,6 @@ class RegistrationController extends Dis_Controller_Action {
 		$form->getElement('position')->setMultiOptions($positionRepo->findAllArray(TRUE));
 		$form->getElement('mission')->setMultiOptions($missionRepo->findAllArray());
 		$form->getElement('region')->setMultiOptions($regionRepo->findAllArray());
-		$form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
 		$form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
 		$form->getElement('church')->setMultiOptions($churchRepo->findAllArray());
 		$form->getElement('club')->setMultiOptions($clubRepo->findAllArray());
@@ -229,7 +227,6 @@ class RegistrationController extends Dis_Controller_Action {
         $missionRepo = $this->_entityManager->getRepository('Model\Mission');
         $regionRepo = $this->_entityManager->getRepository('Model\Region');
         $districtRepo = $this->_entityManager->getRepository('Model\District');
-        $districtRepo = $this->_entityManager->getRepository('Model\District');
         $churchRepo = $this->_entityManager->getRepository('Model\Church');
         $clubRepo = $this->_entityManager->getRepository('Model\Club');
         $classConquerorRepo = $this->_entityManager->getRepository('Model\ClassConqueror');
@@ -240,7 +237,6 @@ class RegistrationController extends Dis_Controller_Action {
         $form->getElement('position')->setMultiOptions($positionRepo->findAllArray());
         $form->getElement('mission')->setMultiOptions($missionRepo->findAllArray());
         $form->getElement('region')->setMultiOptions($regionRepo->findAllArray());
-        $form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
         $form->getElement('district')->setMultiOptions($districtRepo->findAllArray());
         $form->getElement('church')->setMultiOptions($churchRepo->findAllArray());
         $form->getElement('club')->setMultiOptions($clubRepo->findAllArray());
@@ -285,7 +281,7 @@ class RegistrationController extends Dis_Controller_Action {
     	    		    ->setYear($formData['year'])
     	    		    ->setIsActivo(TRUE)
     	    		    ->setChanged(new DateTime('now'))
-    	    		    ->setSex(1)
+                        ->setSex((int)$formData['sex'])
     	    		    ->setPhonemobil($formData['phonemobil'])
     	    		    ->setPhone($formData['phone'])
     	    		    ->setDateOfBirth(new DateTime($formData['dateOfBirth']))
@@ -319,10 +315,18 @@ class RegistrationController extends Dis_Controller_Action {
 	    		    	}
 	    		    }
 
-	    		    $this->_entityManager->persist($directive);
-	    		    $this->_entityManager->flush();
+	    		    //saves the relationship many to many
+                    $classConquerorIds = $formData['classConqueror'];
+                    if (!empty($classConquerorIds)) {
+                        $directive->removeAllClassConqueror();
+                        foreach ($classConquerorIds as $classConquerorId) {
+                            $classConqueror = $this->_entityManager->find('Model\ClassConqueror', $classConquerorId);
+                            $directive->addClassConqueror($classConqueror);
+                        }
+                    }
 
-
+                    $this->_entityManager->persist($directive);
+                    $this->_entityManager->flush();
 
 	    			$this->_helper->flashMessenger(array('success' => _('Directivo Editado correctamente')));
                     $this->_helper->redirector('index', 'Registration', array('type'=>'information'));
@@ -370,6 +374,12 @@ class RegistrationController extends Dis_Controller_Action {
                 $form->getElement('allergies')->setValue($directive->getAllergies());
                 $form->getElement('disease')->setValue($directive->getDisease());
                 $form->getElement('treatment')->setValue($directive->getTreatment());
+
+                if ($directive->getSex() == Person::SEX_MALE) {
+                    $form->setGenderMaleChecked(TRUE);
+                } elseif ($directive->getSex() == Person::SEX_FEMALE) {
+                    $form->setGenderFemaleChecked(TRUE);
+                }
 
                 $classConquerorIds = array();
                 $classConquerors = $directive->getClassConquerors();
