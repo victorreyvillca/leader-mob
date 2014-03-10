@@ -25,7 +25,7 @@ class Admin_PictureController extends Dis_Controller_Action {
 	 */
 	public function indexAction() {
 		$formFilter = new Admin_Form_SearchFilter();
-		$formFilter->getElement('nameFilter')->setLabel(_('Title'));
+		$formFilter->getElement('nameFilter')->setLabel(_('Titulo de la Imagen'));
 		$this->view->formFilter = $formFilter;
 	}
 

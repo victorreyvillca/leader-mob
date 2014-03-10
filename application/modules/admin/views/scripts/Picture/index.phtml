@@ -1,16 +1,16 @@
 <?php $this->headScript()->appendFile($this->baseUrl() . "/js/modules/admin/Picture.js","text/javascript");?>
 
 <div style="margin:20px;">
-	<?php echo $this->tableHeader('filterHeader', _("Filter Picture"));?>
+	<?php echo $this->tableHeader('filterHeader', _('Filtrar Imagenes de Noticias'))?>
 	<div id="containerFormFilter">
-		<?php echo $this->formFilter; ?>
+		<?php echo $this->formFilter?>
 	</div>
 	<br>
-	<?php echo $this->tableHeader('pictureHeader', _("Pictures"));?>
+	<?php echo $this->tableHeader('pictureHeader', _('Imagenes de Noticas'));?>
 	<?php echo $this->tableList("tblPicture");?>
 	<div class="buttons right">
-		<?php echo $this->buttonRemove("delete-picture", $this->translate('Remove'), $this->url(array('action'=>'remove')));?>
-		<?php echo $this->buttonAdd("create-picture", $this->translate('Add'), $this->url(array('action'=>'add')));?>
+		<?php echo $this->buttonRemove("delete-picture", $this->translate('Eliminar'), $this->url(array('action'=>'remove')));?>
+		<?php echo $this->buttonAdd("create-picture", $this->translate('Adicionar'), $this->url(array('action'=>'add')));?>
 	</div>
 
 	<div id="dialog"><!-- Loads ajax dialog form --></div>
@@ -31,12 +31,12 @@
 
 	var headers = new Object();
 	headers.headerArray = new Array(
-		'<?php echo $this->translate('Title'); ?>',
-		'<?php echo $this->translate('Description'); ?>',
-		'<?php echo $this->translate('Download'); ?>',
-		'<?php echo $this->translate('News'); ?>',
-		'<?php echo $this->translate('Created'); ?>',
-		'<?php echo $this->translate('Changed'); ?>');
+		'<?php echo $this->translate('Titulo'); ?>',
+		'<?php echo $this->translate('Descripcion'); ?>',
+		'<?php echo $this->translate('Descargar'); ?>',
+		'<?php echo $this->translate('Noticia'); ?>',
+		'<?php echo $this->translate('Fecha Creacion'); ?>',
+		'<?php echo $this->translate('Fecha Edicion'); ?>');
 	picture.setHeaders(headers);
 	// configuration of widgets
 	picture.configureTable('#tblPicture', true);

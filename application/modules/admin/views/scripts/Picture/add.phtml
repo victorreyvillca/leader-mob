@@ -1,14 +1,14 @@
-<div id="dialog-form" title="<?php echo $this->translate('Add Picture'); ?>" class="header" style="display: none;">
+<div id="dialog-form" title="<?php echo $this->translate('Adicionar Imagen de Noticia'); ?>" class="header" style="display: none;">
 	<?php echo $this->form; ?>
 </div>
 
 <script type="text/javascript">
 	com.em.Picture.prototype.dialogButtons = {
-		'<?php echo $this->translate('Save'); ?>': function() {
+		'<?php echo $this->translate('Guardar'); ?>': function() {
 			$('#formId').submit();
 		},
 
-		'<?php echo $this->translate('Cancel'); ?>': function() {
+		'<?php echo $this->translate('Cancelar'); ?>': function() {
 			$(this).dialog("close");
 		}
 	};

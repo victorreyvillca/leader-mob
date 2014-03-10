@@ -146,7 +146,7 @@ com.em.Picture.prototype = {
 			"aoColumns"     : getColumns(),
 		    "sPaginationType" : "full_numbers",
 			"oLanguage": {
-				"sEmptyTable": "No Picture found."
+				"sUrl": "/js/lib/jquery-datatables/languages/dataTables.spanish.txt"
 			},
 			"fnDrawCallback": function() {
 				clickToUpdate('#tblPicture a[id^=update-picture-]');

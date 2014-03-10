@@ -18,24 +18,24 @@ class Admin_Form_Picture extends Zend_Form {
 
         $hidden = new Zend_Form_Element_Hidden('id');
 		$title = new Zend_Form_Element_Text('title');
-		$title->setLabel(_('Title'))
+		$title->setLabel(_('Titulo'))
 			->setRequired(TRUE)
 			->addFilter('StringTrim');
 
 		$description = new Zend_Form_Element_Textarea('description');
-		$description->setLabel(_('Description'))
+		$description->setLabel(_('Descripcion'))
 				->setAttrib("cols", 40)
 				->setAttrib("rows", 4)
 				->addFilter('StringTrim');
 
 		$file = new Zend_Form_Element_File('file');
-		$file->setLabel(_('File'))
+		$file->setLabel(_('Subir Imagen'))
 				->setRequired(TRUE)
 				->setDestination(APPLICATION_PATH.'/../public/image/upload/news')
 				->addValidator('Extension', FALSE, 'jpg, png, gif');
 
 		$newsSelect = new Zend_Form_Element_Select('news');
-		$newsSelect->setRequired(TRUE)->setLabel(_('News'));
+		$newsSelect->setRequired(TRUE)->setLabel(_('Seleccione la Noticia'));
 
 		$this->addElements(array($hidden, $title, $description, $file, $newsSelect));
 	}
