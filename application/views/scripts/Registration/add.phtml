@@ -52,6 +52,10 @@ $(document).ready(function() {
 	var directive = new com.em.Directive();
 	directive.setValidatorForm('#formId', true);
 
+
+	$('#saveButton').click(function() {
+		$('#formId').submit();
+	    });
 });
 $("#classConqueror").multiselect().multiselectfilter();
 $('#dateOfBirth').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, yearRange: '-100:+0'});

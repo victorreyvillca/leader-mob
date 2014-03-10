@@ -68,13 +68,6 @@ class Admin_Form_Directive extends Zend_Form {
                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
 			))
 
-// 			->addElement('Radio', 'sex', array(
-// 				'label' => _('Sexo'),
-//                 'required' => TRUE
-//                 'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese sus Edad'), 'autofocus' => ''),
-//                 'decorators' => array(array('ViewHelper'), array('label'), array('HtmlTag', array('tag' => 'div')))
-// 			))
-
 			->addElement('Text', 'dateOfBirth', array(
 				'label' => _('Fecha de Nacimiento'),
                 'attribs' => array('class' => 'form-poshytip', 'title' => _('Ingrese sus Fecha de Nacimiento'), 'required' => '', 'autofocus' => ''),
