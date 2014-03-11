@@ -48,13 +48,13 @@ class ClubRepository extends EntityRepository {
     			$sort = 'name';
     			break;
 
-            case 2:
-                $sort = 'areaId';
-                break;
+    		case 2:
+    			$sort = 'areaId';
+    			break;
 
-            case 3:
-                $sort = 'churchId';
-                break;
+    		case 3:
+    			$sort = 'churchId';
+    			break;
 
     		case 4:
     			$sort = 'description';
@@ -125,13 +125,13 @@ class ClubRepository extends EntityRepository {
      * @return array
      */
     public function findByArray($criteria = array()) {
-        $items = $this->findBy($criteria);
+    	$items = $this->findBy($criteria);
 
-        $itemArray = array();
-        foreach ($items as $item) {
-            $itemArray[$item->getId()] = $item->getName();
-        }
+    	$itemArray = array();
+    	foreach ($items as $item) {
+    		$itemArray[$item->getId()] = $item->getName();
+    	}
 
-        return $itemArray;
+    	return $itemArray;
     }
 }

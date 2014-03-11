@@ -64,10 +64,10 @@ class Club extends \Model\Club implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'name', 'description', 'areaId', 'area', 'churchId', 'church', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+            return array('__isInitialized__', 'name', 'description', 'street', 'neighborhood', 'zone', 'email', 'phone', 'phonemobil', 'dateInaguration', 'countMember', 'countUnityMen', 'countUnityWomen', 'countMemberDirective', 'flags', 'mastils', 'handbooks', 'banners', 'tents', 'bookMembers', 'observation', 'dateRegistre', 'areaId', 'area', 'churchId', 'church', 'pastorId', 'pastor', 'departmentId', 'department', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
         }
 
-        return array('__isInitialized__', 'name', 'description', 'areaId', 'area', 'churchId', 'church', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
+        return array('__isInitialized__', 'name', 'description', 'street', 'neighborhood', 'zone', 'email', 'phone', 'phonemobil', 'dateInaguration', 'countMember', 'countUnityMen', 'countUnityWomen', 'countMemberDirective', 'flags', 'mastils', 'handbooks', 'banners', 'tents', 'bookMembers', 'observation', 'dateRegistre', 'areaId', 'area', 'churchId', 'church', 'pastorId', 'pastor', 'departmentId', 'department', 'id', 'created', 'changed', 'createdBy', 'changedBy', 'state');
     }
 
     /**
@@ -215,6 +215,468 @@ class Club extends \Model\Club implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDescription', array($description));
 
         return parent::setDescription($description);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStreet()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStreet', array());
+
+        return parent::getStreet();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStreet($street)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStreet', array($street));
+
+        return parent::setStreet($street);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNeighborhood()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNeighborhood', array());
+
+        return parent::getNeighborhood();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNeighborhood($neighborhood)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNeighborhood', array($neighborhood));
+
+        return parent::setNeighborhood($neighborhood);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getZone()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getZone', array());
+
+        return parent::getZone();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setZone($zone)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setZone', array($zone));
+
+        return parent::setZone($zone);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEmail()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmail', array());
+
+        return parent::getEmail();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEmail($email)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEmail', array($email));
+
+        return parent::setEmail($email);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhone()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhone', array());
+
+        return parent::getPhone();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPhone($phone)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhone', array($phone));
+
+        return parent::setPhone($phone);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhonemobil()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhonemobil', array());
+
+        return parent::getPhonemobil();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPhonemobil($phonemobil)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhonemobil', array($phonemobil));
+
+        return parent::setPhonemobil($phonemobil);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDateInaguration()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDateInaguration', array());
+
+        return parent::getDateInaguration();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDateInaguration($dateInaguration)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateInaguration', array($dateInaguration));
+
+        return parent::setDateInaguration($dateInaguration);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCountMember()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountMember', array());
+
+        return parent::getCountMember();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCountMember($countMember)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCountMember', array($countMember));
+
+        return parent::setCountMember($countMember);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCountUnityMen()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountUnityMen', array());
+
+        return parent::getCountUnityMen();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCountUnityMen($countUnityMen)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCountUnityMen', array($countUnityMen));
+
+        return parent::setCountUnityMen($countUnityMen);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCountUnityWomen()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountUnityWomen', array());
+
+        return parent::getCountUnityWomen();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCountUnityWomen($countUnityWomen)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCountUnityWomen', array($countUnityWomen));
+
+        return parent::setCountUnityWomen($countUnityWomen);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCountMemberDirective()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountMemberDirective', array());
+
+        return parent::getCountMemberDirective();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCountMemberDirective($countMemberDirective)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCountMemberDirective', array($countMemberDirective));
+
+        return parent::setCountMemberDirective($countMemberDirective);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFlags()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFlags', array());
+
+        return parent::getFlags();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFlags($flags)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFlags', array($flags));
+
+        return parent::setFlags($flags);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMastils()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMastils', array());
+
+        return parent::getMastils();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMastils($mastils)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMastils', array($mastils));
+
+        return parent::setMastils($mastils);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getHandbooks()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getHandbooks', array());
+
+        return parent::getHandbooks();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setHandbooks($handbooks)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setHandbooks', array($handbooks));
+
+        return parent::setHandbooks($handbooks);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBanners()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBanners', array());
+
+        return parent::getBanners();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBanners($banners)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBanners', array($banners));
+
+        return parent::setBanners($banners);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTents()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTents', array());
+
+        return parent::getTents();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTents($tents)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTents', array($tents));
+
+        return parent::setTents($tents);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getBookMembers()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBookMembers', array());
+
+        return parent::getBookMembers();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBookMembers($bookMembers)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBookMembers', array($bookMembers));
+
+        return parent::setBookMembers($bookMembers);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getObservation()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getObservation', array());
+
+        return parent::getObservation();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setObservation($observation)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setObservation', array($observation));
+
+        return parent::setObservation($observation);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDateRegistre()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDateRegistre', array());
+
+        return parent::getDateRegistre();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDateRegistre($dateRegistre)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateRegistre', array($dateRegistre));
+
+        return parent::setDateRegistre($dateRegistre);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPastor()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPastor', array());
+
+        return parent::getPastor();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPastor($pastor)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPastor', array($pastor));
+
+        return parent::setPastor($pastor);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDepartment()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDepartment', array());
+
+        return parent::getDepartment();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDepartment($department)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDepartment', array($department));
+
+        return parent::setDepartment($department);
     }
 
     /**
