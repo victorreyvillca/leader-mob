@@ -55,11 +55,8 @@ class User_AuthController extends Dis_Controller_Action {
     private function verify($values) {
         $adapter = $this->getAuthAdapter();
 
-//         $adapter->setIdentity($values['username']);
-//         $adapter->setCredential(md5($values['password']));
-
         $adapter->setIdentity($values['username']);
-        $adapter->setCredential($values['password']);
+        $adapter->setCredential(md5($values['password']));
 
         $auth = Zend_Auth::getInstance();
         $result = $auth->authenticate($adapter);
@@ -134,7 +131,7 @@ class User_AuthController extends Dis_Controller_Action {
 	 */
     public function logoutAction() {
         Zend_Auth::getInstance()->clearIdentity();
-//    	Zend_Session::forgetMe();
-        $this->_helper->redirector('login', 'auth', 'user');
+        Zend_Session::forgetMe();
+        $this->_helper->redirector('login', 'Auth', 'user');
     }
 }

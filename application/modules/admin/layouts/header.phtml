@@ -16,13 +16,6 @@
 					<span class="right consultant"></span>
 				</a>
 			</li>
-			<li class="candidate <?php echo (isset($this->layout()->activeUser)) ? 'active' : ''; ?>">
-				<a href="<?php echo $this->url(array('module'=>'user', 'controller'=>'auth', 'action'=>'index', 'type'=>'um'),null,true); ?>" class="candidate">
-					<span class="left candidate"></span>
-					<span class="center candidate"><?php echo $this->translate("Login"); ?></span>
-					<span class="right candidate"></span>
-				</a>
-			</li>
 		</ul>
 	</div>
 	<div class="clear"></div>
@@ -32,9 +25,9 @@
 		<ul class="nobullets">
 			<li></li>
 			<li class="logout">
-					<a href="<?php echo $this->url(array('module'=>'um', 'controller'=>'login', 'action'=>'logout')); ?>">
+					<a href="<?php echo $this->url(array('action'=>'logout', 'controller'=>'Auth', 'module'=>'user')); ?>">
 					<span class="left"></span>
-					Logout
+					<?php echo _('Finalizar')?>
 					<span class="right"></span>
 				</a>
 			</li>

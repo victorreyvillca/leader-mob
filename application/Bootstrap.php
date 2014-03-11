@@ -84,23 +84,21 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
      * Register plugins
      */
     public function _initRegisterPlugin() {
-    	$frontController = Zend_Controller_Front::getInstance();
+        $frontController = Zend_Controller_Front::getInstance();
 
-    	// Register plugin acl
-    	//     	if (!$frontController->hasPlugin('App_Controller_Plugin_Acl')) {
-    	//     		$frontController->registerPlugin(new App_Controller_Plugin_Acl(), 1);
-    	//     	}
+        // Register plugin acl
+        if (!$frontController->hasPlugin('Dis_Controller_Plugin_Acl')) {
+            $frontController->registerPlugin(new Dis_Controller_Plugin_Acl(), 1);
+        }
 
     	//     	// Register plugin for router, enable parameter lang to zend_translate
     	//     	if (!$frontController->hasPlugin('App_Controller_Plugin_RouterSetup')) {
     	//     		$frontController->registerPlugin(new App_Controller_Plugin_RouterSetup(), 2);
     	//     	}
 
-    		// Register plugion view setup
-    		if (!$frontController->hasPlugin('Dis_Controller_Plugin_ViewSetup')) {
-    			$frontController->registerPlugin(new Dis_Controller_Plugin_ViewSetup(), 1);
-    		}
-    	}
-
+        // Register plugion view setup
+        if (!$frontController->hasPlugin('Dis_Controller_Plugin_ViewSetup')) {
+            $frontController->registerPlugin(new Dis_Controller_Plugin_ViewSetup(), 2);
+        }
+    }
 }
-
