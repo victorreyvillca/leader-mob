@@ -6,6 +6,13 @@ INSERT INTO `tblCategory` ( `name`, `description`, `created`, `changed`, `create
 	('Ministerio Joven', '', NOW(), NULL, 1, NULL, 1);
 
 
+INSERT INTO `tblArea` ( `name`, `description`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
+	('Aventureros', '', NOW(), NULL, 1, NULL, 1),
+	('Conquistadores', '', NOW(), NULL, 1, NULL, 1),
+	('Universitarios', '', NOW(), NULL, 1, NULL, 1),
+	('JA (Jovenes Adventistas)', '', NOW(), NULL, 1, NULL, 1);
+	
+	
 INSERT INTO `tblRole` ( `name`, `description`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
 	('Administrador', 'Encargado de Administrador todo el Sistema', NOW(), NULL, 1, NULL, 1),
 	('Miembro', 'Encargado de utilizar algunas funcionalidades del sistema', NOW(), NULL, 1, NULL, 1),

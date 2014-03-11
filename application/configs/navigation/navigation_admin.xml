@@ -92,9 +92,9 @@
 					</params>
 				</church>
 				<country>
-					<label>Paises</label>
+					<label>Club</label>
 					<module>admin</module>
-					<controller>country</controller>
+					<controller>Club</controller>
 					<action>index</action>
 					<params>
 						<type>organization</type>

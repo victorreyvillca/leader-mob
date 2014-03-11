@@ -48,15 +48,23 @@ class ClubRepository extends EntityRepository {
     			$sort = 'name';
     			break;
 
-    		case 2:
+            case 2:
+                $sort = 'areaId';
+                break;
+
+            case 3:
+                $sort = 'churchId';
+                break;
+
+    		case 4:
     			$sort = 'description';
     			break;
 
-    		case 3:
+    		case 5:
     			$sort = 'created';
     			break;
 
-    		case 4:
+    		case 6:
     			$sort = 'changed';
     			break;
 
