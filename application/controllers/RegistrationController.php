@@ -51,7 +51,6 @@ class RegistrationController extends Dis_Controller_Action {
 		$rankRepo = $this->_entityManager->getRepository('Model\Rank');
 		$departmentRepo = $this->_entityManager->getRepository('Model\Department');
 
-		var_dump($missionRepo->findAllArray());
 		$form->getElement('position')->setMultiOptions($positionRepo->findAllArray(TRUE));
 		$form->getElement('mission')->setMultiOptions($missionRepo->findAllArray());
 		$form->getElement('region')->setMultiOptions($regionRepo->findAllArray());

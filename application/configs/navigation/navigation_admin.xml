@@ -82,16 +82,7 @@
 						<type>organization</type>
 					</params>
 				</managerial>
-				<church>
-					<label>Roles</label>
-					<module>admin</module>
-					<controller>Role</controller>
-					<action>index</action>
-					<params>
-						<type>organization</type>
-					</params>
-				</church>
-				<country>
+				<club>
 					<label>Club</label>
 					<module>admin</module>
 					<controller>Club</controller>
@@ -99,25 +90,16 @@
 					<params>
 						<type>organization</type>
 					</params>
-				</country>
-				<department>
-					<label>Departmentos</label>
+				</club>
+				<role>
+					<label>Roles</label>
 					<module>admin</module>
-					<controller>department</controller>
+					<controller>Role</controller>
 					<action>index</action>
 					<params>
 						<type>organization</type>
 					</params>
-				</department>
-				<province>
-					<label>Provincias</label>
-					<module>admin</module>
-					<controller>provincia</controller>
-					<action>index</action>
-					<params>
-						<type>organization</type>
-					</params>
-				</province>
+				</role>
 			</pages>
 		</organization>
 

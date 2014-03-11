@@ -346,5 +346,21 @@ INSERT INTO `tblChurch` ( `name`, `description`, `districtId`, `created`, `chang
 ( 'Guayara Central', '', 36, NOW(), NULL, 1, NULL, 1),
 ( 'Guayaraguazu', '', 36, NOW(), NULL, 1, NULL, 1),
 ( 'Los Almedros', '', 36, NOW(), NULL, 1, NULL, 1),
-( 'Pueblo Nuevo', '', 36, NOW(), NULL, 1, NULL, 1)
-;
+( 'Pueblo Nuevo', '', 36, NOW(), NULL, 1, NULL, 1);
+
+
+INSERT INTO `tblArea` ( `name`, `description`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
+	('Aventureros', '', NOW(), NULL, 1, NULL, 1),
+	('Conquistadores', '', NOW(), NULL, 1, NULL, 1),
+	('Universitarios', '', NOW(), NULL, 1, NULL, 1),
+	('JA (Jovenes Adventistas)', '', NOW(), NULL, 1, NULL, 1);
+	
+	
+INSERT INTO `tblClub` ( `name`, `description`, `churchId`, `areaId`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
+	('Orion S.C.', 'Av. El Palmar Zona los Lotes, parada 16 1/2', 48, 2, NOW(), NULL, 1, NULL, 1),
+	('Nuevo Oriente', 'Barrio Magisterio', 47, 2, NOW(), NULL, 1, NULL, 1),
+	('Jahdai', 'Barrio San Franciso Parada 11', 50, 2, NOW(), NULL, 1, NULL, 1),
+	('Emanuel', 'Colegio Plan 3000 la rotonda', 20, 2, NOW(), NULL, 1, NULL, 1),
+	('Jenecheru', 'Barrio Lindo', 20, 2, NOW(), NULL, 1, NULL, 1),
+	('Maranatha', 'Iglesia Central Bolivar', 1, 2, NOW(), NULL, 1, NULL, 1),
+	('Hamacas', 'Av. Japon 3er anillo externo cerca de las oficinas MOB', 6, 2, NOW(), NULL, 1, NULL, 1);
