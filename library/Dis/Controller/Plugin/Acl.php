@@ -18,6 +18,9 @@ class Dis_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
 	public function preDispatch(Zend_Controller_Request_Abstract $request) {
 	    $auth = Zend_Auth::getInstance();
 
+        if ($request->getModuleName() == 'default') {
+            return TRUE;
+        }
 // 	    $acl = new My_Acl();
         $session = new Zend_Session_Namespace('admin');
 

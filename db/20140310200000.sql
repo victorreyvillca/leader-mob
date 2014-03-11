@@ -355,7 +355,7 @@ INSERT INTO `tblArea` ( `name`, `description`, `created`, `changed`, `createdBy`
 	('Universitarios', '', NOW(), NULL, 1, NULL, 1),
 	('JA (Jovenes Adventistas)', '', NOW(), NULL, 1, NULL, 1);
 	
-	
+
 INSERT INTO `tblClub` ( `name`, `description`, `churchId`, `areaId`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
 	('Orion S.C.', 'Av. El Palmar Zona los Lotes, parada 16 1/2', 48, 2, NOW(), NULL, 1, NULL, 1),
 	('Nuevo Oriente', 'Barrio Magisterio', 47, 2, NOW(), NULL, 1, NULL, 1),

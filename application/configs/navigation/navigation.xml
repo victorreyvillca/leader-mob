@@ -20,11 +20,11 @@
 					<controller>Whowe</controller>
 					<action>history</action>
 				</history>
-				<visionMission>
-					<label>Vision y Mision</label>
-					<controller>Whowe</controller>
-					<action>visionmission</action>
-				</visionMission>
+<!-- 				<visionMission> -->
+<!-- 					<label>Vision y Mision</label> -->
+<!-- 					<controller>Whowe</controller> -->
+<!-- 					<action>visionmission</action> -->
+<!-- 				</visionMission> -->
 				<logo>
 					<label>Nuestros Logos</label>
 					<controller>Whowe</controller>

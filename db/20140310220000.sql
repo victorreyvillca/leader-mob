@@ -5,7 +5,7 @@ INSERT INTO `tblCategory` ( `name`, `description`, `created`, `changed`, `create
 	('JA (Jovenes Adventistas)', '', NOW(), NULL, 1, NULL, 1),
 	('Ministerio Joven', '', NOW(), NULL, 1, NULL, 1);
 
-	
+
 INSERT INTO `tblRole` ( `name`, `description`, `created`, `changed`, `createdBy`, `changedBy`, `state`) VALUES
 	('Administrador', 'Encargado de Administrador todo el Sistema', NOW(), NULL, 1, NULL, 1),
 	('Miembro', 'Encargado de utilizar algunas funcionalidades del sistema', NOW(), NULL, 1, NULL, 1),
