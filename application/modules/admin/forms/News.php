@@ -30,7 +30,7 @@ class Admin_Form_News extends Zend_Form {
         $summary
         	->setLabel(_('Resumen'))
         	->setAttrib('cols', 50)
-        	->setAttrib('rows', 2)
+        	->setAttrib('rows', 3)
         	->setRequired(TRUE)
            	->addFilter('StripTags')
             ->addFilter('StringTrim')
