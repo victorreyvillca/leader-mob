@@ -46,9 +46,22 @@
 		</news>
 
 		<registration>
+			<id>guest.registration</id>
 			<label>Registro</label>
-			<controller>Registration</controller>
+			<controller>Club</controller>
 			<action>index</action>
+			<pages>
+				<club>
+					<label>Registro Club</label>
+					<controller>Club</controller>
+					<action>index</action>
+				</club>
+				<directive>
+					<label>Registro Directivo</label>
+					<controller>Registration</controller>
+					<action>index</action>
+				</directive>
+			</pages>
 		</registration>
 
 <!-- 		<config> -->

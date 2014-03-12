@@ -28,6 +28,8 @@ class RegistrationController extends Dis_Controller_Action {
 	 * @access public
 	 */
 	public function indexAction() {
+        $this->view->navigation()->getContainer()->findOneBy('id', 'guest.registration')->setActive(TRUE);
+
 	    $formFilter = new Admin_Form_SearchFilter();
 	    $formFilter->getElement('nameFilter')->setLabel(_('Nombre Directivo'));
 	    $this->view->formFilter = $formFilter;
@@ -38,6 +40,8 @@ class RegistrationController extends Dis_Controller_Action {
 	 * @access public
 	 */
 	public function addAction() {
+        $this->view->navigation()->getContainer()->findOneBy('id', 'guest.registration')->setActive(TRUE);
+
 		$form = new Admin_Form_Directive();
 
 		$positionRepo = $this->_entityManager->getRepository('Model\Position');
@@ -219,6 +223,8 @@ class RegistrationController extends Dis_Controller_Action {
 	 * @access public
 	 */
 	public function editAction() {
+        $this->view->navigation()->getContainer()->findOneBy('id', 'guest.registration')->setActive(TRUE);
+
         $form = new Admin_Form_Directive();
         $form->getElement('saveButton')->setLabel(_('Editar'));
 
