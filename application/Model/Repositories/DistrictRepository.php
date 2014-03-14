@@ -3,6 +3,7 @@
 namespace Model\Repositories;
 
 use Doctrine\ORM\EntityRepository;
+use Model\Region;
 
 /**
  * DistrictRepository
@@ -125,5 +126,20 @@ class DistrictRepository extends EntityRepository {
         }
 
         return $itemArray;
+    }
+
+    /**
+     * Returns all models by Region
+     * @return array
+     */
+    public function findByRegionArray(Region $region) {
+    	$items = $this->findBy(array('state' => TRUE, 'regionId' => $region->getId()));
+
+    	$itemArray = array();
+    	foreach ($items as $item) {
+    		$itemArray[$item->getId()] = $item->getName();
+    	}
+
+    	return $itemArray;
     }
 }

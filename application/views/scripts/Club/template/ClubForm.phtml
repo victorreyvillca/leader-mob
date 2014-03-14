@@ -1,0 +1,127 @@
+<form class="form-line" id="<?php echo $this->element->getAttrib('id')?>" action="<?php echo $this->element->getAction()?>" method="post" enctype="multipart/form-data">
+<?php echo $this->element->getElement('id')->render();?>
+    <fieldset>
+        <div class="row">
+            <div class="span7">
+                <div class="well" id="result" style="width: 127px; height: 127px;">
+                    <img src="<?php echo $this->element->getSource();?>" id="profile_img" style="width: 127px; height: 127px;"/>
+                </div>
+            </div>
+        </div>
+        <div>
+            <?php echo _('Subir el Logo del Club')?>
+            <input id="MAX_FILE_SIZE" type="hidden" value="8388608" name="MAX_FILE_SIZE">
+            <input type="file" id="file-input" name="file" class="valid">
+		</div>
+        <div>
+    		<?php echo $this->element->getElement('name')->renderLabel()?>
+    		<?php echo $this->element->getElement('name')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('region')->renderLabel()?>
+            <?php echo $this->element->getElement('region')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('district')->renderLabel()?>
+            <?php echo $this->element->getElement('district')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('church')->renderLabel()?>
+            <?php echo $this->element->getElement('church')->renderViewHelper()?>
+        </div>
+        <div>
+    		<?php echo $this->element->getElement('lastName')->renderLabel()?>
+    		<?php echo $this->element->getElement('lastName')->renderViewHelper()?>
+        </div>
+        <br>
+        <h5><?php echo _('DIRECCION DE LA IGLESIA')?></h5>
+        <div>
+            <?php echo $this->element->getElement('street')->renderLabel()?>
+    		<?php echo $this->element->getElement('street')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('year')->renderLabel()?>
+            <?php echo $this->element->getElement('year')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('yearService')->renderLabel()?>
+            <?php echo $this->element->getElement('yearService')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('department')->renderLabel()?>
+            <?php echo $this->element->getElement('department')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('email')->renderLabel()?>
+            <?php echo $this->element->getElement('email')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('phonemobil')->renderLabel()?>
+            <?php echo $this->element->getElement('phonemobil')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('phone')->renderLabel()?>
+            <?php echo $this->element->getElement('phone')->renderViewHelper()?>
+        </div>
+        <br>
+        <h5><?php echo _('DIRECTIVA')?></h5>
+
+        <br>
+        <h5><?php echo _('ORGANIZACIóN')?></h5>
+        <div>
+            <?php echo $this->element->getElement('dateOfInaguration')->renderLabel()?>
+            <?php echo $this->element->getElement('dateOfInaguration')->renderViewHelper()?>
+        </div>
+
+        <div>
+            <?php echo $this->element->getElement('countMemberClub')->renderLabel()?>
+            <?php echo $this->element->getElement('countMemberClub')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('countUnityMen')->renderLabel()?>
+            <?php echo $this->element->getElement('countUnityMen')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('countUnityWomen')->renderLabel()?>
+            <?php echo $this->element->getElement('countUnityWomen')->renderViewHelper()?>
+        </div>
+         <div>
+            <?php echo $this->element->getElement('countMemberDirective')->renderLabel()?>
+            <?php echo $this->element->getElement('countMemberDirective')->renderViewHelper()?>
+        </div>
+        <br>
+        <h5><?php echo _('Patrimonio: (Especificar las cantidades)')?></h5>
+        <div>
+            <?php echo $this->element->getElement('flags')->renderLabel()?>
+            <?php echo $this->element->getElement('flags')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('position')->renderLabel()?>
+            <?php echo $this->element->getElement('position')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('rank')->renderLabel()?>
+            <?php echo $this->element->getElement('rank')->renderViewHelper()?>
+        </div>
+        <div>
+            <?php echo $this->element->getElement('area')->renderLabel()?>
+            <?php echo $this->element->getElement('area')->renderViewHelper()?>
+        </div>
+
+
+
+
+
+
+        <!-- Data on the Region -->
+
+        <br>
+        <h3><?php echo _('Otros Datos')?></h3>
+
+        <div>
+            <?php echo $this->element->getElement('classConqueror')->renderLabel()?>
+            <?php echo $this->element->getElement('classConqueror')->renderViewHelper()?>
+        </div>
+        <?php echo $this->element->getElement('saveButton')->renderViewHelper()?>
+    </fieldset>
+</form>

@@ -3,6 +3,7 @@
 namespace Model\Repositories;
 
 use Doctrine\ORM\EntityRepository;
+use Model\District;
 
 /**
  * ChurchRepository
@@ -125,5 +126,20 @@ class ChurchRepository extends EntityRepository {
         }
 
         return $itemArray;
+    }
+
+    /**
+     * Returns all models by District
+     * @return array
+     */
+    public function findByDistrictArray(District $district) {
+    	$items = $this->findBy(array('state' => TRUE, 'districtId' => $district->getId()));
+
+    	$itemArray = array();
+    	foreach ($items as $item) {
+    		$itemArray[$item->getId()] = $item->getName();
+    	}
+
+    	return $itemArray;
     }
 }
